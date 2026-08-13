@@ -1,18 +1,28 @@
 import { motion } from "framer-motion";
 
 /* =========================================
-   EVENTO Y DIRECCIÓN — ESTILO CLÁSICO
+   EVENTO Y DIRECCIÓN — REBECA & ROBERTO
+   Moka + marfil + dorado envejecido
 ========================================= */
 
 const palette = {
-  ink: "#1D2733",
-  inkSoft: "#39434D",
-  paper: "#F5F1E8",
-  paperLight: "#FBF9F4",
-  paperDark: "#E5DED2",
-  antiqueGold: "#A48654",
-  antiqueGoldDark: "#725B37",
-  warmGray: "#777168",
+  ink: "#241C18",
+  inkSoft: "#5A463B",
+
+  paper: "#F7F5F0",
+  paperLight: "#FCFBF8",
+  paperDark: "#E5DED5",
+
+  antiqueGold: "#B79A62",
+  antiqueGoldDark: "#8A6B3F",
+
+  mocha: "#5A463B",
+  mochaDark: "#3B2D27",
+
+  autumn: "#A7684A",
+  autumnDark: "#80604C",
+
+  warmGray: "#806F64",
 };
 
 const fadeUp = {
@@ -20,9 +30,11 @@ const fadeUp = {
     opacity: 0,
     y: 28,
   },
+
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.95,
       ease: [0.22, 1, 0.36, 1],
@@ -140,32 +152,38 @@ function BotanicalBranch({ className = "" }) {
 }
 
 /* =========================================
-   SEPARADOR CLÁSICO
+   SEPARADOR
 ========================================= */
 
-function DecorativeDivider({ compact = false }) {
+function DecorativeDivider({ compact = false, light = false }) {
+  const gold = light
+    ? "rgba(216,194,154,0.78)"
+    : "rgba(183,154,98,0.72)";
+
   return (
     <div className="flex items-center justify-center gap-3">
       <span
-        className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
+        className={
+          compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"
+        }
         style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(164,134,84,0.72))",
+          background: `linear-gradient(to right, transparent, ${gold})`,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: "rgba(164,134,84,0.72)",
+          borderColor: gold,
         }}
       />
 
       <span
-        className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
+        className={
+          compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"
+        }
         style={{
-          background:
-            "linear-gradient(to left, transparent, rgba(164,134,84,0.72))",
+          background: `linear-gradient(to left, transparent, ${gold})`,
         }}
       />
     </div>
@@ -173,7 +191,7 @@ function DecorativeDivider({ compact = false }) {
 }
 
 /* =========================================
-   ÍCONO DE UBICACIÓN
+   ICONO UBICACIÓN
 ========================================= */
 
 function LocationIcon() {
@@ -189,13 +207,304 @@ function LocationIcon() {
       className="h-4 w-4"
     >
       <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
+
       <circle cx="12" cy="10" r="2.5" />
     </svg>
   );
 }
 
 /* =========================================
-   COMPONENTE
+   BLOQUE DE EVENTO
+========================================= */
+
+function EventBlock({
+  eyebrow,
+  time,
+  place,
+  address,
+  href,
+  delay = 0,
+  variant = "light",
+}) {
+  const dark = variant === "dark";
+
+  return (
+    <motion.article
+      className="
+        relative
+        flex
+        min-h-[520px]
+        flex-col
+        items-center
+        justify-center
+        overflow-hidden
+        px-7
+        py-14
+        text-center
+        sm:min-h-[560px]
+        sm:px-10
+        sm:py-16
+        lg:px-12
+      "
+      style={{
+        background: dark
+          ? `
+              radial-gradient(
+                circle at 20% 10%,
+                rgba(183,154,98,0.12),
+                transparent 34%
+              ),
+              linear-gradient(
+                155deg,
+                ${palette.mochaDark} 0%,
+                ${palette.mocha} 58%,
+                #49372F 100%
+              )
+            `
+          : `
+              radial-gradient(
+                circle at 84% 18%,
+                rgba(183,154,98,0.08),
+                transparent 35%
+              ),
+              linear-gradient(
+                160deg,
+                rgba(252,251,248,0.98) 0%,
+                rgba(247,245,240,0.98) 58%,
+                rgba(229,222,213,0.92) 100%
+              )
+            `,
+      }}
+      initial={{
+        opacity: 0,
+        y: 24,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      transition={{
+        duration: 0.95,
+        delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      {/* DETALLE SUPERIOR */}
+
+      <div
+        className="
+          absolute
+          left-1/2
+          top-8
+          h-px
+          w-16
+          -translate-x-1/2
+        "
+        style={{
+          backgroundColor: dark
+            ? "rgba(216,194,154,0.55)"
+            : "rgba(183,154,98,0.48)",
+        }}
+      />
+
+      {/* TIPO */}
+
+      <p
+        className="
+          text-[15px]
+          uppercase
+          tracking-[0.42em]
+          sm:text-[18px]
+          sm:tracking-[0.52em]
+        "
+        style={{
+          color: dark
+            ? "#D8C29A"
+            : palette.antiqueGoldDark,
+        }}
+      >
+        {eyebrow}
+      </p>
+
+      <div className="my-7 sm:my-8">
+        <DecorativeDivider light={dark} />
+      </div>
+
+      {/* HORA */}
+
+      <p
+        className="
+          text-[8px]
+          uppercase
+          tracking-[0.36em]
+          sm:text-[9px]
+        "
+        style={{
+          color: dark
+            ? "rgba(252,251,248,0.62)"
+            : palette.warmGray,
+        }}
+      >
+        Hora
+      </p>
+
+      <p
+        className="
+          mt-3
+          font-serif
+          text-[50px]
+          font-normal
+          leading-none
+          tracking-[-0.035em]
+          sm:text-[62px]
+          lg:text-[68px]
+        "
+        style={{
+          color: dark
+            ? palette.paperLight
+            : palette.ink,
+        }}
+      >
+        {time}
+      </p>
+
+
+      {/* UBICACIÓN */}
+
+      <div className="mt-9 sm:mt-10">
+        <p
+          className="
+            text-[8px]
+            uppercase
+            tracking-[0.38em]
+            sm:text-[9px]
+          "
+          style={{
+            color: dark
+              ? "rgba(252,251,248,0.58)"
+              : palette.warmGray,
+          }}
+        >
+          Ubicación
+        </p>
+
+        <p
+          className="
+            mx-auto
+            mt-4
+            max-w-md
+            font-serif
+            text-[22px]
+            leading-relaxed
+            sm:text-[25px]
+          "
+          style={{
+            color: dark
+              ? palette.paperLight
+              : palette.inkSoft,
+          }}
+        >
+          {place}
+        </p>
+
+        {address && (
+          <p
+            className="
+              mx-auto
+              mt-2
+              max-w-md
+              text-[12px]
+              leading-6
+              sm:text-[13px]
+            "
+            style={{
+              color: dark
+                ? "rgba(252,251,248,0.62)"
+                : palette.warmGray,
+            }}
+          >
+            {address}
+          </p>
+        )}
+      </div>
+
+      {/* BOTÓN */}
+
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Abrir ubicación de ${eyebrow} en Google Maps`}
+        className="
+          group
+          mt-9
+          inline-flex
+          min-w-[220px]
+          items-center
+          justify-center
+          gap-3
+          border
+          px-8
+          py-4
+          sm:min-w-[250px]
+          sm:px-10
+        "
+        style={{
+          backgroundColor: dark
+            ? palette.paperLight
+            : palette.mocha,
+
+          borderColor: dark
+            ? "rgba(216,194,154,0.8)"
+            : palette.mocha,
+
+          color: dark
+            ? palette.mochaDark
+            : palette.paperLight,
+
+          boxShadow: dark
+            ? "0 14px 32px rgba(0,0,0,0.18)"
+            : "0 14px 32px rgba(36,28,24,0.14)",
+        }}
+        whileHover={{
+          y: -2,
+
+          backgroundColor: dark
+            ? palette.paper
+            : palette.mochaDark,
+
+          transition: {
+            duration: 0.25,
+          },
+        }}
+        whileTap={{
+          scale: 0.985,
+        }}
+      >
+        <LocationIcon />
+
+        <span
+          className="
+            text-[9px]
+            uppercase
+            tracking-[0.28em]
+            sm:text-[10px]
+            sm:tracking-[0.34em]
+          "
+        >
+          Ver ubicación
+        </span>
+      </motion.a>
+    </motion.article>
+  );
+}
+
+/* =========================================
+   COMPONENTE PRINCIPAL
 ========================================= */
 
 export default function EventoDireccion() {
@@ -220,44 +529,67 @@ export default function EventoDireccion() {
         py-24
         sm:px-8
         sm:py-28
-        lg:min-h-[720px]
         lg:px-12
         lg:py-32
       "
       style={{
         background: `
+          radial-gradient(
+            circle at 12% 10%,
+            rgba(183,154,98,0.09),
+            transparent 28%
+          ),
+
+          radial-gradient(
+            circle at 88% 82%,
+            rgba(167,104,74,0.08),
+            transparent 32%
+          ),
+
           linear-gradient(
-            180deg,
-            ${palette.paperLight} 0%,
-            ${palette.paper} 58%,
-            ${palette.paperDark} 100%
+            145deg,
+            ${palette.mochaDark} 0%,
+            ${palette.mocha} 48%,
+            #49372F 100%
           )
         `,
       }}
     >
-      {/* TEXTURA DE PAPEL */}
+      {/* =========================================
+          TEXTURA
+      ========================================= */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
-          opacity-[0.16]
+          opacity-[0.22]
         "
         style={{
           backgroundImage: `
+            linear-gradient(
+              120deg,
+              transparent 0%,
+              transparent 37%,
+              rgba(255,255,255,0.05) 38%,
+              transparent 40%
+            ),
+
             repeating-linear-gradient(
               0deg,
-              rgba(29,39,51,0.025) 0px,
-              rgba(29,39,51,0.025) 1px,
+              rgba(255,255,255,0.025) 0px,
+              rgba(255,255,255,0.025) 1px,
               transparent 1px,
-              transparent 5px
+              transparent 6px
             )
           `,
         }}
       />
 
-      {/* MARCO GENERAL */}
+      {/* =========================================
+          MARCO GENERAL
+      ========================================= */}
 
       <div
         className="
@@ -269,7 +601,7 @@ export default function EventoDireccion() {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(164,134,84,0.25)",
+          borderColor: "rgba(216,194,154,0.3)",
         }}
       />
 
@@ -283,11 +615,13 @@ export default function EventoDireccion() {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(164,134,84,0.1)",
+          borderColor: "rgba(216,194,154,0.1)",
         }}
       />
 
-      {/* ORNAMENTOS DE ESQUINA */}
+      {/* =========================================
+          ESQUINAS
+      ========================================= */}
 
       <CornerOrnament
         className="
@@ -297,7 +631,7 @@ export default function EventoDireccion() {
           top-6
           h-16
           w-16
-          text-[#A48654]/25
+          text-[#D8C29A]/30
           sm:left-9
           sm:top-9
           sm:h-20
@@ -314,7 +648,7 @@ export default function EventoDireccion() {
           h-16
           w-16
           rotate-90
-          text-[#A48654]/25
+          text-[#D8C29A]/30
           sm:right-9
           sm:top-9
           sm:h-20
@@ -331,7 +665,7 @@ export default function EventoDireccion() {
           h-16
           w-16
           -rotate-90
-          text-[#A48654]/25
+          text-[#D8C29A]/30
           sm:bottom-9
           sm:left-9
           sm:h-20
@@ -348,7 +682,7 @@ export default function EventoDireccion() {
           h-16
           w-16
           rotate-180
-          text-[#A48654]/25
+          text-[#D8C29A]/30
           sm:bottom-9
           sm:right-9
           sm:h-20
@@ -356,7 +690,9 @@ export default function EventoDireccion() {
         "
       />
 
-      {/* RAMAS BOTÁNICAS */}
+      {/* =========================================
+          RAMAS
+      ========================================= */}
 
       <BotanicalBranch
         className="
@@ -367,7 +703,7 @@ export default function EventoDireccion() {
           h-[250px]
           w-[145px]
           -rotate-12
-          text-[#A48654]/10
+          text-[#D8C29A]/10
           sm:h-[310px]
           sm:w-[180px]
           lg:left-2
@@ -383,14 +719,16 @@ export default function EventoDireccion() {
           h-[250px]
           w-[145px]
           rotate-[168deg]
-          text-[#A48654]/10
+          text-[#D8C29A]/10
           sm:h-[310px]
           sm:w-[180px]
           lg:right-2
         "
       />
 
-      {/* CONTENIDO */}
+      {/* =========================================
+          CONTENIDO
+      ========================================= */}
 
       <div
         className="
@@ -420,7 +758,9 @@ export default function EventoDireccion() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -428,36 +768,36 @@ export default function EventoDireccion() {
         >
           <p
             className="
-              text-[8px]
+              text-[20px]
               uppercase
               tracking-[0.44em]
-              sm:text-[10px]
+              text-[#D8C29A]
+              sm:text-[28px]
               sm:tracking-[0.55em]
             "
-            style={{
-              color: palette.antiqueGoldDark,
-            }}
           >
             Nuestra celebración
           </p>
 
           <div className="mt-5">
-            <DecorativeDivider />
+            <DecorativeDivider light />
           </div>
 
           <h2
             className="
               mt-7
-              font-serif
-              text-[39px]
+              text-[44px]
               font-normal
-              leading-tight
-              tracking-[-0.02em]
-              sm:text-[54px]
-              md:text-[64px]
+              italic
+              leading-[1.05]
+              sm:text-[58px]
+              md:text-[68px]
             "
             style={{
-              color: palette.ink,
+              color: palette.paperLight,
+
+              fontFamily:
+                '"Cormorant Garamond", Georgia, serif',
             }}
           >
             Un día para recordar
@@ -475,7 +815,7 @@ export default function EventoDireccion() {
               sm:text-base
             "
             style={{
-              color: palette.warmGray,
+              color: "rgba(252,251,248,0.7)",
             }}
           >
             Nos hará muy felices compartir con ustedes el comienzo de este
@@ -483,20 +823,34 @@ export default function EventoDireccion() {
           </p>
         </motion.div>
 
-        {/* TARJETA DE INFORMACIÓN */}
+        {/* =========================================
+            FECHA
+        ========================================= */}
 
         <motion.div
           className="
             relative
+            mx-auto
+            mb-8
+            flex
+            max-w-4xl
+            flex-col
+            items-center
             overflow-hidden
             border
-            lg:grid
-            lg:grid-cols-[0.88fr_1.12fr]
+            px-7
+            py-12
+            text-center
+            sm:mb-10
+            sm:px-10
+            sm:py-14
           "
           style={{
-            backgroundColor: "rgba(251,249,244,0.82)",
-            borderColor: "rgba(164,134,84,0.34)",
-            boxShadow: "0 24px 65px rgba(29,39,51,0.09)",
+            backgroundColor: "rgba(252,251,248,0.97)",
+            borderColor: "rgba(216,194,154,0.5)",
+
+            boxShadow:
+              "0 26px 70px rgba(20,14,12,0.2)",
           }}
           initial={{
             opacity: 0,
@@ -516,8 +870,6 @@ export default function EventoDireccion() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          {/* BORDE INTERIOR */}
-
           <div
             className="
               pointer-events-none
@@ -526,427 +878,135 @@ export default function EventoDireccion() {
               border
             "
             style={{
-              borderColor: "rgba(164,134,84,0.12)",
+              borderColor:
+                "rgba(183,154,98,0.12)",
             }}
           />
 
-          {/* COLUMNA DE FECHA */}
-
-          <div
+          <p
             className="
-              relative
-              flex
-              min-h-[430px]
-              flex-col
-              items-center
-              justify-center
-              border-b
-              px-7
-              py-16
-              text-center
-              sm:min-h-[470px]
-              sm:px-10
-              lg:min-h-[570px]
-              lg:border-b-0
-              lg:border-r
-              lg:px-12
+              text-[15px]
+              uppercase
+              tracking-[0.4em]
+              sm:text-[18px]
+              sm:tracking-[0.5em]
             "
             style={{
-              borderColor: "rgba(164,134,84,0.24)",
-              background: `
-                linear-gradient(
-                  180deg,
-                  rgba(245,241,232,0.62),
-                  rgba(228,221,209,0.5)
-                )
-              `,
+              color: palette.antiqueGoldDark,
             }}
           >
-            <motion.p
-              className="
-                text-[8px]
-                uppercase
-                tracking-[0.4em]
-                sm:text-[10px]
-                sm:tracking-[0.5em]
-              "
-              style={{
-                color: palette.antiqueGoldDark,
-              }}
-              initial={{
-                opacity: 0,
-                y: -10,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                delay: 0.2,
-              }}
-            >
-              Reserve la fecha
-            </motion.p>
+            Reserve la fecha
+          </p>
 
-            <div
-              className="
-                my-7
-                h-px
-                w-14
-                sm:w-20
-              "
-              style={{
-                backgroundColor: "rgba(164,134,84,0.58)",
-              }}
-            />
-
-            <motion.p
-              className="
-                font-serif
-                text-lg
-                uppercase
-                tracking-[0.18em]
-                sm:text-xl
-              "
-              style={{
-                color: palette.inkSoft,
-              }}
-              initial={{
-                opacity: 0,
-                y: 12,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.85,
-                delay: 0.25,
-              }}
-            >
-              Domingo
-            </motion.p>
-
-            <motion.p
-              className="
-                my-3
-                font-serif
-                text-[98px]
-                font-normal
-                leading-none
-                tracking-[-0.06em]
-                sm:text-[122px]
-                lg:text-[136px]
-              "
-              style={{
-                color: palette.ink,
-              }}
-              initial={{
-                opacity: 0,
-                scale: 0.96,
-              }}
-              whileInView={{
-                opacity: 1,
-                scale: 1,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.95,
-                delay: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              11
-            </motion.p>
-
-            <motion.p
-              className="
-                font-serif
-                text-[12px]
-                uppercase
-                tracking-[0.4em]
-                sm:text-sm
-                sm:tracking-[0.52em]
-              "
-              style={{
-                color: palette.antiqueGoldDark,
-              }}
-              initial={{
-                opacity: 0,
-                y: 10,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.85,
-                delay: 0.35,
-              }}
-            >
-              Junio · 2026
-            </motion.p>
-
-            <div className="mt-8">
-              <DecorativeDivider compact />
-            </div>
+          <div className="my-6">
+            <DecorativeDivider />
           </div>
 
-          {/* COLUMNA DE CEREMONIA */}
-
-          <div
+          <p
             className="
-              relative
-              flex
-              min-h-[520px]
-              flex-col
-              items-center
-              justify-center
-              px-7
-              py-16
-              text-center
-              sm:px-12
-              lg:min-h-[570px]
-              lg:px-16
+              font-serif
+              text-lg
+              uppercase
+              tracking-[0.18em]
+              sm:text-xl
             "
+            style={{
+              color: palette.inkSoft,
+            }}
           >
-            <motion.p
-              className="
-                text-[9px]
-                uppercase
-                tracking-[0.42em]
-                sm:text-[10px]
-                sm:tracking-[0.52em]
-              "
-              style={{
-                color: palette.antiqueGoldDark,
-              }}
-              initial={{
-                opacity: 0,
-                y: -10,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                delay: 0.28,
-              }}
-            >
-              Ceremonia
-            </motion.p>
+            Sabado
+          </p>
 
-            <motion.h3
-              className="
-                mt-6
-                font-serif
-                text-[35px]
-                font-normal
-                leading-tight
-                tracking-[-0.02em]
-                sm:text-[45px]
-              "
-              style={{
-                color: palette.ink,
-              }}
-              initial={{
-                opacity: 0,
-                y: 14,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.9,
-                delay: 0.32,
-              }}
-            >
-              Nuestra ceremonia
-            </motion.h3>
+          <p
+            className="
+              my-2
+              font-serif
+              text-[92px]
+              font-normal
+              leading-none
+              tracking-[-0.06em]
+              sm:text-[118px]
+            "
+            style={{
+              color: palette.ink,
+            }}
+          >
+            24
+          </p>
 
-            <div className="my-8 sm:my-9">
-              <DecorativeDivider />
-            </div>
-
-            {/* HORA */}
-
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 16,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.9,
-                delay: 0.38,
-              }}
-            >
-              <p
-                className="
-                  text-[8px]
-                  uppercase
-                  tracking-[0.36em]
-                  sm:text-[9px]
-                "
-                style={{
-                  color: palette.warmGray,
-                }}
-              >
-                Hora
-              </p>
-
-              <p
-                className="
-                  mt-3
-                  font-serif
-                  text-[52px]
-                  font-normal
-                  leading-none
-                  tracking-[-0.035em]
-                  sm:text-[66px]
-                  lg:text-[72px]
-                "
-                style={{
-                  color: palette.ink,
-                }}
-              >
-                16:30
-              </p>
-
-              <p
-                className="
-                  mt-3
-                  text-[8px]
-                  uppercase
-                  tracking-[0.4em]
-                  sm:text-[9px]
-                "
-                style={{
-                  color: palette.antiqueGoldDark,
-                }}
-              >
-                Horas
-              </p>
-            </motion.div>
-
-            {/* UBICACIÓN */}
-
-            <motion.div
-              className="mt-10 sm:mt-11"
-              initial={{
-                opacity: 0,
-                y: 16,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.9,
-                delay: 0.46,
-              }}
-            >
-              <p
-                className="
-                  text-[8px]
-                  uppercase
-                  tracking-[0.38em]
-                  sm:text-[9px]
-                "
-                style={{
-                  color: palette.warmGray,
-                }}
-              >
-                Ubicación
-              </p>
-
-              <p
-                className="
-                  mx-auto
-                  mt-4
-                  max-w-md
-                  font-serif
-                  text-xl
-                  leading-relaxed
-                  sm:text-[24px]
-                "
-                style={{
-                  color: palette.inkSoft,
-                }}
-              >
-                Consulta la ubicación de nuestra ceremonia
-              </p>
-            </motion.div>
-
-            {/* BOTÓN */}
-
-            <motion.a
-              href="https://maps.app.goo.gl/TsSDUBKAractwi8F8"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Abrir ubicación de la ceremonia en Google Maps"
-              className="
-                group
-                mt-10
-                inline-flex
-                min-w-[220px]
-                items-center
-                justify-center
-                gap-3
-                border
-                px-8
-                py-4
-                sm:min-w-[250px]
-                sm:px-10
-              "
-              style={{
-                backgroundColor: palette.ink,
-                borderColor: palette.ink,
-                color: palette.paperLight,
-                boxShadow: "0 12px 28px rgba(29,39,51,0.12)",
-              }}
-              whileHover={{
-                y: -2,
-                backgroundColor: palette.inkSoft,
-                transition: {
-                  duration: 0.25,
-                },
-              }}
-              whileTap={{
-                scale: 0.985,
-              }}
-            >
-              <LocationIcon />
-
-              <span
-                className="
-                  text-[9px]
-                  uppercase
-                  tracking-[0.28em]
-                  sm:text-[10px]
-                  sm:tracking-[0.34em]
-                "
-              >
-                Ver ubicación
-              </span>
-            </motion.a>
-          </div>
+          <p
+            className="
+              font-serif
+              text-[12px]
+              uppercase
+              tracking-[0.4em]
+              sm:text-sm
+              sm:tracking-[0.52em]
+            "
+            style={{
+              color: palette.antiqueGoldDark,
+            }}
+          >
+            Octubre · 2026
+          </p>
         </motion.div>
 
-        {/* CIERRE */}
+        {/* =========================================
+            CEREMONIA + RECEPCIÓN
+        ========================================= */}
+
+        <div
+          className="
+            mx-auto
+            grid
+            max-w-6xl
+            overflow-hidden
+            border
+            lg:grid-cols-2
+          "
+          style={{
+            borderColor:
+              "rgba(216,194,154,0.5)",
+
+            boxShadow:
+              "0 30px 75px rgba(20,14,12,0.24)",
+          }}
+        >
+          {/* =====================================
+              CEREMONIA
+          ===================================== */}
+
+          <EventBlock
+            eyebrow="Ceremonia"
+            time="5:00 pm"
+            place="Palacio Monumental (Segunda Planta)"
+            address="Agustín de Iturbide 660, Centro Historico, 78000 San Luis Potosí, S.L.P."
+            href="https://maps.app.goo.gl/aQm6SH3Y9Zx3fSfp9"
+            delay={0.18}
+            variant="light"
+          />
+
+          {/* =====================================
+              RECEPCIÓN
+
+              DATOS TEMPORALES
+              CAMBIAR DESPUÉS
+          ===================================== */}
+
+          <EventBlock
+            eyebrow="Recepción"
+            time="6:00 pm"
+            place="Casa D Vian"
+            address="Real de Bernalejo 183, Real del Potosi, 78448 Real del Potosí, S.L.P."
+            href="https://maps.app.goo.gl/kkV27aMqj1dUSYmc6"
+            delay={0.26}
+            variant="dark"
+          />
+        </div>
+
+        {/* =========================================
+            CIERRE
+        ========================================= */}
 
         <motion.p
           className="
@@ -954,15 +1014,17 @@ export default function EventoDireccion() {
             mt-12
             max-w-xl
             text-center
-            font-serif
-            text-[14px]
+            text-[20px]
             italic
-            leading-7
+            leading-8
             sm:mt-14
-            sm:text-base
+            sm:text-[24px]
           "
           style={{
-            color: palette.warmGray,
+            color: "rgba(252,251,248,0.76)",
+
+            fontFamily:
+              '"Cormorant Garamond", Georgia, serif',
           }}
           initial={{
             opacity: 0,
@@ -972,7 +1034,9 @@ export default function EventoDireccion() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             delay: 0.52,

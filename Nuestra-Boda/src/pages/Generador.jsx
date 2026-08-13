@@ -101,7 +101,7 @@ ${url}
 
 Será un gusto compartir este momento tan especial contigo.
 
-Valeria & Alejandro 🤍`;
+Rebeca & Roberto 🤍`;
 
     setMensaje(mensajeWhatsApp);
 
@@ -205,7 +205,7 @@ Valeria & Alejandro 🤍`;
             color: palette.antiqueGoldDark,
           }}
         >
-          Valeria & Alejandro
+          Rebeca & Roberto
         </p>
 
         <h1
@@ -621,7 +621,7 @@ Valeria & Alejandro 🤍`;
                 text-2xl
               "
             >
-              Valeria & Alejandro
+              Rebeca & Roberto
             </h2>
           </div>
 
@@ -646,7 +646,7 @@ Valeria & Alejandro 🤍`;
           >
             <img
               src="/portada.png"
-              alt="Portada de la invitación de Valeria y Alejandro"
+              alt="Portada de la invitación de Rebeca y Roberto"
               className="
                 block
                 h-auto
@@ -656,79 +656,6 @@ Valeria & Alejandro 🤍`;
             />
           </div>
 
-          {/* =========================================
-              PREVIEW WHATSAPP
-          ========================================= */}
-
-          {link && (
-            <div
-              className="
-                mt-10
-                w-full
-                max-w-[430px]
-              "
-            >
-              <p
-                className="
-                  mb-3
-                  text-center
-                  text-[9px]
-                  uppercase
-                  tracking-[0.3em]
-                "
-                style={{
-                  color: palette.antiqueGoldDark,
-                }}
-              >
-                Vista previa del mensaje
-              </p>
-
-              <div
-                className="
-                  rounded-2xl
-                  bg-[#EFEAE2]
-                  p-4
-                  shadow-[0_15px_40px_rgba(29,39,51,0.08)]
-                "
-              >
-                <div
-                  className="
-                    ml-auto
-                    max-w-[90%]
-                    rounded-xl
-                    rounded-tr-sm
-                    bg-[#D9FDD3]
-                    px-4
-                    py-3
-                    shadow-sm
-                  "
-                >
-                  <p
-                    className="
-                      whitespace-pre-wrap
-                      break-words
-                      text-[13px]
-                      leading-5
-                      text-[#1D2733]
-                    "
-                  >
-                    {mensaje}
-                  </p>
-
-                  <p
-                    className="
-                      mt-1
-                      text-right
-                      text-[9px]
-                      text-black/40
-                    "
-                  >
-                    12:00 ✓✓
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
         </section>
       </div>
     </main>

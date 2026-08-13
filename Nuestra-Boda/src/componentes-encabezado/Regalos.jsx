@@ -2,18 +2,28 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 /* =========================================
-   MESA DE REGALOS — ESTILO CLÁSICO
+   MESA DE REGALOS — REBECA & ROBERTO
+   Transferencia bancaria · clásico · moka/otoñal
 ========================================= */
 
 const palette = {
-  ink: "#1D2733",
-  inkSoft: "#39434D",
-  paper: "#F5F1E8",
-  paperLight: "#FBF9F4",
-  paperDark: "#E5DED2",
-  antiqueGold: "#A48654",
-  antiqueGoldDark: "#725B37",
-  warmGray: "#777168",
+  ink: "#241C18",
+  inkSoft: "#5A463B",
+
+  paper: "#F7F5F0",
+  paperLight: "#FCFBF8",
+  paperDark: "#E5DED5",
+
+  antiqueGold: "#B79A62",
+  antiqueGoldDark: "#8A6B3F",
+
+  mocha: "#5A463B",
+  mochaDark: "#3B2D27",
+
+  autumn: "#A7684A",
+  autumnDark: "#80604C",
+
+  warmGray: "#806F64",
 };
 
 const fadeUp = {
@@ -21,9 +31,11 @@ const fadeUp = {
     opacity: 0,
     y: 24,
   },
+
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.9,
       ease: [0.22, 1, 0.36, 1],
@@ -144,29 +156,31 @@ function BotanicalBranch({ className = "" }) {
    SEPARADOR
 ========================================= */
 
-function DecorativeDivider({ compact = false }) {
+function DecorativeDivider({ compact = false, light = false }) {
+  const gold = light
+    ? "rgba(216,194,154,0.76)"
+    : "rgba(183,154,98,0.72)";
+
   return (
     <div className="flex items-center justify-center gap-3">
       <span
         className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
         style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(164,134,84,0.72))",
+          background: `linear-gradient(to right, transparent, ${gold})`,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: "rgba(164,134,84,0.72)",
+          borderColor: gold,
         }}
       />
 
       <span
         className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
         style={{
-          background:
-            "linear-gradient(to left, transparent, rgba(164,134,84,0.72))",
+          background: `linear-gradient(to left, transparent, ${gold})`,
         }}
       />
     </div>
@@ -198,25 +212,6 @@ function GiftIcon({ className = "h-6 w-6" }) {
   );
 }
 
-function ExternalLinkIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.3"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      className="h-4 w-4"
-    >
-      <path d="M14 5h5v5" />
-      <path d="m19 5-8 8" />
-      <path d="M19 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" />
-    </svg>
-  );
-}
-
 function CloseIcon() {
   return (
     <svg
@@ -235,15 +230,135 @@ function CloseIcon() {
 }
 
 /* =========================================
+   DATO BANCARIO
+========================================= */
+
+function BankInfoRow({
+  label,
+  value,
+  accent = false,
+  copyKey,
+  copiado,
+  onCopy,
+}) {
+  const estaCopiado = copiado === copyKey;
+
+  return (
+    <div
+      className="
+        grid
+        gap-3
+        border-b
+        py-5
+        text-left
+        sm:grid-cols-[160px_1fr_auto]
+        sm:items-center
+        sm:gap-5
+      "
+      style={{
+        borderColor: "rgba(183,154,98,0.16)",
+      }}
+    >
+      <p
+        className="
+          text-[8px]
+          uppercase
+          tracking-[0.32em]
+          sm:text-[9px]
+        "
+        style={{
+          color: palette.antiqueGoldDark,
+        }}
+      >
+        {label}
+      </p>
+
+      <p
+        className={`
+          min-w-0
+          break-all
+          font-serif
+          ${accent ? "text-[19px] sm:text-[21px]" : "text-[17px] sm:text-[19px]"}
+        `}
+        style={{
+          color: accent ? palette.mocha : palette.inkSoft,
+        }}
+      >
+        {value}
+      </p>
+
+      <motion.button
+        type="button"
+        onClick={() => onCopy(value, copyKey)}
+        className="
+          inline-flex
+          w-fit
+          items-center
+          justify-center
+          border
+          px-4
+          py-2
+          text-[8px]
+          uppercase
+          tracking-[0.2em]
+          sm:justify-self-end
+        "
+        style={{
+          backgroundColor: estaCopiado
+            ? palette.mocha
+            : palette.paperLight,
+          borderColor: estaCopiado
+            ? palette.mocha
+            : "rgba(183,154,98,0.45)",
+          color: estaCopiado
+            ? palette.paperLight
+            : palette.mocha,
+        }}
+        whileHover={{
+          y: -1,
+        }}
+        whileTap={{
+          scale: 0.97,
+        }}
+      >
+        {estaCopiado ? "Copiado ✓" : "Copiar"}
+      </motion.button>
+    </div>
+  );
+}
+
+/* =========================================
    COMPONENTE PRINCIPAL
 ========================================= */
 
 const Regalos = () => {
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [copiado, setCopiado] = useState("");
 
-  const numeroEvento = "12345678";
+  /* =========================================
+     DATOS BANCARIOS
+     CAMBIAR DESPUÉS POR LOS DATOS REALES
+  ========================================= */
 
-  const linkLiverpool = `https://www.liverpool.com.mx/tienda/giftregistry/giftRegistryDetail.jsp?eventNo=${numeroEvento}`;
+  const cuentaInterbancaria = "021700065739756091";
+  const numeroTarjeta = "4910897093382927";
+  const titularTarjeta = "ROBERTO VELÁZQUEZ";
+
+  const conceptoPrincipal = "Boda Rebeca y Roberto";
+  const conceptoAlternativo = "Boda R y R";
+
+  const copiarDato = async (texto, campo) => {
+    try {
+      await navigator.clipboard.writeText(texto);
+      setCopiado(campo);
+
+      window.setTimeout(() => {
+        setCopiado("");
+      }, 1800);
+    } catch (error) {
+      console.error("No se pudo copiar:", error);
+    }
+  };
 
   /* BLOQUEAR SCROLL CUANDO EL MODAL ESTÁ ABIERTO */
 
@@ -311,32 +426,44 @@ const Regalos = () => {
         "
         style={{
           background: `
+            radial-gradient(
+              circle at 14% 15%,
+              rgba(183,154,98,0.1),
+              transparent 30%
+            ),
+
+            radial-gradient(
+              circle at 86% 82%,
+              rgba(167,104,74,0.13),
+              transparent 34%
+            ),
+
             linear-gradient(
-              180deg,
-              ${palette.paperLight} 0%,
-              ${palette.paper} 56%,
-              ${palette.paperDark} 100%
+              145deg,
+              ${palette.mochaDark} 0%,
+              ${palette.mocha} 48%,
+              ${palette.autumnDark} 100%
             )
           `,
         }}
       >
-        {/* TEXTURA DE PAPEL */}
+        {/* TEXTURA */}
 
         <div
           className="
             pointer-events-none
             absolute
             inset-0
-            opacity-[0.16]
+            opacity-[0.18]
           "
           style={{
             backgroundImage: `
               repeating-linear-gradient(
                 0deg,
-                rgba(29,39,51,0.025) 0px,
-                rgba(29,39,51,0.025) 1px,
+                rgba(255,255,255,0.025) 0px,
+                rgba(255,255,255,0.025) 1px,
                 transparent 1px,
-                transparent 5px
+                transparent 6px
               )
             `,
           }}
@@ -354,7 +481,7 @@ const Regalos = () => {
             lg:inset-10
           "
           style={{
-            borderColor: "rgba(164,134,84,0.25)",
+            borderColor: "rgba(216,194,154,0.3)",
           }}
         />
 
@@ -368,7 +495,7 @@ const Regalos = () => {
             lg:inset-[46px]
           "
           style={{
-            borderColor: "rgba(164,134,84,0.1)",
+            borderColor: "rgba(216,194,154,0.1)",
           }}
         />
 
@@ -382,7 +509,7 @@ const Regalos = () => {
             top-6
             h-16
             w-16
-            text-[#A48654]/25
+            text-[#D8C29A]/30
             sm:left-9
             sm:top-9
             sm:h-20
@@ -399,7 +526,7 @@ const Regalos = () => {
             h-16
             w-16
             rotate-90
-            text-[#A48654]/25
+            text-[#D8C29A]/30
             sm:right-9
             sm:top-9
             sm:h-20
@@ -416,7 +543,7 @@ const Regalos = () => {
             h-16
             w-16
             -rotate-90
-            text-[#A48654]/25
+            text-[#D8C29A]/30
             sm:bottom-9
             sm:left-9
             sm:h-20
@@ -433,7 +560,7 @@ const Regalos = () => {
             h-16
             w-16
             rotate-180
-            text-[#A48654]/25
+            text-[#D8C29A]/30
             sm:bottom-9
             sm:right-9
             sm:h-20
@@ -450,7 +577,7 @@ const Regalos = () => {
             h-[250px]
             w-[145px]
             -rotate-12
-            text-[#A48654]/10
+            text-[#D8C29A]/10
             sm:h-[310px]
             sm:w-[180px]
             lg:left-2
@@ -466,7 +593,7 @@ const Regalos = () => {
             h-[250px]
             w-[145px]
             rotate-[168deg]
-            text-[#A48654]/10
+            text-[#D8C29A]/10
             sm:h-[310px]
             sm:w-[180px]
             lg:right-2
@@ -501,8 +628,8 @@ const Regalos = () => {
               sm:w-20
             "
             style={{
-              color: palette.antiqueGoldDark,
-              borderColor: "rgba(164,134,84,0.42)",
+              color: "#D8C29A",
+              borderColor: "rgba(216,194,154,0.42)",
             }}
             initial={{
               opacity: 0,
@@ -520,52 +647,25 @@ const Regalos = () => {
             <GiftIcon className="h-7 w-7 sm:h-8 sm:w-8" />
           </motion.div>
 
-          <motion.p
-            className="
-              mt-7
-              text-[8px]
-              uppercase
-              tracking-[0.44em]
-              sm:text-[10px]
-              sm:tracking-[0.55em]
-            "
-            style={{
-              color: palette.antiqueGoldDark,
-            }}
-            initial={{
-              opacity: 0,
-              y: 10,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.8,
-              delay: 0.08,
-            }}
-          >
-            Un detalle para nuestro hogar
-          </motion.p>
 
           <div className="mt-5">
-            <DecorativeDivider />
+            <DecorativeDivider light />
           </div>
 
           <motion.h2
             className="
               mt-8
-              font-serif
-              text-[40px]
+              text-[44px]
               font-normal
+              italic
               leading-tight
-              tracking-[-0.025em]
-              sm:text-[54px]
-              md:text-[64px]
+              tracking-[-0.01em]
+              sm:text-[58px]
+              md:text-[68px]
             "
             style={{
-              color: palette.ink,
+              color: palette.paperLight,
+              fontFamily: '"Cormorant Garamond", Georgia, serif',
             }}
             initial={{
               opacity: 0,
@@ -590,14 +690,13 @@ const Regalos = () => {
               mt-6
               max-w-2xl
               font-serif
-              text-[15px]
-              italic
+              text-[14px]
               leading-7
-              sm:text-[17px]
+              sm:text-[16px]
               sm:leading-8
             "
             style={{
-              color: palette.warmGray,
+              color: "rgba(252,251,248,0.72)",
             }}
             initial={{
               opacity: 0,
@@ -614,71 +713,10 @@ const Regalos = () => {
             }}
           >
             Su presencia en este día es el regalo más importante para nosotros.
-            Para quienes deseen tener un detalle adicional, hemos preparado una
-            mesa de regalos en Liverpool.
+            Si desean tener un detalle adicional, ponemos a su disposición
+            nuestros datos para transferencia bancaria.
           </motion.p>
 
-          {/* INFORMACIÓN BREVE */}
-
-          <motion.div
-            className="
-              mx-auto
-              mt-10
-              w-full
-              max-w-xl
-              border-y
-              px-5
-              py-7
-              sm:mt-12
-              sm:px-10
-            "
-            style={{
-              borderColor: "rgba(164,134,84,0.3)",
-            }}
-            initial={{
-              opacity: 0,
-              y: 14,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 0.85,
-              delay: 0.24,
-            }}
-          >
-            <p
-              className="
-                text-[8px]
-                uppercase
-                tracking-[0.38em]
-                sm:text-[9px]
-              "
-              style={{
-                color: palette.antiqueGoldDark,
-              }}
-            >
-              Liverpool
-            </p>
-
-            <p
-              className="
-                mt-4
-                font-serif
-                text-[15px]
-                leading-7
-                sm:text-base
-              "
-              style={{
-                color: palette.inkSoft,
-              }}
-            >
-              Consulta el número de evento y el acceso directo dentro de
-              nuestra tarjeta de regalos.
-            </p>
-          </motion.div>
 
           {/* BOTÓN */}
 
@@ -699,14 +737,14 @@ const Regalos = () => {
               sm:px-10
             "
             style={{
-              backgroundColor: palette.ink,
-              borderColor: palette.ink,
-              color: palette.paperLight,
-              boxShadow: "0 12px 28px rgba(29,39,51,0.12)",
+              backgroundColor: palette.paperLight,
+              borderColor: "rgba(216,194,154,0.78)",
+              color: palette.mochaDark,
+              boxShadow: "0 14px 34px rgba(20,14,12,0.2)",
             }}
             whileHover={{
               y: -2,
-              backgroundColor: palette.inkSoft,
+              backgroundColor: palette.paper,
             }}
             whileTap={{
               scale: 0.985,
@@ -723,7 +761,7 @@ const Regalos = () => {
                 sm:tracking-[0.34em]
               "
             >
-              Ver mesa de regalos
+              Ver datos bancarios
             </span>
           </motion.button>
         </div>
@@ -746,7 +784,7 @@ const Regalos = () => {
               items-center
               justify-center
               overflow-hidden
-              bg-[#111820]/78
+              bg-[#241C18]/82
               px-4
               py-5
               backdrop-blur-sm
@@ -790,7 +828,7 @@ const Regalos = () => {
               "
               style={{
                 backgroundColor: palette.paperLight,
-                borderColor: "rgba(164,134,84,0.48)",
+                borderColor: "rgba(183,154,98,0.48)",
                 boxShadow: "0 30px 100px rgba(0,0,0,0.34)",
               }}
               initial={{
@@ -820,16 +858,21 @@ const Regalos = () => {
                   pointer-events-none
                   absolute
                   inset-0
-                  opacity-[0.14]
+                  opacity-[0.18]
                 "
                 style={{
                   backgroundImage: `
+                    radial-gradient(
+                      circle at 18% 12%,
+                      rgba(183,154,98,0.06),
+                      transparent 30%
+                    ),
                     repeating-linear-gradient(
                       0deg,
-                      rgba(29,39,51,0.025) 0px,
-                      rgba(29,39,51,0.025) 1px,
+                      rgba(90,70,59,0.018) 0px,
+                      rgba(90,70,59,0.018) 1px,
                       transparent 1px,
-                      transparent 5px
+                      transparent 6px
                     )
                   `,
                 }}
@@ -845,7 +888,7 @@ const Regalos = () => {
                   border
                 "
                 style={{
-                  borderColor: "rgba(164,134,84,0.15)",
+                  borderColor: "rgba(183,154,98,0.15)",
                 }}
               />
 
@@ -854,7 +897,7 @@ const Regalos = () => {
               <motion.button
                 type="button"
                 onClick={() => setMostrarModal(false)}
-                aria-label="Cerrar mesa de regalos"
+                aria-label="Cerrar datos de regalos"
                 className="
                   absolute
                   right-4
@@ -866,13 +909,13 @@ const Regalos = () => {
                   items-center
                   justify-center
                   border
-                  bg-[#FBF9F4]
+                  bg-[#FCFBF8]
                   sm:right-6
                   sm:top-6
                 "
                 style={{
                   color: palette.ink,
-                  borderColor: "rgba(164,134,84,0.42)",
+                  borderColor: "rgba(183,154,98,0.42)",
                 }}
                 whileHover={{
                   scale: 1.04,
@@ -909,7 +952,7 @@ const Regalos = () => {
                   "
                   style={{
                     color: palette.antiqueGoldDark,
-                    borderColor: "rgba(164,134,84,0.42)",
+                    borderColor: "rgba(183,154,98,0.42)",
                   }}
                 >
                   <GiftIcon />
@@ -927,7 +970,7 @@ const Regalos = () => {
                     color: palette.antiqueGoldDark,
                   }}
                 >
-                  Mesa de regalos
+                  Un detalle para nosotros
                 </p>
 
                 <div className="mt-5">
@@ -938,17 +981,18 @@ const Regalos = () => {
                   id="gift-modal-title"
                   className="
                     mt-7
-                    font-serif
-                    text-[36px]
+                    text-[40px]
                     font-normal
-                    tracking-[-0.02em]
-                    sm:text-[46px]
+                    italic
+                    tracking-[-0.01em]
+                    sm:text-[50px]
                   "
                   style={{
-                    color: palette.ink,
+                    color: palette.mocha,
+                    fontFamily: '"Cormorant Garamond", Georgia, serif',
                   }}
                 >
-                  Liverpool
+                  Datos para transferencia
                 </h2>
 
                 <p
@@ -958,7 +1002,6 @@ const Regalos = () => {
                     max-w-lg
                     font-serif
                     text-[14px]
-                    italic
                     leading-7
                     sm:text-base
                   "
@@ -966,104 +1009,108 @@ const Regalos = () => {
                     color: palette.warmGray,
                   }}
                 >
-                  Hemos seleccionado algunos detalles que serán parte del hogar
-                  y de la nueva etapa que comenzaremos juntos.
+                  Gracias por acompañarnos y por querer formar parte de esta
+                  nueva etapa de nuestra historia.
                 </p>
 
-                {/* NÚMERO DE EVENTO */}
+                {/* DATOS BANCARIOS */}
 
                 <div
                   className="
                     mx-auto
                     mt-10
                     w-full
-                    max-w-md
-                    border-y
+                    max-w-xl
+                    border
                     px-5
-                    py-8
+                    py-3
+                    sm:px-7
                   "
                   style={{
-                    borderColor: "rgba(164,134,84,0.32)",
+                    backgroundColor: "rgba(247,245,240,0.72)",
+                    borderColor: "rgba(183,154,98,0.28)",
                   }}
                 >
-                  <p
-                    className="
-                      text-[8px]
-                      uppercase
-                      tracking-[0.38em]
-                      sm:text-[9px]
-                    "
-                    style={{
-                      color: palette.warmGray,
-                    }}
-                  >
-                    Número de evento
-                  </p>
+                  <BankInfoRow
+                    label="Cuenta interbancaria"
+                    value={cuentaInterbancaria}
+                    accent
+                    copyKey="cuenta"
+                    copiado={copiado}
+                    onCopy={copiarDato}
+                  />
 
-                  <p
-                    className="
-                      mt-4
-                      break-all
-                      font-serif
-                      text-[32px]
-                      tracking-[0.12em]
-                      sm:text-[40px]
-                      sm:tracking-[0.18em]
-                    "
-                    style={{
-                      color: palette.ink,
-                    }}
-                  >
-                    {numeroEvento}
-                  </p>
+                  <BankInfoRow
+                    label="Número de tarjeta"
+                    value={numeroTarjeta}
+                    accent
+                    copyKey="tarjeta"
+                    copiado={copiado}
+                    onCopy={copiarDato}
+                  />
+
+                  <BankInfoRow
+                    label="Titular"
+                    value={titularTarjeta}
+                    copyKey="titular"
+                    copiado={copiado}
+                    onCopy={copiarDato}
+                  />
+
+                  <div className="py-5 text-left">
+                    <p
+                      className="
+                        text-[8px]
+                        uppercase
+                        tracking-[0.32em]
+                        sm:text-[9px]
+                      "
+                      style={{
+                        color: palette.antiqueGoldDark,
+                      }}
+                    >
+                      Concepto sugerido
+                    </p>
+
+                    <p
+                      className="
+                        mt-3
+                        text-[23px]
+                        italic
+                        sm:text-[27px]
+                      "
+                      style={{
+                        color: palette.mocha,
+                        fontFamily:
+                          '"Cormorant Garamond", Georgia, serif',
+                      }}
+                    >
+                      {conceptoPrincipal}
+                    </p>
+
+                    <p
+                      className="
+                        mt-2
+                        font-serif
+                        text-[13px]
+                        leading-6
+                        sm:text-[14px]
+                      "
+                      style={{
+                        color: palette.warmGray,
+                      }}
+                    >
+                      También puedes utilizar:{" "}
+                      <span style={{ color: palette.inkSoft }}>
+                        {conceptoAlternativo}
+                      </span>
+                    </p>
+                  </div>
                 </div>
 
-                {/* BOTÓN LIVERPOOL */}
+                {/* NOTA */}
 
-                <motion.a
-                  href={linkLiverpool}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
-                    mt-10
-                    inline-flex
-                    min-w-[230px]
-                    items-center
-                    justify-center
-                    gap-3
-                    border
-                    px-8
-                    py-4
-                    sm:min-w-[270px]
-                  "
-                  style={{
-                    backgroundColor: palette.ink,
-                    borderColor: palette.ink,
-                    color: palette.paperLight,
-                  }}
-                  whileHover={{
-                    y: -2,
-                    backgroundColor: palette.inkSoft,
-                  }}
-                  whileTap={{
-                    scale: 0.985,
-                  }}
-                >
-                  <ExternalLinkIcon />
-
-                  <span
-                    className="
-                      text-[9px]
-                      uppercase
-                      tracking-[0.28em]
-                      sm:text-[10px]
-                    "
-                  >
-                    Abrir mesa en Liverpool
-                  </span>
-                </motion.a>
-
-                <div className="mt-10">
+                <div className="mt-9">
                   <DecorativeDivider compact />
                 </div>
 
@@ -1071,17 +1118,18 @@ const Regalos = () => {
                   className="
                     mt-6
                     max-w-lg
-                    font-serif
-                    text-[14px]
+                    text-[20px]
                     italic
                     leading-7
+                    sm:text-[22px]
                   "
                   style={{
                     color: palette.inkSoft,
+                    fontFamily:
+                      '"Cormorant Garamond", Georgia, serif',
                   }}
                 >
-                  Gracias por acompañarnos y por formar parte de este nuevo
-                  capítulo de nuestra historia.
+                  Su presencia siempre será nuestro mejor regalo.
                 </p>
               </div>
             </motion.div>

@@ -6,14 +6,16 @@ import { AnimatePresence, motion } from "framer-motion";
 ========================================= */
 
 const palette = {
-  ink: "#1D2733",
-  inkSoft: "#39434D",
-  paper: "#F5F1E8",
-  paperLight: "#FBF9F4",
-  paperDark: "#E4DDD1",
-  antiqueGold: "#A48654",
-  antiqueGoldDark: "#725B37",
-  warmGray: "#777168",
+  ink: "#241C18",
+  inkSoft: "#5A463B",
+  paper: "#F7F5F0",
+  paperLight: "#FCFBF8",
+  paperDark: "#E5DED5",
+  antiqueGold: "#B79A62",
+  antiqueGoldDark: "#8A6B3F",
+  mocha: "#5A463B",
+  autumn: "#A7684A",
+  warmGray: "#806F64",
 };
 
 const images = [
@@ -159,14 +161,14 @@ function DecorativeDivider() {
         className="h-px w-10 sm:w-16"
         style={{
           background:
-            "linear-gradient(to right, transparent, rgba(164,134,84,0.72))",
+            "linear-gradient(to right, transparent, rgba(183,154,98,0.72))",
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: "rgba(164,134,84,0.72)",
+          borderColor: "rgba(183,154,98,0.72)",
         }}
       />
 
@@ -174,7 +176,7 @@ function DecorativeDivider() {
         className="h-px w-10 sm:w-16"
         style={{
           background:
-            "linear-gradient(to left, transparent, rgba(164,134,84,0.72))",
+            "linear-gradient(to left, transparent, rgba(183,154,98,0.72))",
         }}
       />
     </div>
@@ -289,12 +291,10 @@ export default function Galeria() {
       "
       style={{
         background: `
-          linear-gradient(
-            180deg,
-            ${palette.paperLight} 0%,
-            ${palette.paper} 55%,
-            ${palette.paperDark} 100%
-          )
+          radial-gradient(circle at 14% 15%, rgba(183,154,98,0.055), transparent 30%),
+          radial-gradient(circle at 86% 78%, rgba(90,70,59,0.04), transparent 34%),
+          linear-gradient(120deg, transparent 0%, transparent 36%, rgba(128,111,100,0.045) 37%, transparent 39%, transparent 66%, rgba(183,154,98,0.03) 67%, transparent 69%),
+          linear-gradient(180deg, ${palette.paperLight} 0%, ${palette.paper} 58%, ${palette.paperLight} 100%)
         `,
       }}
     >
@@ -311,8 +311,8 @@ export default function Galeria() {
           backgroundImage: `
             repeating-linear-gradient(
               0deg,
-              rgba(29,39,51,0.025) 0px,
-              rgba(29,39,51,0.025) 1px,
+              rgba(36,28,24,0.025) 0px,
+              rgba(36,28,24,0.025) 1px,
               transparent 1px,
               transparent 5px
             )
@@ -332,7 +332,7 @@ export default function Galeria() {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(164,134,84,0.25)",
+          borderColor: "rgba(183,154,98,0.25)",
         }}
       />
 
@@ -346,7 +346,7 @@ export default function Galeria() {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(164,134,84,0.1)",
+          borderColor: "rgba(183,154,98,0.1)",
         }}
       />
 
@@ -360,7 +360,7 @@ export default function Galeria() {
           top-6
           h-16
           w-16
-          text-[#A48654]/25
+          text-[#B79A62]/25
           sm:left-9
           sm:top-9
           sm:h-20
@@ -377,7 +377,7 @@ export default function Galeria() {
           h-16
           w-16
           rotate-90
-          text-[#A48654]/25
+          text-[#B79A62]/25
           sm:right-9
           sm:top-9
           sm:h-20
@@ -394,7 +394,7 @@ export default function Galeria() {
           h-16
           w-16
           -rotate-90
-          text-[#A48654]/25
+          text-[#B79A62]/25
           sm:bottom-9
           sm:left-9
           sm:h-20
@@ -411,7 +411,7 @@ export default function Galeria() {
           h-16
           w-16
           rotate-180
-          text-[#A48654]/25
+          text-[#B79A62]/25
           sm:bottom-9
           sm:right-9
           sm:h-20
@@ -428,7 +428,7 @@ export default function Galeria() {
           h-[250px]
           w-[145px]
           -rotate-12
-          text-[#A48654]/10
+          text-[#B79A62]/10
           sm:h-[310px]
           sm:w-[180px]
           lg:left-2
@@ -444,7 +444,7 @@ export default function Galeria() {
           h-[250px]
           w-[145px]
           rotate-[168deg]
-          text-[#A48654]/10
+          text-[#B79A62]/10
           sm:h-[310px]
           sm:w-[180px]
           lg:right-2
@@ -510,16 +510,17 @@ export default function Galeria() {
           <h2
             className="
               mt-7
-              font-serif
-              text-[40px]
+              text-[44px]
               font-normal
-              leading-tight
-              tracking-[-0.025em]
-              sm:text-[54px]
-              md:text-[64px]
+              italic
+              leading-[1.05]
+              tracking-[-0.015em]
+              sm:text-[58px]
+              md:text-[68px]
             "
             style={{
-              color: palette.ink,
+              color: palette.mocha,
+              fontFamily: '"Cormorant Garamond", Georgia, serif',
             }}
           >
             Nuestra historia
@@ -586,8 +587,8 @@ export default function Galeria() {
             "
             style={{
               backgroundColor: palette.paperLight,
-              borderColor: "rgba(164,134,84,0.34)",
-              boxShadow: "0 24px 65px rgba(29,39,51,0.1)",
+              borderColor: "rgba(183,154,98,0.34)",
+              boxShadow: "0 28px 70px rgba(36,28,24,0.12)",
             }}
           >
             {/* BORDE INTERIOR */}
@@ -600,7 +601,7 @@ export default function Galeria() {
                 border
               "
               style={{
-                borderColor: "rgba(164,134,84,0.12)",
+                borderColor: "rgba(183,154,98,0.12)",
               }}
             />
 
@@ -611,13 +612,13 @@ export default function Galeria() {
                 relative
                 h-[390px]
                 overflow-hidden
-                bg-[#E4DDD1]
+                bg-[#E5DED5]
                 sm:h-[540px]
                 md:h-[620px]
                 lg:h-[680px]
               "
             >
-              <AnimatePresence custom={direction} mode="wait">
+              <AnimatePresence initial={false} custom={direction} mode="sync">
                 <motion.img
                   key={images[index]}
                   custom={direction}
@@ -640,15 +641,17 @@ export default function Galeria() {
                     opacity: 1,
                     scale: 1,
                     x: 0,
+                    zIndex: 2,
                   }}
                   exit={{
                     opacity: 0,
                     scale: 1.012,
                     x: direction > 0 ? -16 : 16,
+                    zIndex: 1,
                   }}
                   transition={{
                     opacity: {
-                      duration: 0.65,
+                      duration: 0.55,
                     },
                     scale: {
                       duration: 1.2,
@@ -675,7 +678,7 @@ export default function Galeria() {
                     linear-gradient(
                       180deg,
                       transparent 55%,
-                      rgba(20,27,34,0.22) 100%
+                      rgba(36,28,24,0.22) 100%
                     )
                   `,
                 }}
@@ -690,14 +693,14 @@ export default function Galeria() {
                   left-4
                   z-20
                   border
-                  bg-[#FBF9F4]/90
+                  bg-[#FCFBF8]/90
                   px-4
                   py-2
                   sm:bottom-6
                   sm:left-6
                 "
                 style={{
-                  borderColor: "rgba(164,134,84,0.34)",
+                  borderColor: "rgba(183,154,98,0.34)",
                 }}
               >
                 <p
@@ -733,15 +736,15 @@ export default function Galeria() {
                   items-center
                   justify-center
                   border
-                  bg-[#FBF9F4]/92
+                  bg-[#FCFBF8]/92
                   sm:left-5
                   sm:h-12
                   sm:w-12
                 "
                 style={{
-                  borderColor: "rgba(164,134,84,0.4)",
+                  borderColor: "rgba(183,154,98,0.4)",
                   color: palette.ink,
-                  boxShadow: "0 8px 20px rgba(29,39,51,0.08)",
+                  boxShadow: "0 8px 20px rgba(36,28,24,0.08)",
                 }}
                 whileHover={{
                   y: "-50%",
@@ -773,15 +776,15 @@ export default function Galeria() {
                   items-center
                   justify-center
                   border
-                  bg-[#FBF9F4]/92
+                  bg-[#FCFBF8]/92
                   sm:right-5
                   sm:h-12
                   sm:w-12
                 "
                 style={{
-                  borderColor: "rgba(164,134,84,0.4)",
+                  borderColor: "rgba(183,154,98,0.4)",
                   color: palette.ink,
-                  boxShadow: "0 8px 20px rgba(29,39,51,0.08)",
+                  boxShadow: "0 8px 20px rgba(36,28,24,0.08)",
                 }}
                 whileHover={{
                   y: "-50%",
@@ -898,7 +901,7 @@ export default function Galeria() {
                           : "transparent",
                         borderColor: isActive
                           ? palette.ink
-                          : "rgba(164,134,84,0.45)",
+                          : "rgba(183,154,98,0.45)",
                       }}
                     />
                   );
@@ -955,25 +958,10 @@ export default function Galeria() {
               w-16
             "
             style={{
-              backgroundColor: "rgba(164,134,84,0.48)",
+              backgroundColor: "rgba(183,154,98,0.48)",
             }}
           />
 
-          <p
-            className="
-              font-serif
-              text-[14px]
-              italic
-              leading-7
-              sm:text-base
-            "
-            style={{
-              color: palette.warmGray,
-            }}
-          >
-            Cada fotografía guarda un instante de nuestro camino y una parte
-            de la historia que hoy celebramos.
-          </p>
         </motion.div>
       </div>
     </motion.section>

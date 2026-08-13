@@ -1,21 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @keyframes shine {
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
 }
-@keyframes float {
-  0% { transform: translateY(0px); opacity: 0.3; }
-  50% { transform: translateY(-15px); opacity: 0.6; }
-  100% { transform: translateY(0px); opacity: 0.3; }
-}
 
-@keyframes shine {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.3;
+  }
+
+  50% {
+    transform: translateY(-15px);
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 0.3;
+  }
 }

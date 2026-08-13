@@ -16,21 +16,22 @@ const API_URL =
   5215512345678
 */
 
-const NUMERO_NOVIA = "521XXXXXXXXXX";
-const NUMERO_NOVIO = "521XXXXXXXXXX";
-
-const NOMBRE_NOVIA = "Allison";
-const NOMBRE_NOVIO = "David";
+const NUMERO_WHATSAPP = "524441144527";
+const NOMBRE_CONTACTO = "Rebeca y Roberto";
 
 const palette = {
-  ink: "#1D2733",
-  inkSoft: "#39434D",
-  paper: "#F5F1E8",
-  paperLight: "#FBF9F4",
-  paperDark: "#E5DED2",
-  antiqueGold: "#A48654",
-  antiqueGoldDark: "#725B37",
-  warmGray: "#777168",
+  ink: "#241C18",
+  inkSoft: "#5A463B",
+  paper: "#F7F5F0",
+  paperLight: "#FCFBF8",
+  paperDark: "#E5DED5",
+  antiqueGold: "#B79A62",
+  antiqueGoldDark: "#8A6B3F",
+  mocha: "#5A463B",
+  mochaDark: "#3B2D27",
+  autumn: "#A7684A",
+  autumnDark: "#80604C",
+  warmGray: "#806F64",
   error: "#8B3A3A",
   success: "#49644D",
 };
@@ -956,7 +957,7 @@ const Confirmacion = () => {
           <h2
             className="
               mt-7
-              font-serif
+              
               text-[39px]
               font-normal
               leading-tight
@@ -965,7 +966,9 @@ const Confirmacion = () => {
               md:text-[64px]
             "
             style={{
-              color: palette.ink,
+              color: palette.mochaDark,
+              fontFamily: '"Cormorant Garamond", Georgia, serif',
+              fontStyle: "italic",
             }}
           >
             Confirmación de asistencia
@@ -1452,41 +1455,37 @@ const Confirmacion = () => {
               )}
             </AnimatePresence>
 
-            {/* BOTONES */}
+            {/* BOTÓN ÚNICO DE CONFIRMACIÓN */}
 
-            <div
-              className="
-                mt-9
-                grid
-                gap-3
-                sm:grid-cols-2
-              "
-            >
+            <div className="mt-9">
               <motion.button
                 type="button"
                 onClick={() =>
                   enviarConfirmacion({
-                    side: "Novia",
-                    phoneNumber: NUMERO_NOVIA,
-                    recipientName: NOMBRE_NOVIA,
+                    side: "Rebeca y Roberto",
+                    phoneNumber: NUMERO_WHATSAPP,
+                    recipientName: NOMBRE_CONTACTO,
                   })
                 }
                 disabled={Boolean(loadingSide)}
                 className="
+                  mx-auto
                   inline-flex
                   min-h-[58px]
+                  w-full
                   items-center
                   justify-center
                   gap-3
                   border
-                  px-5
+                  px-6
                   py-4
                   disabled:cursor-not-allowed
                   disabled:opacity-60
+                  sm:max-w-md
                 "
                 style={{
-                  backgroundColor: palette.ink,
-                  borderColor: palette.ink,
+                  backgroundColor: palette.mochaDark,
+                  borderColor: palette.antiqueGold,
                   color: palette.paperLight,
                 }}
                 whileHover={
@@ -1494,7 +1493,7 @@ const Confirmacion = () => {
                     ? undefined
                     : {
                         y: -2,
-                        backgroundColor: palette.inkSoft,
+                        backgroundColor: palette.mocha,
                       }
                 }
                 whileTap={
@@ -1505,7 +1504,7 @@ const Confirmacion = () => {
                       }
                 }
               >
-                {loadingSide === "Novia" ? (
+                {loadingSide === "Rebeca y Roberto" ? (
                   <span
                     className="
                       h-4
@@ -1529,82 +1528,9 @@ const Confirmacion = () => {
                     sm:text-[9px]
                   "
                 >
-                  {loadingSide === "Novia"
+                  {loadingSide === "Rebeca y Roberto"
                     ? "Enviando"
-                    : `Confirmar con ${NOMBRE_NOVIA}`}
-                </span>
-              </motion.button>
-
-              <motion.button
-                type="button"
-                onClick={() =>
-                  enviarConfirmacion({
-                    side: "Novio",
-                    phoneNumber: NUMERO_NOVIO,
-                    recipientName: NOMBRE_NOVIO,
-                  })
-                }
-                disabled={Boolean(loadingSide)}
-                className="
-                  inline-flex
-                  min-h-[58px]
-                  items-center
-                  justify-center
-                  gap-3
-                  border
-                  px-5
-                  py-4
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
-                "
-                style={{
-                  backgroundColor: palette.paperLight,
-                  borderColor: palette.ink,
-                  color: palette.ink,
-                }}
-                whileHover={
-                  loadingSide
-                    ? undefined
-                    : {
-                        y: -2,
-                        backgroundColor: palette.paper,
-                      }
-                }
-                whileTap={
-                  loadingSide
-                    ? undefined
-                    : {
-                        scale: 0.985,
-                      }
-                }
-              >
-                {loadingSide === "Novio" ? (
-                  <span
-                    className="
-                      h-4
-                      w-4
-                      animate-spin
-                      rounded-full
-                      border-2
-                      border-[#1D2733]/25
-                      border-t-[#1D2733]
-                    "
-                  />
-                ) : (
-                  <WhatsAppIcon />
-                )}
-
-                <span
-                  className="
-                    text-[8px]
-                    uppercase
-                    tracking-[0.24em]
-                    sm:text-[9px]
-                  "
-                >
-                  {loadingSide === "Novio"
-                    ? "Enviando"
-                    : `Confirmar con ${NOMBRE_NOVIO}`}
+                    : "Confirmar asistencia"}
                 </span>
               </motion.button>
             </div>

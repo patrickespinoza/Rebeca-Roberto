@@ -1,19 +1,26 @@
 import { motion } from "framer-motion";
 
 /* =========================================
-   FRASE EDITORIAL CLÁSICA
+   FRASE PREMIUM — REBECA & ROBERTO
+   Mármol blanco + moka + dorado envejecido
 ========================================= */
 
 const palette = {
-  ink: "#1D2733",
-  inkSoft: "#39434D",
-  paper: "#F5F1E8",
-  paperLight: "#FBF9F4",
-  paperDark: "#E5DED2",
-  antiqueGold: "#A48654",
-  antiqueGoldDark: "#725B37",
-  warmGray: "#777168",
-  line: "#C9BEAC",
+  ink: "#241C18",
+  inkSoft: "#5A463B",
+
+  paper: "#F7F5F0",
+  paperLight: "#FCFBF8",
+  paperDark: "#E5DED5",
+
+  antiqueGold: "#B79A62",
+  antiqueGoldDark: "#8A6B3F",
+
+  mocha: "#5A463B",
+  autumn: "#A7684A",
+
+  warmGray: "#806F64",
+  line: "#D8D4CD",
 };
 
 const reveal = {
@@ -21,9 +28,11 @@ const reveal = {
     opacity: 0,
     y: 24,
   },
+
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.95,
       ease: [0.22, 1, 0.36, 1],
@@ -116,14 +125,14 @@ function SmallDivider() {
         className="h-px w-10 sm:w-14"
         style={{
           background:
-            "linear-gradient(to right, transparent, rgba(164,134,84,0.72))",
+            "linear-gradient(to right, transparent, rgba(183,154,98,0.72))",
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: "rgba(164,134,84,0.72)",
+          borderColor: "rgba(183,154,98,0.72)",
         }}
       />
 
@@ -131,7 +140,7 @@ function SmallDivider() {
         className="h-px w-10 sm:w-14"
         style={{
           background:
-            "linear-gradient(to left, transparent, rgba(164,134,84,0.72))",
+            "linear-gradient(to left, transparent, rgba(183,154,98,0.72))",
         }}
       />
     </div>
@@ -168,38 +177,92 @@ export default function FrasePremium() {
       "
       style={{
         background: `
+          radial-gradient(
+            circle at 18% 22%,
+            rgba(183,154,98,0.055) 0%,
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 82% 72%,
+            rgba(90,70,59,0.04) 0%,
+            transparent 32%
+          ),
+          linear-gradient(
+            120deg,
+            transparent 0%,
+            transparent 32%,
+            rgba(128,111,100,0.05) 33%,
+            transparent 35%,
+            transparent 62%,
+            rgba(183,154,98,0.035) 63%,
+            transparent 65%
+          ),
           linear-gradient(
             180deg,
             ${palette.paperLight} 0%,
-            ${palette.paper} 55%,
-            ${palette.paperDark} 100%
+            ${palette.paper} 58%,
+            ${palette.paperLight} 100%
           )
         `,
       }}
     >
-      {/* TEXTURA DE PAPEL */}
+      {/* =========================================
+          TEXTURA MÁRMOL SUAVE
+      ========================================= */}
 
       <div
         className="
           pointer-events-none
           absolute
           inset-0
-          opacity-[0.16]
+          opacity-[0.42]
         "
         style={{
           backgroundImage: `
-            repeating-linear-gradient(
-              0deg,
-              rgba(29,39,51,0.025) 0px,
-              rgba(29,39,51,0.025) 1px,
-              transparent 1px,
-              transparent 5px
+            linear-gradient(
+              145deg,
+              transparent 0%,
+              transparent 38%,
+              rgba(128,111,100,0.05) 39%,
+              transparent 41%
+            ),
+            linear-gradient(
+              28deg,
+              transparent 0%,
+              transparent 67%,
+              rgba(183,154,98,0.04) 68%,
+              transparent 70%
             )
           `,
         }}
       />
 
-      {/* MARCO EXTERIOR */}
+      {/* =========================================
+          LUZ CENTRAL
+      ========================================= */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          h-[520px]
+          w-[520px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+          blur-3xl
+        "
+        style={{
+          background:
+            "radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.22) 45%, transparent 72%)",
+        }}
+      />
+
+      {/* =========================================
+          MARCO EXTERIOR
+      ========================================= */}
 
       <div
         className="
@@ -211,7 +274,7 @@ export default function FrasePremium() {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(164,134,84,0.26)",
+          borderColor: "rgba(183,154,98,0.28)",
         }}
       />
 
@@ -225,11 +288,13 @@ export default function FrasePremium() {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(164,134,84,0.1)",
+          borderColor: "rgba(183,154,98,0.09)",
         }}
       />
 
-      {/* DETALLES BOTÁNICOS */}
+      {/* =========================================
+          DETALLES BOTÁNICOS
+      ========================================= */}
 
       <BotanicalDetail
         className="
@@ -240,7 +305,7 @@ export default function FrasePremium() {
           h-[210px]
           w-[130px]
           -rotate-12
-          text-[#A48654]/20
+          text-[#B79A62]/20
           sm:-left-1
           sm:h-[260px]
           sm:w-[160px]
@@ -259,7 +324,7 @@ export default function FrasePremium() {
           h-[210px]
           w-[130px]
           rotate-[168deg]
-          text-[#A48654]/20
+          text-[#B79A62]/20
           sm:-right-1
           sm:h-[260px]
           sm:w-[160px]
@@ -269,7 +334,9 @@ export default function FrasePremium() {
         "
       />
 
-      {/* CONTENIDO */}
+      {/* =========================================
+          CONTENIDO
+      ========================================= */}
 
       <div
         className="
@@ -283,7 +350,9 @@ export default function FrasePremium() {
           items-center
         "
       >
-        {/* ETIQUETA */}
+        {/* =========================================
+            SEPARADOR SUPERIOR
+        ========================================= */}
 
         <motion.div
           initial={{
@@ -300,27 +369,14 @@ export default function FrasePremium() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <p
-            className="
-              text-[8px]
-              uppercase
-              tracking-[0.42em]
-              sm:text-[10px]
-              sm:tracking-[0.52em]
-            "
-            style={{
-              color: palette.antiqueGoldDark,
-            }}
-          >
-            Una historia de amor
-          </p>
-
           <div className="mt-5">
             <SmallDivider />
           </div>
         </motion.div>
 
-        {/* COMILLA */}
+        {/* =========================================
+            COMILLA
+        ========================================= */}
 
         <motion.span
           className="
@@ -334,7 +390,7 @@ export default function FrasePremium() {
             sm:text-[86px]
           "
           style={{
-            color: "rgba(164,134,84,0.28)",
+            color: "rgba(183,154,98,0.3)",
           }}
           initial={{
             opacity: 0,
@@ -353,26 +409,29 @@ export default function FrasePremium() {
           “
         </motion.span>
 
-        {/* FRASE */}
+        {/* =========================================
+            FRASE PRINCIPAL
+        ========================================= */}
 
         <motion.blockquote
           className="
             mx-auto
             mt-3
             max-w-4xl
-            font-serif
-            text-[26px]
+            text-[32px]
             font-normal
-            leading-[1.55]
-            tracking-[-0.015em]
-            sm:text-[35px]
-            sm:leading-[1.5]
-            md:text-[41px]
-            lg:text-[46px]
-            lg:leading-[1.42]
+            italic
+            leading-[1.35]
+            tracking-[0.005em]
+            sm:text-[43px]
+            sm:leading-[1.32]
+            md:text-[50px]
+            lg:text-[58px]
+            lg:leading-[1.28]
           "
           style={{
-            color: palette.ink,
+            color: palette.mocha,
+            fontFamily: '"Cormorant Garamond", Georgia, serif',
           }}
           initial={{
             opacity: 0,
@@ -389,16 +448,12 @@ export default function FrasePremium() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          Te quiero no por quien eres,
-          <span className="block">
-            sino por quien soy
-          </span>
-          <span className="block">
-            cuando estoy contigo.
-          </span>
+          He hallado al que ama mi alma
         </motion.blockquote>
 
-        {/* SEPARADOR */}
+        {/* =========================================
+            SEPARADOR
+        ========================================= */}
 
         <motion.div
           className="
@@ -422,14 +477,16 @@ export default function FrasePremium() {
           <SmallDivider />
         </motion.div>
 
-        {/* AUTOR */}
+        {/* =========================================
+            AUTOR
+        ========================================= */}
 
         <motion.p
           className="
-            text-[9px]
+            text-[11px]
             uppercase
             tracking-[0.28em]
-            sm:text-[11px]
+            sm:text-[13px]
             sm:tracking-[0.4em]
           "
           style={{
@@ -449,10 +506,12 @@ export default function FrasePremium() {
             delay: 0.4,
           }}
         >
-          Gabriel García Márquez
+          Cantares 3:4
         </motion.p>
 
-        {/* CIERRE NARRATIVO */}
+        {/* =========================================
+            CIERRE DECORATIVO
+        ========================================= */}
 
         <motion.div
           className="
@@ -482,25 +541,9 @@ export default function FrasePremium() {
               w-16
             "
             style={{
-              backgroundColor: "rgba(164,134,84,0.48)",
+              backgroundColor: "rgba(183,154,98,0.48)",
             }}
           />
-
-          <p
-            className="
-              font-serif
-              text-[14px]
-              italic
-              leading-7
-              sm:text-base
-            "
-            style={{
-              color: palette.inkSoft,
-            }}
-          >
-            Desde que nuestros caminos se encontraron, aprendimos que el amor
-            también se construye en los pequeños momentos.
-          </p>
         </motion.div>
       </div>
     </motion.section>
