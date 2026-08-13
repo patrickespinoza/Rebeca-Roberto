@@ -219,6 +219,7 @@ useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = 0.45;
 
+      audioRef.current.currentTime = 40;
       audioRef.current.play().catch((error) => {
         console.warn("No se pudo reproducir el audio:", error);
       });
@@ -254,7 +255,7 @@ useEffect(() => {
       {/* AUDIO */}
 
       <audio ref={audioRef} loop preload="auto">
-        <source src="/TylerShaw.mp3" type="audio/mpeg" />
+        <source src="/musica.mp3" type="audio/mpeg" />
       </audio>
 
       {/* =========================================

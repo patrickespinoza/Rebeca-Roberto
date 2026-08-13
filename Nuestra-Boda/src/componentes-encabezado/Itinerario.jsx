@@ -35,7 +35,7 @@ const events = [
   {
     time: "7:00 pm",
     title: "Banquete",
-    description: "Banquete con un menú especialmente diseñado.",
+    description: "Banquete con un menú especialmente.",
     icon: "dinner",
   },
   {
@@ -767,6 +767,7 @@ export default function ItinerarioRelojCentral() {
             "
             style={{
               color: palette.antiqueGoldDark,
+              fontFamily: '"Dancing Script", cursive',
             }}
           >
             Itinerario

@@ -665,7 +665,7 @@ const Regalos = () => {
             "
             style={{
               color: palette.paperLight,
-              fontFamily: '"Cormorant Garamond", Georgia, serif',
+              fontFamily: '"Dancing Script", cursive',
             }}
             initial={{
               opacity: 0,
@@ -690,7 +690,7 @@ const Regalos = () => {
               mt-6
               max-w-2xl
               font-serif
-              text-[14px]
+              text-[13px]
               leading-7
               sm:text-[16px]
               sm:leading-8

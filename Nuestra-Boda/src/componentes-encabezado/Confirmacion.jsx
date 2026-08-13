@@ -6,15 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 ========================================= */
 
 const API_URL =
-  "https://script.google.com/macros/s/AKfycbxklU9PTlqxkcu9pBUfWYhByQZ_7kJWuFENeeQhlEW-C6eh2cVbTK3z2AbMJiWVL1ME/exec";
-
-/*
-  Coloca los números con código de país, sin:
-  +, espacios, guiones ni paréntesis.
-
-  Ejemplo México:
-  5215512345678
-*/
+  "https://script.google.com/macros/s/AKfycbwBTiaj7ebrD5-jpkRYbZpu6c-roHJkWQDnsAOgB_r1Or_ce1BOFiMOf4VwZsu0mEhV/exec";
 
 const NUMERO_WHATSAPP = "524441144527";
 const NOMBRE_CONTACTO = "Rebeca y Roberto";
@@ -967,7 +959,7 @@ const Confirmacion = () => {
             "
             style={{
               color: palette.mochaDark,
-              fontFamily: '"Cormorant Garamond", Georgia, serif',
+              fontFamily: '"Dancing Script", cursive',
               fontStyle: "italic",
             }}
           >

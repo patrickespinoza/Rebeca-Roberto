@@ -465,7 +465,7 @@ export default function Galeria() {
         <motion.div
           className="
             mx-auto
-            mb-14
+            mb-10
             flex
             max-w-3xl
             flex-col
@@ -488,22 +488,8 @@ export default function Galeria() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <p
-            className="
-              text-[8px]
-              uppercase
-              tracking-[0.44em]
-              sm:text-[10px]
-              sm:tracking-[0.55em]
-            "
-            style={{
-              color: palette.antiqueGoldDark,
-            }}
-          >
-            Nuestros momentos
-          </p>
 
-          <div className="mt-5">
+          <div>
             <DecorativeDivider />
           </div>
 
@@ -520,7 +506,7 @@ export default function Galeria() {
             "
             style={{
               color: palette.mocha,
-              fontFamily: '"Cormorant Garamond", Georgia, serif',
+              fontFamily: '"Dancing Script", cursive',
             }}
           >
             Nuestra historia

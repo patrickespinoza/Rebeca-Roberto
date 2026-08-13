@@ -736,7 +736,7 @@ const DressCodePremium = () => {
               color: palette.paperLight,
 
               fontFamily:
-                '"Cormorant Garamond", Georgia, serif',
+                '"Dancing Script", cursive',
             }}
           >
             Código de vestimenta
@@ -1039,7 +1039,7 @@ const DressCodePremium = () => {
               mt-3
               max-w-md
               font-serif
-              text-[14px]
+              text-[13px]
               leading-7
               sm:text-[15px]
             "

@@ -325,6 +325,7 @@ function EventBlock({
           color: dark
             ? "#D8C29A"
             : palette.antiqueGoldDark,
+            fontFamily: '"Dancing Script", cursive',
         }}
       >
         {eyebrow}
@@ -775,6 +776,9 @@ export default function EventoDireccion() {
               sm:text-[28px]
               sm:tracking-[0.55em]
             "
+            style={{
+              fontFamily: '"Dancing Script", cursive',
+            }}
           >
             Nuestra celebración
           </p>
@@ -893,6 +897,7 @@ export default function EventoDireccion() {
             "
             style={{
               color: palette.antiqueGoldDark,
+              fontFamily: '"Dancing Script", cursive',
             }}
           >
             Reserve la fecha
