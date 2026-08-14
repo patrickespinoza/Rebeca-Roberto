@@ -1131,40 +1131,28 @@ useEffect(() => {
         {/* FOTOGRAFÍA */}
 
         <motion.img
-          src="/portada.jpg"
-          alt="Rebeca y Roberto"
-          className="
-            absolute
-            inset-0
-            h-full
-            w-full
-            object-cover
-            object-center
-          "
-          initial={{
-            opacity: 0,
-            scale: 1.035,
-          }}
-          animate={
-            mostrarContenido
-              ? {
-                  opacity: 1,
-                  scale: 1,
-                }
-              : {
-                  opacity: 0,
-                  scale: 1.035,
-                }
-          }
-          transition={{
-            opacity: { duration: 1.2 },
-            scale: {
-              duration: 7,
-              ease: "easeOut",
-            },
-          }}
-        />
-
+  src="/portada.jpg"
+  alt="Rebeca y Roberto"
+  className="
+    absolute
+    inset-0
+    h-full
+    w-full
+    object-cover
+    object-center
+  "
+  initial={{
+    opacity: 0,
+  }}
+  animate={{
+    opacity: mostrarContenido ? 1 : 0,
+  }}
+  transition={{
+    opacity: {
+      duration: 1.2,
+    },
+  }}
+/>
         {/* OVERLAY CINEMATOGRÁFICO DISCRETO */}
 
         <motion.div
