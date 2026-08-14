@@ -382,10 +382,10 @@ const Album = () => {
               mt-6
               max-w-2xl
               font-serif
-              text-[15px]
+              text-[13px]
               italic
               leading-7
-              sm:text-[17px]
+              sm:text-[15px]
               sm:leading-8
             "
             style={{

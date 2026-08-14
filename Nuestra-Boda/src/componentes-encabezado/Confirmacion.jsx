@@ -735,10 +735,10 @@ const Confirmacion = () => {
               mt-5
               max-w-2xl
               font-serif
-              text-[13px]
+              text-[12px]
               italic
               leading-7
-              sm:text-base
+              sm:text-sm
             "
             style={{
               color: palette.black,

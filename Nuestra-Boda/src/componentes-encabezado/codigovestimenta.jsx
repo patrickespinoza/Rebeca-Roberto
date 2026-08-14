@@ -893,9 +893,9 @@ const DressCodePremium = () => {
               mt-3
               max-w-md
               font-serif
-              text-[13px]
+              text-[12px]
               leading-7
-              sm:text-[15px]
+              sm:text-[13px]
             "
             style={{
               color: palette.black,

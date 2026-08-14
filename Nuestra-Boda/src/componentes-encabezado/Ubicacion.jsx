@@ -659,10 +659,10 @@ export default function EventoDireccion() {
               mt-5
               max-w-xl
               font-serif
-              text-[13px]
+              text-[12px]
               italic
               leading-7
-              sm:text-base
+              sm:text-sm
             "
             style={{
               color: palette.black,
@@ -833,11 +833,11 @@ export default function EventoDireccion() {
             mt-12
             max-w-xl
             text-center
-            text-[20px]
+            text-[18px]
             italic
             leading-8
             sm:mt-14
-            sm:text-[24px]
+            sm:text-[20px]
           "
           style={{
             color: palette.black,
