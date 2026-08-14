@@ -6,24 +6,19 @@ import { motion } from "framer-motion";
 
    DISEÑO:
    - Marmoleado = fondo principal
-   - Dorado = detalles y acentos
+   - Dorado = detalles
    - Negro = textos
-   - Blanco = contraste puntual
-
-   NOTA:
-   Azul marino, moka y blanco se conservan
-   únicamente como colores reservados.
+   - Siluetas PNG transparentes
 ========================================= */
 
 const palette = {
   black: "#000000",
   white: "#FFFFFF",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 
   /* SOLO PARA MOSTRAR COLORES RESERVADOS */
   navyReserved: "#17243B",
-  mochaReserved: "#5A463B",
+  mochaReserved: "#4A342B",
   whiteReserved: "#FFFFFF",
 };
 
@@ -74,7 +69,12 @@ function CornerOrnament({ className = "" }) {
         strokeWidth="0.75"
       />
 
-      <circle cx="15" cy="15" r="2" fill="currentColor" />
+      <circle
+        cx="15"
+        cy="15"
+        r="2"
+        fill="currentColor"
+      />
     </svg>
   );
 }
@@ -211,6 +211,12 @@ function AdultEventIcon() {
 
 /* =========================================
    SILUETA
+
+   IMPORTANTE:
+   - SIN fondo blanco
+   - SIN tarjeta
+   - SIN color detrás
+   - Solo aparece el PNG transparente
 ========================================= */
 
 function SilhouettePlaceholder({ type }) {
@@ -231,7 +237,6 @@ function SilhouettePlaceholder({ type }) {
         lg:h-[550px]
       "
       style={{
-        backgroundColor: palette.white,
         borderColor: palette.gold,
       }}
     >
@@ -273,9 +278,9 @@ function DressPanel({
         relative
         overflow-hidden
         border
+        bg-transparent
       "
       style={{
-        backgroundColor: palette.marble,
         borderColor: palette.gold,
       }}
       initial={{
@@ -296,9 +301,7 @@ function DressPanel({
         ease: [0.22, 1, 0.36, 1],
       }}
     >
- 
-
-      {/* IMAGEN */}
+      {/* SILUETA */}
 
       <SilhouettePlaceholder
         type={type === "man" ? "man" : "woman"}
@@ -466,6 +469,7 @@ const DressCodePremium = () => {
         amount: 0.1,
       }}
       className="
+        fondo-marmoleado
         relative
         flex
         min-h-[760px]
@@ -480,11 +484,10 @@ const DressCodePremium = () => {
         lg:px-12
         lg:py-32
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
-      {/* MARCOS */}
+      {/* =========================================
+          MARCOS
+      ========================================= */}
 
       <div
         className="
@@ -514,7 +517,9 @@ const DressCodePremium = () => {
         }}
       />
 
-      {/* ORNAMENTOS */}
+      {/* =========================================
+          ORNAMENTOS
+      ========================================= */}
 
       <CornerOrnament
         className="
@@ -583,9 +588,9 @@ const DressCodePremium = () => {
         "
       />
 
-      {/* BOTÁNICOS */}
-
-
+      {/* =========================================
+          BOTÁNICO
+      ========================================= */}
 
       <BotanicalBranch
         className="
@@ -603,7 +608,9 @@ const DressCodePremium = () => {
         "
       />
 
-      {/* CONTENIDO */}
+      {/* =========================================
+          CONTENIDO
+      ========================================= */}
 
       <div
         className="
@@ -636,7 +643,9 @@ const DressCodePremium = () => {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -671,14 +680,17 @@ const DressCodePremium = () => {
             "
             style={{
               color: palette.black,
-              fontFamily: '"Dancing Script", cursive',
+              fontFamily:
+                '"Dancing Script", cursive',
             }}
           >
             Código de vestimenta
           </h2>
         </motion.div>
 
-        {/* CABALLEROS + DAMAS */}
+        {/* =========================================
+            CABALLEROS + DAMAS
+        ========================================= */}
 
         <div
           className="
@@ -705,7 +717,9 @@ const DressCodePremium = () => {
           />
         </div>
 
-        {/* COLORES RESERVADOS */}
+        {/* =========================================
+            COLORES RESERVADOS
+        ========================================= */}
 
         <motion.div
           className="
@@ -731,7 +745,9 @@ const DressCodePremium = () => {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.85,
             delay: 0.28,
@@ -813,7 +829,9 @@ const DressCodePremium = () => {
           </p>
         </motion.div>
 
-        {/* SOLO ADULTOS */}
+        {/* =========================================
+            SOLO ADULTOS
+        ========================================= */}
 
         <motion.div
           className="
@@ -834,7 +852,9 @@ const DressCodePremium = () => {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.85,
             delay: 0.36,

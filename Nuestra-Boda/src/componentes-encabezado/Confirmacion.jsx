@@ -23,9 +23,11 @@ const fadeUp = {
     opacity: 0,
     y: 24,
   },
+
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.9,
       ease: [0.22, 1, 0.36, 1],
@@ -36,19 +38,6 @@ const fadeUp = {
 /* =========================================
    DECODIFICACIÓN DEL GENERADOR
 ========================================= */
-
-/*
-  Este decodificador es compatible con un generador que haga:
-
-  1. JSON.stringify({ nombre, pases })
-  2. invertir el texto
-  3. convertir a Base64 con btoa()
-  4. colocar el resultado en ?id=...
-
-  También admite Base64 URL-safe:
-  - en lugar de +
-  _ en lugar de /
-*/
 
 function normalizeBase64(value) {
   const normalized = value
@@ -68,24 +57,6 @@ function normalizeBase64(value) {
 function decodeBase64Utf8(value) {
   const binary = window.atob(normalizeBase64(value));
 
-  /*
-    IMPORTANTE:
-
-    El generador actual usa btoa() directamente sobre el texto invertido.
-    Para nombres como "Chávez", "Hernández", "Muñoz", etc., ese Base64
-    contiene bytes Latin-1.
-
-    Si intentamos decodificarlos siempre como UTF-8 con fatal:false,
-    TextDecoder reemplaza esos caracteres por "�" y en pantalla pueden
-    terminar viéndose como "?".
-
-    Por eso:
-    1. Intentamos UTF-8 estricto para mantener compatibilidad futura.
-    2. Si NO es UTF-8 válido, devolvemos directamente el resultado de atob(),
-       que conserva correctamente á, é, í, ó, ú, ñ, ü, etc. en los links
-       generados actualmente.
-  */
-
   try {
     const bytes = Uint8Array.from(binary, (character) =>
       character.charCodeAt(0)
@@ -103,14 +74,6 @@ function parseInvitationData(encodedId) {
   if (!encodedId) return null;
 
   const decodedValue = decodeURIComponent(encodedId);
-
-  /*
-    Intentamos varios formatos para que sea más resistente:
-
-    1. Base64 → texto invertido → JSON.
-    2. Base64 → JSON directo.
-  */
-
   const decodedText = decodeBase64Utf8(decodedValue);
 
   const possibleValues = [
@@ -142,17 +105,23 @@ function DecorativeDivider({ compact = false }) {
     <div className="flex items-center justify-center gap-3">
       <span
         className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
-        style={{ backgroundColor: palette.gold }}
+        style={{
+          backgroundColor: palette.gold,
+        }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
-        style={{ borderColor: palette.gold }}
+        style={{
+          borderColor: palette.gold,
+        }}
       />
 
       <span
         className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
-        style={{ backgroundColor: palette.gold }}
+        style={{
+          backgroundColor: palette.gold,
+        }}
       />
     </div>
   );
@@ -371,12 +340,6 @@ const Confirmacion = () => {
       if (encodedId) {
         invitationData = parseInvitationData(encodedId);
       } else if (visibleName || visiblePasses) {
-        /*
-          Respaldo temporal para enlaces anteriores:
-
-          ?nombre=Familia%20López&pases=4
-        */
-
         invitationData = {
           nombre: visibleName,
           pases: visiblePasses,
@@ -392,11 +355,6 @@ const Confirmacion = () => {
         typeof invitationData.nombre === "string"
           ? invitationData.nombre.trim()
           : "";
-
-      /*
-        Aceptamos varias propiedades por compatibilidad:
-        pases, invitados, cantidad o lugares.
-      */
 
       const decodedPasses = Number.parseInt(
         invitationData.pases ??
@@ -419,7 +377,10 @@ const Confirmacion = () => {
       setDatosDesdeGenerador(Boolean(decodedName));
       setUrlError("");
     } catch (decodeError) {
-      console.error("No se pudieron leer los datos del enlace:", decodeError);
+      console.error(
+        "No se pudieron leer los datos del enlace:",
+        decodeError
+      );
 
       setUrlError(
         "No pudimos reconocer los datos personalizados de esta invitación."
@@ -539,14 +500,6 @@ const Confirmacion = () => {
     };
 
     try {
-      /*
-        No agregamos Content-Type: application/json porque la petición
-        utiliza mode: "no-cors".
-
-        Apps Script puede leer el contenido mediante:
-        e.postData.contents
-      */
-
       await fetch(API_URL, {
         method: "POST",
         mode: "no-cors",
@@ -555,16 +508,14 @@ const Confirmacion = () => {
 
       setEnviado(true);
 
-      /*
-        Conservamos nombre y pases porque vienen del generador.
-        Solo limpiamos la respuesta y el mensaje.
-      */
-
       window.setTimeout(() => {
         openWhatsApp(phoneNumber, recipientName);
       }, 650);
     } catch (requestError) {
-      console.error("Error enviando la confirmación:", requestError);
+      console.error(
+        "Error enviando la confirmación:",
+        requestError
+      );
 
       setError(
         "No pudimos enviar tu confirmación. Intenta nuevamente en unos momentos."
@@ -588,6 +539,7 @@ const Confirmacion = () => {
         amount: 0.08,
       }}
       className="
+        fondo-marmoleado
         relative
         flex
         min-h-[820px]
@@ -602,9 +554,6 @@ const Confirmacion = () => {
         lg:px-12
         lg:py-32
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
       {/* MARCOS */}
 
@@ -712,7 +661,6 @@ const Confirmacion = () => {
           <h2
             className="
               mt-7
-              
               text-[36px]
               font-normal
               leading-tight
@@ -866,7 +814,9 @@ const Confirmacion = () => {
                 style={{
                   color: palette.black,
                   borderColor: palette.gold,
-                  cursor: datosDesdeGenerador ? "not-allowed" : "text",
+                  cursor: datosDesdeGenerador
+                    ? "not-allowed"
+                    : "text",
                 }}
               />
 

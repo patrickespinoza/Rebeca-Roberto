@@ -3,23 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 
 /* =========================================
    ÁLBUM COMPARTIDO — REBECA & ROBERTO
-
-   DISEÑO:
-   - Marmoleado = fondo principal
-   - Dorado = detalles
-   - Negro = textos
-   - Blanco = contraste
-
-   Sin moka
-   Sin otoñal
-   Sin degradados
-   Sin flores ni ramas
+   Fondo marmoleado global + dorado + negro
 ========================================= */
 
 const palette = {
   black: "#000000",
   white: "#FFFFFF",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 };
 
@@ -174,24 +163,30 @@ const Album = () => {
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  /* BLOQUEAR SCROLL DEL FONDO */
+  /* =========================================
+     BLOQUEAR SCROLL DEL FONDO
+  ========================================= */
 
   useEffect(() => {
     if (!open) return undefined;
 
     const previousBodyOverflow = document.body.style.overflow;
-    const previousHtmlOverflow = document.documentElement.style.overflow;
+    const previousHtmlOverflow =
+      document.documentElement.style.overflow;
 
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
 
     return () => {
       document.body.style.overflow = previousBodyOverflow;
-      document.documentElement.style.overflow = previousHtmlOverflow;
+      document.documentElement.style.overflow =
+        previousHtmlOverflow;
     };
   }, [open]);
 
-  /* CERRAR CON ESCAPE */
+  /* =========================================
+     CERRAR CON ESCAPE
+  ========================================= */
 
   useEffect(() => {
     if (!open) return undefined;
@@ -209,7 +204,9 @@ const Album = () => {
     };
   }, [open]);
 
-  /* COPIAR CÓDIGO */
+  /* =========================================
+     COPIAR CÓDIGO
+  ========================================= */
 
   const copyAlbumCode = async () => {
     try {
@@ -239,6 +236,7 @@ const Album = () => {
           amount: 0.15,
         }}
         className="
+          fondo-marmoleado
           relative
           flex
           min-h-[660px]
@@ -253,9 +251,6 @@ const Album = () => {
           lg:px-12
           lg:py-32
         "
-        style={{
-          backgroundColor: palette.marble,
-        }}
       >
         {/* MARCOS */}
 
@@ -405,8 +400,8 @@ const Album = () => {
               delay: 0.18,
             }}
           >
-            Comparte las fotografías que captures y ayúdanos a conservar cada
-            momento especial.
+            Comparte las fotografías que captures y ayúdanos a
+            conservar cada momento especial.
           </motion.p>
 
           {/* INFORMACIÓN BREVE */}
@@ -448,8 +443,8 @@ const Album = () => {
                 color: palette.black,
               }}
             >
-              Dentro encontrarás el código y el acceso a la aplicación para
-              subir tus fotografías.
+              Dentro encontrarás el código y el acceso a la
+              aplicación para subir tus fotografías.
             </p>
           </motion.div>
 
@@ -543,8 +538,14 @@ const Album = () => {
             aria-modal="true"
             aria-labelledby="album-modal-title"
           >
+            {/* =========================================
+                CONTENEDOR DEL MODAL
+                TAMBIÉN USA MARMOLEADO
+            ========================================= */}
+
             <motion.div
               className="
+                fondo-marmoleado
                 relative
                 max-h-[92dvh]
                 w-full
@@ -559,7 +560,6 @@ const Album = () => {
                 md:px-14
               "
               style={{
-                backgroundColor: palette.marble,
                 borderColor: palette.gold,
               }}
               initial={{
@@ -715,8 +715,9 @@ const Album = () => {
                     color: palette.black,
                   }}
                 >
-                  Descarga la aplicación Wedshoots, utiliza nuestro código y
-                  comparte las fotografías que captures durante la celebración.
+                  Descarga la aplicación Wedshoots, utiliza nuestro
+                  código y comparte las fotografías que captures
+                  durante la celebración.
                 </p>
 
                 {/* INFORMACIÓN */}
@@ -897,7 +898,7 @@ const Album = () => {
                           borderColor: palette.gold,
                         }}
                         whileHover={{
-                          backgroundColor: palette.marble,
+                          backgroundColor: "#F5F3EE",
                         }}
                         whileTap={{
                           scale: 0.95,
@@ -1010,8 +1011,8 @@ const Album = () => {
                         color: palette.black,
                       }}
                     >
-                      Escanea el código QR para acceder y comenzar a compartir
-                      tus fotografías.
+                      Escanea el código QR para acceder y comenzar a
+                      compartir tus fotografías.
                     </p>
                   </div>
                 </div>
@@ -1033,8 +1034,8 @@ const Album = () => {
                     color: palette.black,
                   }}
                 >
-                  Cada fotografía será una parte especial de los recuerdos que
-                  conservaremos de este día.
+                  Cada fotografía será una parte especial de los
+                  recuerdos que conservaremos de este día.
                 </p>
               </div>
             </motion.div>

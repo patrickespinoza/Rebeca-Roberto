@@ -29,7 +29,7 @@ const palette = {
 ========================================= */
 
 const imagePosition = {
-  mobile: "78% 50%",
+  mobile: "49% 50%",
   desktop: "50% 50%",
 };
 
@@ -58,7 +58,7 @@ export default function CierreFinal() {
       ========================================= */}
 
       <motion.img
-        src="/final.png"
+        src="/final1.jpg"
         alt="Rebeca y Roberto"
         className="
           cierre-final-imagen

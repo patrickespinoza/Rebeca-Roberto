@@ -30,6 +30,7 @@ const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.95,
       ease: [0.22, 1, 0.36, 1],
@@ -67,7 +68,12 @@ function CornerOrnament({ className = "" }) {
         strokeWidth="0.75"
       />
 
-      <circle cx="15" cy="15" r="2" fill="currentColor" />
+      <circle
+        cx="15"
+        cy="15"
+        r="2"
+        fill="currentColor"
+      />
     </svg>
   );
 }
@@ -156,21 +162,27 @@ function DecorativeDivider({ light = false }) {
       <span
         className="h-px w-10 sm:w-16"
         style={{
-          backgroundColor: light ? palette.white : palette.gold,
+          backgroundColor: light
+            ? palette.white
+            : palette.gold,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: light ? palette.white : palette.gold,
+          borderColor: light
+            ? palette.white
+            : palette.gold,
         }}
       />
 
       <span
         className="h-px w-10 sm:w-16"
         style={{
-          backgroundColor: light ? palette.white : palette.gold,
+          backgroundColor: light
+            ? palette.white
+            : palette.gold,
         }}
       />
     </div>
@@ -205,6 +217,7 @@ function LocationIcon() {
 
 function EventBlock({
   eyebrow,
+  subtitle,
   time,
   place,
   address,
@@ -233,7 +246,9 @@ function EventBlock({
       "
       style={{
         backgroundColor: palette.marble,
-        borderColor: accent ? palette.gold : palette.black,
+        borderColor: accent
+          ? palette.gold
+          : palette.black,
       }}
       initial={{
         opacity: 0,
@@ -269,7 +284,7 @@ function EventBlock({
         }}
       />
 
-      {/* TIPO */}
+      {/* TIPO DE EVENTO */}
 
       <p
         className="
@@ -279,7 +294,8 @@ function EventBlock({
         "
         style={{
           color: palette.gold,
-          fontFamily: '"Dancing Script", cursive',
+          fontFamily:
+            '"Dancing Script", cursive',
         }}
       >
         {eyebrow}
@@ -323,7 +339,9 @@ function EventBlock({
         {time}
       </p>
 
-      {/* UBICACIÓN */}
+      {/* =========================================
+          UBICACIÓN
+      ========================================= */}
 
       <div className="mt-9 sm:mt-10">
         <p
@@ -339,6 +357,8 @@ function EventBlock({
         >
           Ubicación
         </p>
+
+        {/* NOMBRE DEL LUGAR */}
 
         <p
           className="
@@ -357,11 +377,36 @@ function EventBlock({
           {place}
         </p>
 
+        {/* SUBTÍTULO DEL LUGAR */}
+
+        {subtitle && (
+          <p
+            className="
+              mx-auto
+              mt-1
+              max-w-md
+              font-serif
+              text-[14px]
+              italic
+              leading-5
+              sm:text-[15px]
+              sm:leading-6
+            "
+            style={{
+              color: palette.gold,
+            }}
+          >
+            {subtitle}
+          </p>
+        )}
+
+        {/* DIRECCIÓN */}
+
         {address && (
           <p
             className="
               mx-auto
-              mt-2
+              mt-3
               max-w-md
               text-[12px]
               leading-6
@@ -442,6 +487,7 @@ export default function EventoDireccion() {
         amount: 0.12,
       }}
       className="
+        fondo-marmoleado
         relative
         flex
         min-h-[760px]
@@ -456,9 +502,6 @@ export default function EventoDireccion() {
         lg:px-12
         lg:py-32
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
       {/* MARCO GENERAL */}
 
@@ -559,9 +602,7 @@ export default function EventoDireccion() {
         "
       />
 
-      {/* RAMAS */}
-
-
+      {/* RAMA */}
 
       <BotanicalBranch
         className="
@@ -625,7 +666,8 @@ export default function EventoDireccion() {
             "
             style={{
               color: palette.gold,
-              fontFamily: '"Dancing Script", cursive',
+              fontFamily:
+                '"Dancing Script", cursive',
             }}
           >
             Nuestra celebración
@@ -647,7 +689,8 @@ export default function EventoDireccion() {
             "
             style={{
               color: palette.black,
-              fontFamily: '"Cormorant Garamond", Georgia, serif',
+              fontFamily:
+                '"Cormorant Garamond", Georgia, serif',
             }}
           >
             Un día para recordar
@@ -735,7 +778,8 @@ export default function EventoDireccion() {
             "
             style={{
               color: palette.gold,
-              fontFamily: '"Dancing Script", cursive',
+              fontFamily:
+                '"Dancing Script", cursive',
             }}
           >
             Reserve la fecha
@@ -808,7 +852,10 @@ export default function EventoDireccion() {
           <EventBlock
             eyebrow="Ceremonia Religiosa"
             time="5:00 pm"
-            place="Palacio Monumental (Segunda Planta)"
+
+            place="Palacio Monumental"
+            subtitle="(Segunda Planta)"
+
             address="Agustín de Iturbide 660, Centro Historico, 78000 San Luis Potosí, S.L.P."
             href="https://maps.app.goo.gl/aQm6SH3Y9Zx3fSfp9"
             delay={0.18}
@@ -818,7 +865,10 @@ export default function EventoDireccion() {
           <EventBlock
             eyebrow="Recepción"
             time="6:00 pm"
-            place="Casa D Vian (Entrada por la Florida)"
+
+            place="Casa D Vian"
+            subtitle="(Entrada por la Florida)"
+
             address="Real de Bernalejo 183, Real del Potosi, 78448 Real del Potosí, S.L.P."
             href="https://maps.app.goo.gl/kkV27aMqj1dUSYmc6"
             delay={0.26}
@@ -841,7 +891,8 @@ export default function EventoDireccion() {
           "
           style={{
             color: palette.black,
-            fontFamily: '"Cormorant Garamond", Georgia, serif',
+            fontFamily:
+              '"Cormorant Garamond", Georgia, serif',
           }}
           initial={{
             opacity: 0,

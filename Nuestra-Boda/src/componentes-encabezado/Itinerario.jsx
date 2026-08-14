@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 
 /* =========================================
    ITINERARIO CLÁSICO EDITORIAL
+   Fondo marmoleado global
 ========================================= */
 
 const palette = {
   black: "#000000",
   white: "#FFFFFF",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 };
 
@@ -31,7 +31,7 @@ const events = [
     icon: "dinner",
   },
   {
-    time: "8:00 pm ",
+    time: "9:00 pm",
     title: "Fiesta",
     description: "Una noche para celebrar juntos.",
     icon: "music",
@@ -43,9 +43,11 @@ const fadeUp = {
     opacity: 0,
     y: 24,
   },
+
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.9,
       ease: [0.22, 1, 0.36, 1],
@@ -118,12 +120,26 @@ function EventIcon({ type }) {
 function DecorativeDivider() {
   return (
     <div className="flex items-center justify-center gap-3">
-      <span className="h-px w-10 sm:w-16" style={{ backgroundColor: palette.gold }} />
+      <span
+        className="h-px w-10 sm:w-16"
+        style={{
+          backgroundColor: palette.gold,
+        }}
+      />
+
       <span
         className="h-[5px] w-[5px] rotate-45 border"
-        style={{ borderColor: palette.gold }}
+        style={{
+          borderColor: palette.gold,
+        }}
       />
-      <span className="h-px w-10 sm:w-16" style={{ backgroundColor: palette.gold }} />
+
+      <span
+        className="h-px w-10 sm:w-16"
+        style={{
+          backgroundColor: palette.gold,
+        }}
+      />
     </div>
   );
 }
@@ -198,7 +214,6 @@ function TimelineEvent({ event, index, isLast }) {
         {isEven && (
           <EventContent
             event={event}
-            index={index}
             alignment="right"
           />
         )}
@@ -274,7 +289,6 @@ function TimelineEvent({ event, index, isLast }) {
         <div className="lg:hidden">
           <EventContent
             event={event}
-            index={index}
             alignment="left"
           />
         </div>
@@ -283,7 +297,6 @@ function TimelineEvent({ event, index, isLast }) {
           <div className="hidden lg:block">
             <EventContent
               event={event}
-              index={index}
               alignment="left"
             />
           </div>
@@ -297,7 +310,7 @@ function TimelineEvent({ event, index, isLast }) {
    CONTENIDO DE CADA EVENTO
 ========================================= */
 
-function EventContent({ event, index, alignment }) {
+function EventContent({ event, alignment }) {
   const isRight = alignment === "right";
 
   return (
@@ -308,8 +321,6 @@ function EventContent({ event, index, alignment }) {
         ${isRight ? "lg:ml-auto" : "lg:mr-auto"}
       `}
     >
-
-
       <div
         className={`
           mt-3
@@ -326,6 +337,8 @@ function EventContent({ event, index, alignment }) {
           }
         `}
       >
+        {/* HORA */}
+
         <p
           className="
             font-serif
@@ -341,6 +354,8 @@ function EventContent({ event, index, alignment }) {
           {event.time}
         </p>
 
+        {/* LÍNEA */}
+
         <span
           className="
             hidden
@@ -353,6 +368,8 @@ function EventContent({ event, index, alignment }) {
           }}
         />
 
+        {/* TÍTULO */}
+
         <h3
           className="
             text-[27px]
@@ -361,13 +378,15 @@ function EventContent({ event, index, alignment }) {
             sm:text-[31px]
           "
           style={{
-            color: palette.goldDark,
+            color: palette.gold,
             fontFamily: '"Cormorant Garamond", Georgia, serif',
           }}
         >
           {event.title}
         </h3>
       </div>
+
+      {/* DESCRIPCIÓN */}
 
       <p
         className="
@@ -402,6 +421,7 @@ export default function ItinerarioRelojCentral() {
         amount: 0.1,
       }}
       className="
+        fondo-marmoleado
         relative
         w-full
         overflow-hidden
@@ -412,9 +432,6 @@ export default function ItinerarioRelojCentral() {
         lg:px-12
         lg:py-32
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
       {/* MARCO GENERAL */}
 
@@ -445,6 +462,8 @@ export default function ItinerarioRelojCentral() {
           borderColor: palette.gold,
         }}
       />
+
+      {/* CONTENIDO */}
 
       <div
         className="
@@ -477,7 +496,9 @@ export default function ItinerarioRelojCentral() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
@@ -521,7 +542,6 @@ export default function ItinerarioRelojCentral() {
           >
             El orden de nuestro día
           </h2>
-
         </motion.div>
 
         {/* FECHA CENTRAL */}
@@ -551,7 +571,9 @@ export default function ItinerarioRelojCentral() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             delay: 0.1,
@@ -637,7 +659,9 @@ export default function ItinerarioRelojCentral() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             delay: 0.25,

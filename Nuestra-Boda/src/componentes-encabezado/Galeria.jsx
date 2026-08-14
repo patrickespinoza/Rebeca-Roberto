@@ -3,12 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 
 /* =========================================
    GALERÍA EDITORIAL CLÁSICA
+   Fondo marmoleado global
 ========================================= */
 
 const palette = {
   black: "#000000",
   white: "#FFFFFF",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 };
 
@@ -34,23 +34,17 @@ const fadeUp = {
     opacity: 0,
     y: 28,
   },
+
   show: {
     opacity: 1,
     y: 0,
+
     transition: {
       duration: 0.95,
       ease: [0.22, 1, 0.36, 1],
     },
   },
 };
-
-/* =========================================
-   ORNAMENTO DE ESQUINA
-========================================= */
-
-/* =========================================
-   RAMA BOTÁNICA
-========================================= */
 
 /* =========================================
    SEPARADOR
@@ -61,24 +55,30 @@ function DecorativeDivider() {
     <div className="flex items-center justify-center gap-3">
       <span
         className="h-px w-10 sm:w-16"
-        style={{ backgroundColor: palette.gold }}
+        style={{
+          backgroundColor: palette.gold,
+        }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
-        style={{ borderColor: palette.gold }}
+        style={{
+          borderColor: palette.gold,
+        }}
       />
 
       <span
         className="h-px w-10 sm:w-16"
-        style={{ backgroundColor: palette.gold }}
+        style={{
+          backgroundColor: palette.gold,
+        }}
       />
     </div>
   );
 }
 
 /* =========================================
-   ICONOS
+   ICONO ANTERIOR
 ========================================= */
 
 function PreviousIcon() {
@@ -97,6 +97,10 @@ function PreviousIcon() {
     </svg>
   );
 }
+
+/* =========================================
+   ICONO SIGUIENTE
+========================================= */
 
 function NextIcon() {
   return (
@@ -126,7 +130,9 @@ export default function Galeria() {
 
   const totalImages = images.length;
 
-
+  /* =========================================
+     CAMBIO AUTOMÁTICO
+  ========================================= */
 
   useEffect(() => {
     if (isPaused) return undefined;
@@ -142,6 +148,10 @@ export default function Galeria() {
     return () => window.clearInterval(intervalId);
   }, [isPaused, totalImages]);
 
+  /* =========================================
+     SIGUIENTE
+  ========================================= */
+
   const nextImage = () => {
     setDirection(1);
 
@@ -149,6 +159,10 @@ export default function Galeria() {
       return (previousIndex + 1) % totalImages;
     });
   };
+
+  /* =========================================
+     ANTERIOR
+  ========================================= */
 
   const previousImage = () => {
     setDirection(-1);
@@ -159,6 +173,10 @@ export default function Galeria() {
         : previousIndex - 1;
     });
   };
+
+  /* =========================================
+     IR A IMAGEN
+  ========================================= */
 
   const goToImage = (imageIndex) => {
     setDirection(imageIndex > index ? 1 : -1);
@@ -175,6 +193,7 @@ export default function Galeria() {
         amount: 0.12,
       }}
       className="
+        fondo-marmoleado
         relative
         w-full
         overflow-hidden
@@ -185,11 +204,10 @@ export default function Galeria() {
         lg:px-12
         lg:py-32
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
-      {/* MARCO GENERAL */}
+      {/* =========================================
+          MARCO GENERAL
+      ========================================= */}
 
       <div
         className="
@@ -219,6 +237,10 @@ export default function Galeria() {
         }}
       />
 
+      {/* =========================================
+          CONTENIDO
+      ========================================= */}
+
       <div
         className="
           relative
@@ -228,7 +250,9 @@ export default function Galeria() {
           max-w-7xl
         "
       >
-        {/* ENCABEZADO */}
+        {/* =========================================
+            ENCABEZADO
+        ========================================= */}
 
         <motion.div
           className="
@@ -250,13 +274,14 @@ export default function Galeria() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-
           <div>
             <DecorativeDivider />
           </div>
@@ -300,7 +325,9 @@ export default function Galeria() {
           </p>
         </motion.div>
 
-        {/* ÁLBUM PRINCIPAL */}
+        {/* =========================================
+            ÁLBUM PRINCIPAL
+        ========================================= */}
 
         <motion.div
           className="
@@ -329,7 +356,9 @@ export default function Galeria() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* MARCO DE PAPEL */}
+          {/* =========================================
+              MARCO DE PAPEL
+          ========================================= */}
 
           <div
             className="
@@ -342,7 +371,6 @@ export default function Galeria() {
             style={{
               backgroundColor: palette.white,
               borderColor: palette.gold,
-              
             }}
           >
             {/* BORDE INTERIOR */}
@@ -359,7 +387,9 @@ export default function Galeria() {
               }}
             />
 
-            {/* FOTOGRAFÍA */}
+            {/* =========================================
+                FOTOGRAFÍA
+            ========================================= */}
 
             <div
               className="
@@ -372,7 +402,11 @@ export default function Galeria() {
                 lg:h-[760px]
               "
             >
-              <AnimatePresence initial={false} custom={direction} mode="sync">
+              <AnimatePresence
+                initial={false}
+                custom={direction}
+                mode="sync"
+              >
                 <motion.img
                   key={images[index]}
                   custom={direction}
@@ -405,10 +439,11 @@ export default function Galeria() {
                   }}
                 />
               </AnimatePresence>
-
             </div>
 
-            {/* PIE DE FOTO */}
+            {/* =========================================
+                PIE DE FOTO
+            ========================================= */}
 
             <div
               className="
@@ -425,6 +460,8 @@ export default function Galeria() {
                 sm:pt-8
               "
             >
+              {/* CONTADOR */}
+
               <motion.p
                 key={`counter-${index}`}
                 className="
@@ -448,6 +485,7 @@ export default function Galeria() {
                 }}
               >
                 {String(index + 1).padStart(2, "0")}
+
                 <span
                   className="
                     mx-2
@@ -459,6 +497,7 @@ export default function Galeria() {
                 >
                   /
                 </span>
+
                 <span
                   className="
                     text-base
@@ -472,7 +511,9 @@ export default function Galeria() {
                 </span>
               </motion.p>
 
-              {/* NAVEGACIÓN — FUERA DE LA FOTO */}
+              {/* =========================================
+                  NAVEGACIÓN — DEBAJO DE LA FOTO
+              ========================================= */}
 
               <div
                 className="
@@ -484,6 +525,8 @@ export default function Galeria() {
                   sm:gap-5
                 "
               >
+                {/* ANTERIOR */}
+
                 <motion.button
                   type="button"
                   onClick={previousImage}
@@ -528,6 +571,8 @@ export default function Galeria() {
                   Navegar
                 </span>
 
+                {/* SIGUIENTE */}
+
                 <motion.button
                   type="button"
                   onClick={nextImage}
@@ -559,7 +604,9 @@ export default function Galeria() {
                 </motion.button>
               </div>
 
-              {/* INDICADORES */}
+              {/* =========================================
+                  INDICADORES
+              ========================================= */}
 
               <div
                 className="
@@ -595,6 +642,7 @@ export default function Galeria() {
                         backgroundColor: isActive
                           ? palette.black
                           : "transparent",
+
                         borderColor: isActive
                           ? palette.black
                           : "rgba(183,154,98,0.45)",
@@ -603,6 +651,8 @@ export default function Galeria() {
                   );
                 })}
               </div>
+
+              {/* TEXTO */}
 
               <p
                 className="
@@ -622,7 +672,9 @@ export default function Galeria() {
           </div>
         </motion.div>
 
-        {/* CIERRE NARRATIVO */}
+        {/* =========================================
+            CIERRE
+        ========================================= */}
 
         <motion.div
           className="
@@ -640,7 +692,9 @@ export default function Galeria() {
             opacity: 1,
             y: 0,
           }}
-          viewport={{ once: true }}
+          viewport={{
+            once: true,
+          }}
           transition={{
             duration: 0.9,
             delay: 0.35,
@@ -657,7 +711,6 @@ export default function Galeria() {
               backgroundColor: palette.gold,
             }}
           />
-
         </motion.div>
       </div>
     </motion.section>

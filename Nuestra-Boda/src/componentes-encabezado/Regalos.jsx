@@ -19,7 +19,6 @@ import { useEffect, useState } from "react";
 const palette = {
   black: "#000000",
   white: "#FFFFFF",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 };
 
@@ -199,7 +198,9 @@ function BankInfoRow({
           backgroundColor: estaCopiado
             ? palette.gold
             : palette.white,
+
           borderColor: palette.gold,
+
           color: estaCopiado
             ? palette.white
             : palette.black,
@@ -227,7 +228,6 @@ const Regalos = () => {
 
   /* =========================================
      DATOS BANCARIOS
-     CAMBIAR DESPUÉS POR LOS DATOS REALES
   ========================================= */
 
   const cuentaInterbancaria = "021700065739756091";
@@ -250,12 +250,16 @@ const Regalos = () => {
     }
   };
 
-  /* BLOQUEAR SCROLL CUANDO EL MODAL ESTÁ ABIERTO */
+  /* =========================================
+     BLOQUEAR SCROLL CUANDO EL MODAL ESTÁ ABIERTO
+  ========================================= */
 
   useEffect(() => {
     if (!mostrarModal) return undefined;
 
-    const bodyOverflowAnterior = document.body.style.overflow;
+    const bodyOverflowAnterior =
+      document.body.style.overflow;
+
     const htmlOverflowAnterior =
       document.documentElement.style.overflow;
 
@@ -263,13 +267,17 @@ const Regalos = () => {
     document.documentElement.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = bodyOverflowAnterior;
+      document.body.style.overflow =
+        bodyOverflowAnterior;
+
       document.documentElement.style.overflow =
         htmlOverflowAnterior;
     };
   }, [mostrarModal]);
 
-  /* CERRAR CON ESCAPE */
+  /* =========================================
+     CERRAR CON ESCAPE
+  ========================================= */
 
   useEffect(() => {
     if (!mostrarModal) return undefined;
@@ -280,7 +288,10 @@ const Regalos = () => {
       }
     };
 
-    window.addEventListener("keydown", cerrarConEscape);
+    window.addEventListener(
+      "keydown",
+      cerrarConEscape
+    );
 
     return () => {
       window.removeEventListener(
@@ -305,6 +316,7 @@ const Regalos = () => {
           amount: 0.12,
         }}
         className="
+          fondo-marmoleado
           relative
           flex
           min-h-[680px]
@@ -319,9 +331,6 @@ const Regalos = () => {
           lg:px-12
           lg:py-32
         "
-        style={{
-          backgroundColor: palette.marble,
-        }}
       >
         {/* MARCOS */}
 
@@ -417,7 +426,8 @@ const Regalos = () => {
             "
             style={{
               color: palette.black,
-              fontFamily: '"Dancing Script", cursive',
+              fontFamily:
+                '"Dancing Script", cursive',
             }}
             initial={{
               opacity: 0,
@@ -560,8 +570,14 @@ const Regalos = () => {
             aria-modal="true"
             aria-labelledby="gift-modal-title"
           >
+            {/* =========================================
+                CONTENEDOR DEL MODAL
+                TAMBIÉN USA MARMOLEADO
+            ========================================= */}
+
             <motion.div
               className="
+                fondo-marmoleado
                 relative
                 max-h-[92dvh]
                 w-full
@@ -576,7 +592,6 @@ const Regalos = () => {
                 md:px-14
               "
               style={{
-                backgroundColor: palette.marble,
                 borderColor: palette.gold,
               }}
               initial={{
@@ -735,7 +750,9 @@ const Regalos = () => {
                   parte de esta nueva etapa de nuestra historia.
                 </p>
 
-                {/* DATOS BANCARIOS */}
+                {/* =========================================
+                    DATOS BANCARIOS
+                ========================================= */}
 
                 <div
                   className="
