@@ -221,14 +221,14 @@ function SilhouettePlaceholder({ type }) {
       className="
         relative
         flex
-        h-[480px]
+        h-[380px]
         w-full
         items-center
         justify-center
         overflow-hidden
         border-b
-        sm:h-[560px]
-        lg:h-[650px]
+        sm:h-[460px]
+        lg:h-[550px]
       "
       style={{
         backgroundColor: palette.white,
@@ -585,21 +585,7 @@ const DressCodePremium = () => {
 
       {/* BOTÁNICOS */}
 
-      <BotanicalBranch
-        className="
-          pointer-events-none
-          absolute
-          -bottom-16
-          -left-8
-          h-[250px]
-          w-[145px]
-          -rotate-12
-          text-[#B79A62]
-          sm:h-[310px]
-          sm:w-[180px]
-          lg:left-2
-        "
-      />
+
 
       <BotanicalBranch
         className="

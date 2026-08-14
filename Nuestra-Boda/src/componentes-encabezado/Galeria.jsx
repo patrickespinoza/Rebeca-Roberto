@@ -286,7 +286,7 @@ export default function Galeria() {
               mt-5
               max-w-2xl
               font-serif
-              text-[14px]
+              text-[13px]
               italic
               leading-7
               sm:text-base
@@ -406,85 +406,6 @@ export default function Galeria() {
                 />
               </AnimatePresence>
 
-              {/* BOTÓN ANTERIOR */}
-
-              <motion.button
-                type="button"
-                onClick={previousImage}
-                aria-label="Mostrar fotografía anterior"
-                className="
-                  absolute
-                  left-3
-                  top-1/2
-                  z-30
-                  flex
-                  h-11
-                  w-11
-                  -translate-y-1/2
-                  items-center
-                  justify-center
-                  border
-                  bg-white
-                  sm:left-5
-                  sm:h-12
-                  sm:w-12
-                "
-                style={{
-                  borderColor: palette.gold,
-                  color: palette.black,
-                  
-                }}
-                whileHover={{
-                  y: "-50%",
-                  scale: 1.04,
-                  backgroundColor: palette.white,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-              >
-                <PreviousIcon />
-              </motion.button>
-
-              {/* BOTÓN SIGUIENTE */}
-
-              <motion.button
-                type="button"
-                onClick={nextImage}
-                aria-label="Mostrar siguiente fotografía"
-                className="
-                  absolute
-                  right-3
-                  top-1/2
-                  z-30
-                  flex
-                  h-11
-                  w-11
-                  -translate-y-1/2
-                  items-center
-                  justify-center
-                  border
-                  bg-white
-                  sm:right-5
-                  sm:h-12
-                  sm:w-12
-                "
-                style={{
-                  borderColor: palette.gold,
-                  color: palette.black,
-                  
-                }}
-                whileHover={{
-                  y: "-50%",
-                  scale: 1.04,
-                  backgroundColor: palette.white,
-                }}
-                whileTap={{
-                  scale: 0.97,
-                }}
-              >
-                <NextIcon />
-              </motion.button>
             </div>
 
             {/* PIE DE FOTO */}
@@ -501,7 +422,7 @@ export default function Galeria() {
                 text-center
                 sm:px-8
                 sm:pb-5
-                sm:pt-9
+                sm:pt-8
               "
             >
               <motion.p
@@ -550,6 +471,93 @@ export default function Galeria() {
                   {String(totalImages).padStart(2, "0")}
                 </span>
               </motion.p>
+
+              {/* NAVEGACIÓN — FUERA DE LA FOTO */}
+
+              <div
+                className="
+                  mt-5
+                  flex
+                  items-center
+                  justify-center
+                  gap-4
+                  sm:gap-5
+                "
+              >
+                <motion.button
+                  type="button"
+                  onClick={previousImage}
+                  aria-label="Mostrar fotografía anterior"
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    border
+                    bg-white
+                    sm:h-12
+                    sm:w-12
+                  "
+                  style={{
+                    borderColor: palette.gold,
+                    color: palette.black,
+                  }}
+                  whileHover={{
+                    y: -2,
+                    scale: 1.04,
+                  }}
+                  whileTap={{
+                    scale: 0.97,
+                  }}
+                >
+                  <PreviousIcon />
+                </motion.button>
+
+                <span
+                  className="
+                    text-[8px]
+                    uppercase
+                    tracking-[0.28em]
+                    sm:text-[9px]
+                  "
+                  style={{
+                    color: palette.gold,
+                  }}
+                >
+                  Navegar
+                </span>
+
+                <motion.button
+                  type="button"
+                  onClick={nextImage}
+                  aria-label="Mostrar siguiente fotografía"
+                  className="
+                    flex
+                    h-11
+                    w-11
+                    items-center
+                    justify-center
+                    border
+                    bg-white
+                    sm:h-12
+                    sm:w-12
+                  "
+                  style={{
+                    borderColor: palette.gold,
+                    color: palette.black,
+                  }}
+                  whileHover={{
+                    y: -2,
+                    scale: 1.04,
+                  }}
+                  whileTap={{
+                    scale: 0.97,
+                  }}
+                >
+                  <NextIcon />
+                </motion.button>
+              </div>
 
               {/* INDICADORES */}
 

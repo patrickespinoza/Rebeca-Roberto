@@ -506,13 +506,13 @@ export default function ItinerarioRelojCentral() {
           <h2
             className="
               mt-7
-              text-[42px]
+              text-[38px]
               font-normal
               italic
               leading-tight
               tracking-[-0.01em]
-              sm:text-[56px]
-              md:text-[66px]
+              sm:text-[52px]
+              md:text-[62px]
             "
             style={{
               color: palette.black,

@@ -117,7 +117,7 @@ useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = 0.45;
 
-      audioRef.current.currentTime = 40;
+      audioRef.current.currentTime = 0;
       audioRef.current.play().catch((error) => {
         console.warn("No se pudo reproducir el audio:", error);
       });
@@ -153,16 +153,11 @@ useEffect(() => {
       {/* AUDIO */}
 
       <audio
-  ref={audioRef}
-  src="/musica.mp3"
-  preload="auto"
-  onEnded={() => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = 40;
-      audioRef.current.play();
-    }
-  }}
-/>
+        ref={audioRef}
+        src="/musica.mp3"
+        preload="auto"
+        loop
+      />
 
       {/* =========================================
           INTRO DEL SOBRE
@@ -799,7 +794,8 @@ useEffect(() => {
       <section
         className="
           relative
-          min-h-[100dvh]
+          h-[100svh]
+          min-h-[100svh]
           w-full
           overflow-hidden
         "
@@ -807,31 +803,24 @@ useEffect(() => {
       >
         {/* FOTOGRAFÍA */}
 
-        <motion.img
-  src="/portada.jpg"
-  alt="Rebeca y Roberto"
-  className="
-    absolute
-    inset-0
-    h-full
-    w-full
-    object-cover
-  "
-  style={{
-  objectPosition: "0% 50%",
-}}
-  initial={{
-    opacity: 0,
-  }}
-  animate={{
-    opacity: mostrarContenido ? 1 : 0,
-  }}
-  transition={{
-    opacity: {
-      duration: 1.2,
-    },
-  }}
-/>
+        <img
+          src="/portada.jpg"
+          alt="Rebeca y Roberto"
+          className="
+            absolute
+            inset-0
+            block
+            h-full
+            w-full
+            max-w-none
+            object-cover
+          "
+          style={{
+            objectPosition: "0% 50%",
+            transform: "none",
+          }}
+          draggable="false"
+        />
         {/* OVERLAY CINEMATOGRÁFICO DISCRETO */}
 
         <motion.div
@@ -913,7 +902,7 @@ useEffect(() => {
 relative
 z-20
 flex
-min-h-[100dvh]
+min-h-[100svh]
 w-full
 flex-col
 items-center

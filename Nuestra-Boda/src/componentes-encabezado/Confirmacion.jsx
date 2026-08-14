@@ -713,12 +713,12 @@ const Confirmacion = () => {
             className="
               mt-7
               
-              text-[39px]
+              text-[36px]
               font-normal
               leading-tight
               tracking-[-0.025em]
-              sm:text-[54px]
-              md:text-[64px]
+              sm:text-[51px]
+              md:text-[61px]
             "
             style={{
               color: palette.black,
@@ -735,7 +735,7 @@ const Confirmacion = () => {
               mt-5
               max-w-2xl
               font-serif
-              text-[14px]
+              text-[13px]
               italic
               leading-7
               sm:text-base

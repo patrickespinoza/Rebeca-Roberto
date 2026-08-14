@@ -273,9 +273,9 @@ function EventBlock({
 
       <p
         className="
-          text-[18px]
+          text-[23px]
           tracking-[0.05em]
-          sm:text-[22px]
+          sm:text-[27px]
         "
         style={{
           color: palette.gold,
@@ -561,21 +561,7 @@ export default function EventoDireccion() {
 
       {/* RAMAS */}
 
-      <BotanicalBranch
-        className="
-          pointer-events-none
-          absolute
-          -bottom-16
-          -left-8
-          h-[250px]
-          w-[145px]
-          -rotate-12
-          text-[#B79A62]
-          sm:h-[310px]
-          sm:w-[180px]
-          lg:left-2
-        "
-      />
+
 
       <BotanicalBranch
         className="
@@ -673,7 +659,7 @@ export default function EventoDireccion() {
               mt-5
               max-w-xl
               font-serif
-              text-[14px]
+              text-[13px]
               italic
               leading-7
               sm:text-base

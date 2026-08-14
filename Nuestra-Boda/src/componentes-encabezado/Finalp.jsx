@@ -73,18 +73,7 @@ export default function CierreFinal() {
         }}
       />
 
-      {/* =========================================
-          SOMBRA MUY SUAVE SOBRE LA FOTO
-      ========================================= */}
 
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          bg-black/10
-        "
-      />
 
       {/* =========================================
           SOMBRA INFERIOR PARA LEER EL TEXTO
@@ -141,53 +130,7 @@ export default function CierreFinal() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        {/* =========================================
-            ORNAMENTO
-        ========================================= */}
 
-        <div
-          className="
-            my-7
-            flex
-            items-center
-            justify-center
-            gap-3
-          "
-        >
-          <span
-            className="
-              h-px
-              w-12
-              sm:w-16
-            "
-            style={{
-              backgroundColor: palette.gold,
-            }}
-          />
-
-          <span
-            className="
-              h-[6px]
-              w-[6px]
-              rotate-45
-              border
-            "
-            style={{
-              borderColor: palette.gold,
-            }}
-          />
-
-          <span
-            className="
-              h-px
-              w-12
-              sm:w-16
-            "
-            style={{
-              backgroundColor: palette.gold,
-            }}
-          />
-        </div>
 
         {/* =========================================
             NOMBRES
@@ -224,7 +167,7 @@ export default function CierreFinal() {
             sm:text-[17px]
           "
           style={{
-            color: palette.white,
+            color: palette.gold,
             textShadow: "0 2px 10px rgba(0,0,0,0.35)",
           }}
         >
