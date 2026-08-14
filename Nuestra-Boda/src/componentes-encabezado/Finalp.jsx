@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 /* =========================================
    CIERRE FINAL — REBECA & ROBERTO
-   Foto completa + fondo marmoleado
+   Foto a pantalla completa
 ========================================= */
 
 const palette = {
@@ -11,11 +11,33 @@ const palette = {
   gold: "#B79A62",
 };
 
+/* =========================================
+   POSICIÓN DE LA IMAGEN
+
+   PRIMER VALOR  = izquierda / derecha
+   SEGUNDO VALOR = arriba / abajo
+
+   Horizontal:
+   0%   = muestra más la izquierda
+   50%  = centro
+   100% = muestra más la derecha
+
+   Vertical:
+   0%   = arriba
+   50%  = centro
+   100% = abajo
+========================================= */
+
+const imagePosition = {
+  mobile: "78% 50%",
+  desktop: "50% 50%",
+};
+
 export default function CierreFinal() {
   return (
     <section
       className="
-        fondo-marmoleado
+        cierre-final
         relative
         flex
         min-h-[720px]
@@ -26,22 +48,25 @@ export default function CierreFinal() {
         sm:min-h-[820px]
         lg:min-h-[900px]
       "
+      style={{
+        "--image-mobile": imagePosition.mobile,
+        "--image-desktop": imagePosition.desktop,
+      }}
     >
       {/* =========================================
-          FOTO COMPLETA
-          object-contain = NO RECORTA LA FOTO
+          FOTO DE FONDO
       ========================================= */}
 
       <motion.img
-        src="/final.jpg"
+        src="/final.png"
         alt="Rebeca y Roberto"
         className="
+          cierre-final-imagen
           absolute
           inset-0
           h-full
           w-full
-          object-contain
-          object-center
+          object-cover
         "
         initial={{
           opacity: 0,
@@ -60,7 +85,6 @@ export default function CierreFinal() {
 
       {/* =========================================
           SOMBRA INFERIOR
-          SOLO PARA LEGIBILIDAD DEL TEXTO
       ========================================= */}
 
       <div
@@ -160,6 +184,22 @@ export default function CierreFinal() {
           NUESTRO PARA SIEMPRE COMIENZA AQUÍ
         </p>
       </motion.div>
+
+      {/* =========================================
+          POSICIÓN RESPONSIVE
+      ========================================= */}
+
+      <style>{`
+        .cierre-final-imagen {
+          object-position: var(--image-mobile);
+        }
+
+        @media (min-width: 1024px) {
+          .cierre-final-imagen {
+            object-position: var(--image-desktop);
+          }
+        }
+      `}</style>
     </section>
   );
 }
