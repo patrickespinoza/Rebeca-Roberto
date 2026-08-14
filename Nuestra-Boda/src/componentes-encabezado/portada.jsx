@@ -479,7 +479,10 @@ useEffect(() => {
                         leading-tight
                         sm:text-[25px]
                       "
-                      style={{ color: palette.ink }}
+                      style={{ color: palette.ink,
+                        fontFamily: '"Dancing Script", cursive',
+                      }}
+                      
                     >
                       Rebeca
                     </p>
@@ -503,7 +506,9 @@ useEffect(() => {
                         leading-tight
                         sm:text-[25px]
                       "
-                      style={{ color: palette.ink }}
+                      style={{ color: palette.ink, 
+                        fontFamily: '"Dancing Script", cursive',
+                      }}
                     >
                       Roberto
                     </p>

@@ -2,13 +2,12 @@ import { motion } from "framer-motion";
 
 /* =========================================
    FRASE PREMIUM — REBECA & ROBERTO
-   Marmoleado principal + dorado + blanco + negro
+   Marmoleado global + dorado + blanco + negro
 ========================================= */
 
 const palette = {
   black: "#000000",
   white: "#FFFFFF",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 };
 
@@ -145,6 +144,7 @@ export default function FrasePremium() {
         amount: 0.18,
       }}
       className="
+        fondo-marmoleado
         relative
         flex
         min-h-[620px]
@@ -162,9 +162,6 @@ export default function FrasePremium() {
         lg:px-12
         lg:py-32
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
       {/* =========================================
           MARCO EXTERIOR
@@ -256,10 +253,6 @@ export default function FrasePremium() {
           items-center
         "
       >
-        {/* =========================================
-            SEPARADOR SUPERIOR
-        ========================================= */}
-
         <motion.div
           initial={{
             opacity: 0,
@@ -279,10 +272,6 @@ export default function FrasePremium() {
             <SmallDivider />
           </div>
         </motion.div>
-
-        {/* =========================================
-            COMILLA
-        ========================================= */}
 
         <motion.span
           className="
@@ -314,10 +303,6 @@ export default function FrasePremium() {
         >
           “
         </motion.span>
-
-        {/* =========================================
-            FRASE PRINCIPAL
-        ========================================= */}
 
         <motion.blockquote
           className="
@@ -357,10 +342,6 @@ export default function FrasePremium() {
           He hallado al que ama mi alma
         </motion.blockquote>
 
-        {/* =========================================
-            SEPARADOR
-        ========================================= */}
-
         <motion.div
           className="
             my-9
@@ -382,10 +363,6 @@ export default function FrasePremium() {
         >
           <SmallDivider />
         </motion.div>
-
-        {/* =========================================
-            AUTOR
-        ========================================= */}
 
         <motion.p
           className="
@@ -414,10 +391,6 @@ export default function FrasePremium() {
         >
           Cantares 3:4
         </motion.p>
-
-        {/* =========================================
-            CIERRE DECORATIVO
-        ========================================= */}
 
         <motion.div
           className="
