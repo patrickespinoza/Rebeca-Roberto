@@ -10,6 +10,12 @@ const palette = {
   gold: "#D8C29A",
 };
 
+
+const imagePosition = {
+  mobile: "65% 50%",
+  desktop: "50% 50%",
+};
+
 export default function CierreFinal() {
   return (
     <motion.section
@@ -24,6 +30,7 @@ export default function CierreFinal() {
         ease: [0.22, 1, 0.36, 1],
       }}
       className="
+        cierre-final
         relative
         flex
         min-h-[720px]
@@ -34,6 +41,10 @@ export default function CierreFinal() {
         sm:min-h-[820px]
         lg:min-h-[900px]
       "
+      style={{
+        "--image-mobile": imagePosition.mobile,
+        "--image-desktop": imagePosition.desktop,
+      }}
     >
       {/* =========================================
           FOTO DE FONDO
@@ -43,28 +54,28 @@ export default function CierreFinal() {
         src="/final.jpg"
         alt="Rebeca y Roberto"
         className="
+          cierre-final-imagen
           absolute
           inset-0
           h-full
           w-full
           object-cover
-          object-center
         "
         initial={{
-          scale: 1.06,
+          opacity: 0,
         }}
         whileInView={{
-          scale: 1,
+          opacity: 1,
         }}
         viewport={{ once: true }}
         transition={{
-          duration: 2,
+          duration: 1.2,
           ease: [0.22, 1, 0.36, 1],
         }}
       />
 
       {/* =========================================
-          SOMBRA GENERAL MUY SUAVE
+          SOMBRA GENERAL
       ========================================= */}
 
       <div
@@ -97,8 +108,6 @@ export default function CierreFinal() {
           `,
         }}
       />
-
-
 
       {/* =========================================
           CONTENIDO
@@ -135,7 +144,6 @@ export default function CierreFinal() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-
         {/* ORNAMENTO */}
 
         <div
@@ -219,8 +227,7 @@ export default function CierreFinal() {
             textShadow: "0 2px 10px rgba(0,0,0,0.25)",
           }}
         >
-          Nos hará muy felices compartir este día tan especial
-          con ustedes.
+          Nos hará muy felices compartir este día tan especial con ustedes.
         </p>
 
         {/* CIERRE */}
@@ -240,6 +247,22 @@ export default function CierreFinal() {
           Nuestro para siempre comienza aquí
         </p>
       </motion.div>
+
+      {/* =========================================
+          POSICIÓN RESPONSIVE DE LA FOTO
+      ========================================= */}
+
+      <style>{`
+        .cierre-final-imagen {
+          object-position: var(--image-mobile);
+        }
+
+        @media (min-width: 1024px) {
+          .cierre-final-imagen {
+            object-position: var(--image-desktop);
+          }
+        }
+      `}</style>
     </motion.section>
   );
 }
