@@ -1131,7 +1131,7 @@ useEffect(() => {
         {/* FOTOGRAFÍA */}
 
         <motion.img
-          src="/portada.png"
+          src="/portada.jpg"
           alt="Rebeca y Roberto"
           className="
             absolute

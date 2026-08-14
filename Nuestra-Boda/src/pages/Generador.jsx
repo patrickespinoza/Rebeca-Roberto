@@ -645,7 +645,7 @@ Rebeca & Roberto 🤍`;
             }}
           >
             <img
-              src="/portada.png"
+              src="/final.jpg"
               alt="Portada de la invitación de Rebeca y Roberto"
               className="
                 block

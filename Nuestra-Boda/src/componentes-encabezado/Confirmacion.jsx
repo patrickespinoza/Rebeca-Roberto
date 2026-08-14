@@ -78,13 +78,31 @@ function normalizeBase64(value) {
 function decodeBase64Utf8(value) {
   const binary = window.atob(normalizeBase64(value));
 
+  /*
+    IMPORTANTE:
+
+    El generador actual usa btoa() directamente sobre el texto invertido.
+    Para nombres como "Chávez", "Hernández", "Muñoz", etc., ese Base64
+    contiene bytes Latin-1.
+
+    Si intentamos decodificarlos siempre como UTF-8 con fatal:false,
+    TextDecoder reemplaza esos caracteres por "�" y en pantalla pueden
+    terminar viéndose como "?".
+
+    Por eso:
+    1. Intentamos UTF-8 estricto para mantener compatibilidad futura.
+    2. Si NO es UTF-8 válido, devolvemos directamente el resultado de atob(),
+       que conserva correctamente á, é, í, ó, ú, ñ, ü, etc. en los links
+       generados actualmente.
+  */
+
   try {
     const bytes = Uint8Array.from(binary, (character) =>
       character.charCodeAt(0)
     );
 
     return new TextDecoder("utf-8", {
-      fatal: false,
+      fatal: true,
     }).decode(bytes);
   } catch {
     return binary;

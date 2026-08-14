@@ -19,11 +19,46 @@ const palette = {
 };
 
 const images = [
-  "/carrusel01.jpeg",
-  "/carusel02.jpeg",
-  "/carusel03.jpeg",
-  "/carusel04.jpeg",
-  "/carusel05.jpeg",
+  {
+    src: "/Carrusel01.PNG",
+    mobilePosition: "50% 50%",
+    desktopPosition: "50% 20%",
+  },
+  {
+    src: "/Carrusel02.JPEG",
+    mobilePosition: "50% 50%",
+    desktopPosition: "50% 50%",
+  },
+  {
+    src: "/Carrusel03.JPEG",
+    mobilePosition: "50% 50%",
+    desktopPosition: "50% 30%",
+  },
+  {
+    src: "/Carrusel04.PNG",
+    mobilePosition: "50% 50%",
+    desktopPosition: "50% 50%",
+  },
+  {
+    src: "/Carrusel05.JPEG",
+    mobilePosition: "70% 50%",
+    desktopPosition: "50% 50%",
+  },
+  {
+    src: "/Carrusel06.JPEG",
+    mobilePosition: "50% 30%",
+    desktopPosition: "50% 12%",
+  },
+  {
+    src: "/Carrusel07.JPEG",
+    mobilePosition: "50% 50%",
+    desktopPosition: "50% 20%",
+  },
+  {
+    src: "/Carrusel08.JPEG",
+    mobilePosition: "50% 50%",
+    desktopPosition: "50% 80%",
+  },
 ];
 
 const fadeUp = {
@@ -229,8 +264,27 @@ export default function Galeria() {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const totalImages = images.length;
+
+  /* =========================================
+     DETECTAR MÓVIL / COMPUTADORA
+  ========================================= */
+
+  useEffect(() => {
+    const actualizarVista = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    actualizarVista();
+
+    window.addEventListener("resize", actualizarVista);
+
+    return () => {
+      window.removeEventListener("resize", actualizarVista);
+    };
+  }, []);
 
   useEffect(() => {
     if (isPaused) return undefined;
@@ -606,9 +660,9 @@ export default function Galeria() {
             >
               <AnimatePresence initial={false} custom={direction} mode="sync">
                 <motion.img
-                  key={images[index]}
+                  key={images[index].src}
                   custom={direction}
-                  src={images[index]}
+                  src={images[index].src}
                   alt={`Momento ${index + 1} de ${totalImages}`}
                   className="
                     absolute
@@ -616,8 +670,12 @@ export default function Galeria() {
                     h-full
                     w-full
                     object-cover
-                    object-center
                   "
+                  style={{
+                    objectPosition: isDesktop
+                      ? images[index].desktopPosition
+                      : images[index].mobilePosition,
+                  }}
                   initial={{
                     opacity: 0,
                     scale: 1.025,
@@ -670,39 +728,6 @@ export default function Galeria() {
                 }}
               />
 
-              {/* NUMERACIÓN */}
-
-              <div
-                className="
-                  absolute
-                  bottom-4
-                  left-4
-                  z-20
-                  border
-                  bg-[#FCFBF8]/90
-                  px-4
-                  py-2
-                  sm:bottom-6
-                  sm:left-6
-                "
-                style={{
-                  borderColor: "rgba(183,154,98,0.34)",
-                }}
-              >
-                <p
-                  className="
-                    text-[8px]
-                    uppercase
-                    tracking-[0.3em]
-                    sm:text-[9px]
-                  "
-                  style={{
-                    color: palette.inkSoft,
-                  }}
-                >
-                  Fotografía {String(index + 1).padStart(2, "0")}
-                </p>
-              </div>
 
               {/* BOTÓN ANTERIOR */}
 
