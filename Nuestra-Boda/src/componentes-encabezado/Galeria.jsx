@@ -17,7 +17,7 @@ const images = [
   "/Carrusel02.JPEG",
   "/Carrusel03.JPEG",
   "/Carrusel04.PNG",
-  "/Carrusel05.JPEG",
+  "/Carrusel05.jpg",
   "/Carrusel06.JPEG",
   "/Carrusel07.JPEG",
   "/Carrusel08.JPEG",

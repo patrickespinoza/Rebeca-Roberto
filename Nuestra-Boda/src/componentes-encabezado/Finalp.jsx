@@ -1,34 +1,21 @@
- import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* =========================================
    CIERRE FINAL — REBECA & ROBERTO
+   Foto completa + fondo marmoleado
 ========================================= */
 
 const palette = {
   white: "#FFFFFF",
   black: "#000000",
-  marble: "#F5F3EE",
   gold: "#B79A62",
 };
 
 export default function CierreFinal() {
   return (
-    <motion.section
-      initial={{
-        opacity: 0,
-      }}
-      whileInView={{
-        opacity: 1,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
-      transition={{
-        duration: 1.2,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+    <section
       className="
+        fondo-marmoleado
         relative
         flex
         min-h-[720px]
@@ -39,12 +26,10 @@ export default function CierreFinal() {
         sm:min-h-[820px]
         lg:min-h-[900px]
       "
-      style={{
-        backgroundColor: palette.marble,
-      }}
     >
       {/* =========================================
           FOTO COMPLETA
+          object-contain = NO RECORTA LA FOTO
       ========================================= */}
 
       <motion.img
@@ -73,10 +58,9 @@ export default function CierreFinal() {
         }}
       />
 
-
-
       {/* =========================================
-          SOMBRA INFERIOR PARA LEER EL TEXTO
+          SOMBRA INFERIOR
+          SOLO PARA LEGIBILIDAD DEL TEXTO
       ========================================= */}
 
       <div
@@ -85,11 +69,11 @@ export default function CierreFinal() {
           absolute
           inset-x-0
           bottom-0
-          h-[48%]
+          h-[42%]
         "
         style={{
           background:
-            "linear-gradient(to top, rgba(0,0,0,0.68), transparent)",
+            "linear-gradient(to top, rgba(0,0,0,0.62), transparent)",
         }}
       />
 
@@ -107,9 +91,10 @@ export default function CierreFinal() {
           max-w-3xl
           flex-col
           items-center
-          px-8
-          pb-20
+          px-6
+          pb-16
           text-center
+          sm:px-8
           sm:pb-24
           lg:pb-28
         "
@@ -130,15 +115,13 @@ export default function CierreFinal() {
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-
-
         {/* =========================================
             NOMBRES
         ========================================= */}
 
         <motion.h2
           className="
-            text-[52px]
+            text-[48px]
             font-medium
             leading-[1.05]
             sm:text-[72px]
@@ -159,11 +142,14 @@ export default function CierreFinal() {
 
         <p
           className="
-            mt-6
+            mt-5
             max-w-xl
             font-serif
-            text-[15px]
+            text-[13px]
+            uppercase
             leading-7
+            tracking-[0.15em]
+            sm:mt-6
             sm:text-[17px]
           "
           style={{
@@ -171,10 +157,9 @@ export default function CierreFinal() {
             textShadow: "0 2px 10px rgba(0,0,0,0.35)",
           }}
         >
-          NUESTRO PARA SIEMPRE COMIENZA AQUI
+          NUESTRO PARA SIEMPRE COMIENZA AQUÍ
         </p>
-
       </motion.div>
-    </motion.section>
+    </section>
   );
 }
