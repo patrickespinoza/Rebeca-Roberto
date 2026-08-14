@@ -11,23 +11,6 @@ const palette = {
   gold: "#B79A62",
 };
 
-const reveal = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-
-  show: {
-    opacity: 1,
-    y: 0,
-
-    transition: {
-      duration: 0.95,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
-
 function BotanicalDetail({ className = "" }) {
   return (
     <svg
@@ -135,14 +118,7 @@ function SmallDivider() {
 
 export default function FrasePremium() {
   return (
-    <motion.section
-      variants={reveal}
-      initial="hidden"
-      whileInView="show"
-      viewport={{
-        once: true,
-        amount: 0.18,
-      }}
+    <section
       className="
         fondo-marmoleado
         relative
@@ -253,6 +229,8 @@ export default function FrasePremium() {
           items-center
         "
       >
+        {/* SEPARADOR SUPERIOR */}
+
         <motion.div
           initial={{
             opacity: 0,
@@ -272,6 +250,8 @@ export default function FrasePremium() {
             <SmallDivider />
           </div>
         </motion.div>
+
+        {/* COMILLA */}
 
         <motion.span
           className="
@@ -303,6 +283,8 @@ export default function FrasePremium() {
         >
           “
         </motion.span>
+
+        {/* FRASE PRINCIPAL */}
 
         <motion.blockquote
           className="
@@ -342,6 +324,8 @@ export default function FrasePremium() {
           He hallado al que ama mi alma
         </motion.blockquote>
 
+        {/* SEPARADOR */}
+
         <motion.div
           className="
             my-9
@@ -363,6 +347,8 @@ export default function FrasePremium() {
         >
           <SmallDivider />
         </motion.div>
+
+        {/* AUTOR */}
 
         <motion.p
           className="
@@ -391,6 +377,8 @@ export default function FrasePremium() {
         >
           Cantares 3:4
         </motion.p>
+
+        {/* CIERRE DECORATIVO */}
 
         <motion.div
           className="
@@ -425,6 +413,6 @@ export default function FrasePremium() {
           />
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }
