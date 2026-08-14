@@ -799,8 +799,8 @@ useEffect(() => {
       <section
         className="
           relative
-          h-[100svh]
-          min-h-[100svh]
+          h-screen
+          min-h-screen
           w-full
           overflow-hidden
         "
@@ -907,7 +907,7 @@ useEffect(() => {
 relative
 z-20
 flex
-min-h-[100svh]
+min-h-screen
 w-full
 flex-col
 items-center

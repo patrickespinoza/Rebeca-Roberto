@@ -6,8 +6,21 @@
 
 
 /* =========================================
-   FONDO MARMOLEADO GLOBAL
+   RESET GENERAL
 ========================================= */
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
 
 /* =========================================
    FONDO MARMOLEADO GLOBAL — IMAGEN
