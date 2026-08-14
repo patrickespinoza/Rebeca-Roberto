@@ -678,17 +678,6 @@ useEffect(() => {
                       "
                     />
 
-                    <p
-                      className="
-                        text-[7px]
-                        uppercase
-                        tracking-[0.38em]
-                        sm:text-[8px]
-                      "
-                      style={{ color: palette.antiqueGoldDark }}
-                    >
-                      The wedding of
-                    </p>
 
                     <div
                       className="
