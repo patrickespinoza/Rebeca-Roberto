@@ -129,14 +129,17 @@ export default function FrasePremium() {
         justify-center
         overflow-hidden
         px-5
-        py-24
+        pt-0
+        pb-24
         text-center
         sm:min-h-[700px]
         sm:px-8
-        sm:py-28
+        sm:pt-0
+        sm:pb-28
         lg:min-h-[680px]
         lg:px-12
-        lg:py-32
+        lg:pt-0
+        lg:pb-32
       "
     >
       {/* =========================================
@@ -147,10 +150,14 @@ export default function FrasePremium() {
         className="
           pointer-events-none
           absolute
-          inset-5
+          inset-x-5
+          top-0
+          bottom-5
           border
-          sm:inset-8
-          lg:inset-10
+          sm:inset-x-8
+          sm:bottom-8
+          lg:inset-x-10
+          lg:bottom-10
         "
         style={{
           borderColor: palette.gold,
@@ -161,10 +168,14 @@ export default function FrasePremium() {
         className="
           pointer-events-none
           absolute
-          inset-[26px]
+          inset-x-[26px]
+          top-[6px]
+          bottom-[26px]
           border
-          sm:inset-[38px]
-          lg:inset-[46px]
+          sm:inset-x-[38px]
+          sm:bottom-[38px]
+          lg:inset-x-[46px]
+          lg:bottom-[46px]
         "
         style={{
           borderColor: palette.gold,
@@ -199,7 +210,7 @@ export default function FrasePremium() {
           pointer-events-none
           absolute
           -right-5
-          -top-10
+          top-0
           h-[210px]
           w-[130px]
           rotate-[168deg]
@@ -227,6 +238,9 @@ export default function FrasePremium() {
           max-w-5xl
           flex-col
           items-center
+          pt-20
+          sm:pt-24
+          lg:pt-28
         "
       >
         {/* SEPARADOR SUPERIOR */}
@@ -246,9 +260,7 @@ export default function FrasePremium() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <div className="mt-5">
-            <SmallDivider />
-          </div>
+          <SmallDivider />
         </motion.div>
 
         {/* COMILLA */}

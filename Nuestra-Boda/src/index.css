@@ -9,73 +9,17 @@
    FONDO MARMOLEADO GLOBAL
 ========================================= */
 
+/* =========================================
+   FONDO MARMOLEADO GLOBAL — IMAGEN
+========================================= */
+
 .fondo-marmoleado {
   background-color: #f7f5ee;
+  background-image: url("/marmoleado.jpg");
 
-  background-image:
-    radial-gradient(
-      ellipse at 12% 18%,
-      transparent 0%,
-      transparent 28%,
-      rgba(183, 154, 98, 0.16) 29%,
-      rgba(183, 154, 98, 0.08) 31%,
-      transparent 34%
-    ),
-    radial-gradient(
-      ellipse at 82% 28%,
-      transparent 0%,
-      transparent 32%,
-      rgba(216, 194, 154, 0.22) 33%,
-      rgba(183, 154, 98, 0.10) 36%,
-      transparent 39%
-    ),
-    radial-gradient(
-      ellipse at 35% 72%,
-      transparent 0%,
-      transparent 34%,
-      rgba(183, 154, 98, 0.14) 35%,
-      rgba(216, 194, 154, 0.08) 38%,
-      transparent 42%
-    ),
-    linear-gradient(
-      125deg,
-      transparent 15%,
-      rgba(183, 154, 98, 0.07) 18%,
-      transparent 22%,
-      transparent 48%,
-      rgba(90, 85, 80, 0.06) 50%,
-      transparent 53%
-    ),
-    linear-gradient(
-      35deg,
-      transparent 25%,
-      rgba(216, 194, 154, 0.10) 28%,
-      transparent 32%,
-      transparent 68%,
-      rgba(183, 154, 98, 0.08) 71%,
-      transparent 74%
-    );
-
-  background-size:
-    700px 850px,
-    850px 700px,
-    750px 900px,
-    650px 650px,
-    800px 800px;
-
-  background-position:
-    center,
-    center,
-    center,
-    center,
-    center;
-
-  background-repeat:
-    repeat,
-    repeat,
-    repeat,
-    repeat,
-    repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 
