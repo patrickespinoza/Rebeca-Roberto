@@ -61,39 +61,6 @@ function CornerOrnament({ className = "" }) {
   );
 }
 
-function DecorativeDivider({ dark = false }) {
-  return (
-    <div className="flex w-full items-center justify-center gap-3">
-      <span
-        className="h-px w-10 sm:w-16"
-        style={{
-          background: dark
-            ? "linear-gradient(to right, transparent, rgba(183,154,98,0.8))"
-            : "linear-gradient(to right, transparent, rgba(183,154,98,0.65))",
-        }}
-      />
-
-      <span
-        className="h-[5px] w-[5px] rotate-45 border"
-        style={{
-          borderColor: dark
-            ? "rgba(183,154,98,0.85)"
-            : "rgba(183,154,98,0.7)",
-        }}
-      />
-
-      <span
-        className="h-px w-10 sm:w-16"
-        style={{
-          background: dark
-            ? "linear-gradient(to left, transparent, rgba(183,154,98,0.8))"
-            : "linear-gradient(to left, transparent, rgba(183,154,98,0.65))",
-        }}
-      />
-    </div>
-  );
-}
-
 export default function Portada() {
   const audioRef = useRef(null);
 
@@ -102,75 +69,6 @@ export default function Portada() {
   const [abrirSobre, setAbrirSobre] = useState(false);
   const [procesandoApertura, setProcesandoApertura] = useState(false);
 
-  const [invitados, setInvitados] = useState("Invitado");
-  const [pases, setPases] = useState(1);
-
-  /* =========================================
-     DATOS PERSONALIZADOS DESDE LA URL
-  ========================================= */
-
-  useEffect(() => {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-
-  if (!id) {
-    setInvitados("Invitado");
-    setPases(1);
-    return;
-  }
-
-  try {
-    // Recuperar caracteres que pudieron cambiar dentro de la URL.
-    const idNormalizado = decodeURIComponent(id)
-      .replace(/-/g, "+")
-      .replace(/_/g, "/");
-
-    // Agregar padding de Base64 cuando sea necesario.
-    const paddingFaltante = idNormalizado.length % 4;
-    const idConPadding =
-      paddingFaltante === 0
-        ? idNormalizado
-        : idNormalizado + "=".repeat(4 - paddingFaltante);
-
-    // Decodificar Base64.
-    const textoInvertido = atob(idConPadding);
-
-    // Volver al orden original.
-    const textoOriginal = textoInvertido
-      .split("")
-      .reverse()
-      .join("");
-
-    // Recuperar los datos.
-    const datos = JSON.parse(textoOriginal);
-
-    const nombreDecodificado =
-      typeof datos.nombre === "string"
-        ? datos.nombre.trim()
-        : "";
-
-    const pasesDecodificados = Number.parseInt(datos.pases, 10);
-
-    if (nombreDecodificado) {
-      setInvitados(nombreDecodificado);
-    }
-
-    if (
-      !Number.isNaN(pasesDecodificados) &&
-      pasesDecodificados > 0
-    ) {
-      setPases(pasesDecodificados);
-    }
-  } catch (error) {
-    console.error(
-      "No se pudieron decodificar los datos de la invitación:",
-      error
-    );
-
-    setInvitados("Invitado");
-    setPases("");
-  }
-}, []);
 
 
 useEffect(() => {
@@ -254,9 +152,17 @@ useEffect(() => {
     >
       {/* AUDIO */}
 
-      <audio ref={audioRef} loop preload="auto">
-        <source src="/musica.mp3" type="audio/mpeg" />
-      </audio>
+      <audio
+  ref={audioRef}
+  src="/musica.mp3"
+  preload="auto"
+  onEnded={() => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 40;
+      audioRef.current.play();
+    }
+  }}
+/>
 
       {/* =========================================
           INTRO DEL SOBRE
@@ -426,139 +332,20 @@ useEffect(() => {
                 relative
                 z-10
                 mx-auto
-                grid
+                flex
                 w-full
-                max-w-6xl
                 items-center
-                gap-4
-                sm:gap-8
-                lg:grid-cols-[0.95fr_1.05fr]
-                lg:gap-16
-                xl:gap-24
+                justify-center
               "
             >
-              {/* PRESENTACIÓN */}
+              {/* SOBRE */}
+
+
 
               <motion.div
                 className="
-                  order-1
-                  flex
-                  flex-col
-                  items-center
-                  text-center
-                  lg:items-start
-                  lg:text-left
-                "
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  ...transition,
-                  delay: 0.1,
-                }}
-              >
-                <p
-                  className="
-                    text-[9px]
-                    uppercase
-                    tracking-[0.42em]
-                    sm:text-[10px]
-                  "
-                  style={{ color: palette.antiqueGoldDark }}
-                >
-                  Nuestra Invitacion 
-                </p>
-
-                <div
-                  className="
-                    mt-3
-                    sm:mt-6
-                    h-px
-                    w-16
-                    lg:w-20
-                  "
-                  style={{
-                    backgroundColor: "rgba(183,154,98,0.7)",
-                  }}
-                />
-
-
-                <h1
-                  className="
-                    mt-3
-                    sm:mt-6
-                    font-serif
-                    text-[26px]
-                    font-normal
-                    leading-[0.95]
-                    tracking-[-0.025em]
-                    sm:text-[52px]
-                    md:text-[60px]
-                    lg:text-[54px]
-                    xl:text-[60px]
-                  "
-                  style={{ color: palette.ink }}
-                >
-                  Rebeca Elizabeth Delgado Espinosa
-                </h1>
-
-                <span
-                  className="
-                    my-1
-                    sm:my-2
-                    font-cursiveDancing
-                    text-2xl
-                    sm:text-4xl
-                  "
-                  style={{ color: palette.antiqueGold }}
-                >
-                  &
-                </span>
-
-                <h1
-                  className="
-                    font-serif
-                    text-[26px]
-                    font-normal
-                    leading-[0.95]
-                    tracking-[-0.025em]
-                    sm:text-[52px]
-                    md:text-[60px]
-                    lg:text-[54px]
-                    xl:text-[60px]
-                  "
-                  style={{ color: palette.ink }}
-                >
-                  Roberto Octavio Velázquez González
-                </h1>
-
-                <div className="mt-4 w-full max-w-[220px] sm:mt-8 sm:max-w-[260px]">
-                  <DecorativeDivider />
-                </div>
-
-                <p
-                  className="
-                    mt-3
-                    sm:mt-6
-                    font-serif
-                    text-[10px]
-                    uppercase
-                    tracking-[0.32em]
-                    sm:text-sm
-                  "
-                  style={{ color: palette.inkSoft }}
-                >
-                  24 · Octubre · 2026
-                </p>
-              </motion.div>
-
-              {/* SOBRE E INFORMACIÓN DEL INVITADO */}
-
-              <motion.div
-                className="
-                  order-2
                   flex
                   w-full
-                  flex-col
                   items-center
                   justify-center
                 "
@@ -566,7 +353,7 @@ useEffect(() => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   ...transition,
-                  delay: 0.25,
+                  delay: 0.15,
                 }}
               >
                 <div
@@ -999,105 +786,6 @@ useEffect(() => {
                   </motion.p>
                 </div>
 
-                <motion.p
-                  className="
-                    mt-3
-                    text-center
-                    text-[8px]
-                    uppercase
-                    tracking-[0.28em]
-                    sm:mt-7
-                    sm:text-[10px]
-                  "
-                  style={{ color: palette.warmGray }}
-                  animate={{
-                    opacity: abrirSobre ? 0 : 1,
-                  }}
-                  transition={{ duration: 0.35 }}
-                >
-                  Toca el sobre para comenzar
-                </motion.p>
-
-                {/* DATOS DEL INVITADO */}
-
-                <motion.div
-                  className="
-                    mt-3
-                    w-full
-                    max-w-[330px]
-                    border-y
-                    px-3
-                    py-3
-                    text-center
-                    sm:mt-10
-                    sm:max-w-[390px]
-                    sm:px-7
-                    sm:py-5
-                  "
-                  style={{
-                    borderColor: "rgba(183,154,98,0.35)",
-                  }}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    ...transition,
-                    delay: 0.45,
-                  }}
-                >
-                  <p
-                    className="
-                      text-[8px]
-                      uppercase
-                      tracking-[0.33em]
-                      sm:text-[9px]
-                    "
-                    style={{ color: palette.warmGray }}
-                  >
-                    Reservado especialmente para
-                  </p>
-
-                  <p
-                    className="
-                      mt-2
-                      sm:mt-3
-                      break-words
-                      font-serif
-                      text-lg
-                      sm:text-2xl
-                    "
-                    style={{ color: palette.ink }}
-                  >
-                    {invitados}
-                  </p>
-
-                  <div
-                    className="
-                      mx-auto
-                      my-2
-                      sm:my-4
-                      h-px
-                      w-12
-                    "
-                    style={{
-                      backgroundColor: "rgba(183,154,98,0.6)",
-                    }}
-                  />
-
-                  <p
-                    className="
-                      font-serif
-                      text-xs
-                      tracking-[0.08em]
-                      sm:text-base
-                    "
-                    style={{ color: palette.inkSoft }}
-                  >
-                    {pases}{" "}
-                    {pases === 1
-                      ? "lugar reservado"
-                      : "lugares reservados"}
-                  </p>
-                </motion.div>
               </motion.div>
             </div>
           </motion.section>
@@ -1111,7 +799,7 @@ useEffect(() => {
       <section
         className="
           relative
-          min-h-[100svh]
+          min-h-[100dvh]
           w-full
           overflow-hidden
         "
@@ -1128,8 +816,10 @@ useEffect(() => {
     h-full
     w-full
     object-cover
-    object-center
   "
+  style={{
+  objectPosition: "0% 50%",
+}}
   initial={{
     opacity: 0,
   }}
@@ -1223,7 +913,7 @@ useEffect(() => {
 relative
 z-20
 flex
-min-h-[100svh]
+min-h-[100dvh]
 w-full
 flex-col
 items-center
@@ -1327,6 +1017,7 @@ lg:pt-20
               "
               style={{
                 textShadow: "0 4px 24px rgba(0,0,0,0.32)",
+                fontFamily: '"Dancing Script", cursive',
               }}
             >
               Rebeca
@@ -1383,6 +1074,7 @@ lg:pt-20
               "
               style={{
                 textShadow: "0 4px 24px rgba(0,0,0,0.32)",
+                fontFamily: '"Dancing Script", cursive',
               }}
             >
               Roberto 

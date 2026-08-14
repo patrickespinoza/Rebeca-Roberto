@@ -2,27 +2,23 @@ import { motion } from "framer-motion";
 
 /* =========================================
    EVENTO Y DIRECCIÓN — REBECA & ROBERTO
-   Moka + marfil + dorado envejecido
+
+   PALETA FINAL:
+   - Marmoleado = color principal
+   - Dorado = detalles y acentos
+   - Negro = textos
+   - Blanco = contraste puntual
+
+   Sin moka
+   Sin otoñal
+   Sin degradados
 ========================================= */
 
 const palette = {
-  ink: "#241C18",
-  inkSoft: "#5A463B",
-
-  paper: "#F7F5F0",
-  paperLight: "#FCFBF8",
-  paperDark: "#E5DED5",
-
-  antiqueGold: "#B79A62",
-  antiqueGoldDark: "#8A6B3F",
-
-  mocha: "#5A463B",
-  mochaDark: "#3B2D27",
-
-  autumn: "#A7684A",
-  autumnDark: "#80604C",
-
-  warmGray: "#806F64",
+  black: "#000000",
+  white: "#FFFFFF",
+  marble: "#F5F3EE",
+  gold: "#B79A62",
 };
 
 const fadeUp = {
@@ -34,7 +30,6 @@ const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
-
     transition: {
       duration: 0.95,
       ease: [0.22, 1, 0.36, 1],
@@ -155,35 +150,27 @@ function BotanicalBranch({ className = "" }) {
    SEPARADOR
 ========================================= */
 
-function DecorativeDivider({ compact = false, light = false }) {
-  const gold = light
-    ? "rgba(216,194,154,0.78)"
-    : "rgba(183,154,98,0.72)";
-
+function DecorativeDivider({ light = false }) {
   return (
     <div className="flex items-center justify-center gap-3">
       <span
-        className={
-          compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"
-        }
+        className="h-px w-10 sm:w-16"
         style={{
-          background: `linear-gradient(to right, transparent, ${gold})`,
+          backgroundColor: light ? palette.white : palette.gold,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: gold,
+          borderColor: light ? palette.white : palette.gold,
         }}
       />
 
       <span
-        className={
-          compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"
-        }
+        className="h-px w-10 sm:w-16"
         style={{
-          background: `linear-gradient(to left, transparent, ${gold})`,
+          backgroundColor: light ? palette.white : palette.gold,
         }}
       />
     </div>
@@ -207,7 +194,6 @@ function LocationIcon() {
       className="h-4 w-4"
     >
       <path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
-
       <circle cx="12" cy="10" r="2.5" />
     </svg>
   );
@@ -224,10 +210,8 @@ function EventBlock({
   address,
   href,
   delay = 0,
-  variant = "light",
+  accent = false,
 }) {
-  const dark = variant === "dark";
-
   return (
     <motion.article
       className="
@@ -238,6 +222,7 @@ function EventBlock({
         items-center
         justify-center
         overflow-hidden
+        border
         px-7
         py-14
         text-center
@@ -247,33 +232,8 @@ function EventBlock({
         lg:px-12
       "
       style={{
-        background: dark
-          ? `
-              radial-gradient(
-                circle at 20% 10%,
-                rgba(183,154,98,0.12),
-                transparent 34%
-              ),
-              linear-gradient(
-                155deg,
-                ${palette.mochaDark} 0%,
-                ${palette.mocha} 58%,
-                #49372F 100%
-              )
-            `
-          : `
-              radial-gradient(
-                circle at 84% 18%,
-                rgba(183,154,98,0.08),
-                transparent 35%
-              ),
-              linear-gradient(
-                160deg,
-                rgba(252,251,248,0.98) 0%,
-                rgba(247,245,240,0.98) 58%,
-                rgba(229,222,213,0.92) 100%
-              )
-            `,
+        backgroundColor: palette.marble,
+        borderColor: accent ? palette.gold : palette.black,
       }}
       initial={{
         opacity: 0,
@@ -305,9 +265,7 @@ function EventBlock({
           -translate-x-1/2
         "
         style={{
-          backgroundColor: dark
-            ? "rgba(216,194,154,0.55)"
-            : "rgba(183,154,98,0.48)",
+          backgroundColor: palette.gold,
         }}
       />
 
@@ -315,24 +273,20 @@ function EventBlock({
 
       <p
         className="
-          text-[15px]
-          uppercase
-          tracking-[0.42em]
-          sm:text-[18px]
-          sm:tracking-[0.52em]
+          text-[18px]
+          tracking-[0.05em]
+          sm:text-[22px]
         "
         style={{
-          color: dark
-            ? "#D8C29A"
-            : palette.antiqueGoldDark,
-            fontFamily: '"Dancing Script", cursive',
+          color: palette.gold,
+          fontFamily: '"Dancing Script", cursive',
         }}
       >
         {eyebrow}
       </p>
 
       <div className="my-7 sm:my-8">
-        <DecorativeDivider light={dark} />
+        <DecorativeDivider />
       </div>
 
       {/* HORA */}
@@ -345,9 +299,7 @@ function EventBlock({
           sm:text-[9px]
         "
         style={{
-          color: dark
-            ? "rgba(252,251,248,0.62)"
-            : palette.warmGray,
+          color: palette.black,
         }}
       >
         Hora
@@ -365,14 +317,11 @@ function EventBlock({
           lg:text-[68px]
         "
         style={{
-          color: dark
-            ? palette.paperLight
-            : palette.ink,
+          color: palette.black,
         }}
       >
         {time}
       </p>
-
 
       {/* UBICACIÓN */}
 
@@ -385,9 +334,7 @@ function EventBlock({
             sm:text-[9px]
           "
           style={{
-            color: dark
-              ? "rgba(252,251,248,0.58)"
-              : palette.warmGray,
+            color: palette.black,
           }}
         >
           Ubicación
@@ -404,9 +351,7 @@ function EventBlock({
             sm:text-[25px]
           "
           style={{
-            color: dark
-              ? palette.paperLight
-              : palette.inkSoft,
+            color: palette.black,
           }}
         >
           {place}
@@ -423,9 +368,7 @@ function EventBlock({
               sm:text-[13px]
             "
             style={{
-              color: dark
-                ? "rgba(252,251,248,0.62)"
-                : palette.warmGray,
+              color: palette.black,
             }}
           >
             {address}
@@ -455,32 +398,12 @@ function EventBlock({
           sm:px-10
         "
         style={{
-          backgroundColor: dark
-            ? palette.paperLight
-            : palette.mocha,
-
-          borderColor: dark
-            ? "rgba(216,194,154,0.8)"
-            : palette.mocha,
-
-          color: dark
-            ? palette.mochaDark
-            : palette.paperLight,
-
-          boxShadow: dark
-            ? "0 14px 32px rgba(0,0,0,0.18)"
-            : "0 14px 32px rgba(36,28,24,0.14)",
+          backgroundColor: palette.gold,
+          borderColor: palette.gold,
+          color: palette.white,
         }}
         whileHover={{
           y: -2,
-
-          backgroundColor: dark
-            ? palette.paper
-            : palette.mochaDark,
-
-          transition: {
-            duration: 0.25,
-          },
         }}
         whileTap={{
           scale: 0.985,
@@ -534,63 +457,10 @@ export default function EventoDireccion() {
         lg:py-32
       "
       style={{
-        background: `
-          radial-gradient(
-            circle at 12% 10%,
-            rgba(183,154,98,0.09),
-            transparent 28%
-          ),
-
-          radial-gradient(
-            circle at 88% 82%,
-            rgba(167,104,74,0.08),
-            transparent 32%
-          ),
-
-          linear-gradient(
-            145deg,
-            ${palette.mochaDark} 0%,
-            ${palette.mocha} 48%,
-            #49372F 100%
-          )
-        `,
+        backgroundColor: palette.marble,
       }}
     >
-      {/* =========================================
-          TEXTURA
-      ========================================= */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.22]
-        "
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              120deg,
-              transparent 0%,
-              transparent 37%,
-              rgba(255,255,255,0.05) 38%,
-              transparent 40%
-            ),
-
-            repeating-linear-gradient(
-              0deg,
-              rgba(255,255,255,0.025) 0px,
-              rgba(255,255,255,0.025) 1px,
-              transparent 1px,
-              transparent 6px
-            )
-          `,
-        }}
-      />
-
-      {/* =========================================
-          MARCO GENERAL
-      ========================================= */}
+      {/* MARCO GENERAL */}
 
       <div
         className="
@@ -602,7 +472,7 @@ export default function EventoDireccion() {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(216,194,154,0.3)",
+          borderColor: palette.gold,
         }}
       />
 
@@ -616,13 +486,11 @@ export default function EventoDireccion() {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(216,194,154,0.1)",
+          borderColor: palette.gold,
         }}
       />
 
-      {/* =========================================
-          ESQUINAS
-      ========================================= */}
+      {/* ESQUINAS */}
 
       <CornerOrnament
         className="
@@ -632,7 +500,7 @@ export default function EventoDireccion() {
           top-6
           h-16
           w-16
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:left-9
           sm:top-9
           sm:h-20
@@ -649,7 +517,7 @@ export default function EventoDireccion() {
           h-16
           w-16
           rotate-90
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:right-9
           sm:top-9
           sm:h-20
@@ -666,7 +534,7 @@ export default function EventoDireccion() {
           h-16
           w-16
           -rotate-90
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:bottom-9
           sm:left-9
           sm:h-20
@@ -683,7 +551,7 @@ export default function EventoDireccion() {
           h-16
           w-16
           rotate-180
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:bottom-9
           sm:right-9
           sm:h-20
@@ -691,9 +559,7 @@ export default function EventoDireccion() {
         "
       />
 
-      {/* =========================================
-          RAMAS
-      ========================================= */}
+      {/* RAMAS */}
 
       <BotanicalBranch
         className="
@@ -704,7 +570,7 @@ export default function EventoDireccion() {
           h-[250px]
           w-[145px]
           -rotate-12
-          text-[#D8C29A]/10
+          text-[#B79A62]
           sm:h-[310px]
           sm:w-[180px]
           lg:left-2
@@ -720,16 +586,14 @@ export default function EventoDireccion() {
           h-[250px]
           w-[145px]
           rotate-[168deg]
-          text-[#D8C29A]/10
+          text-[#B79A62]
           sm:h-[310px]
           sm:w-[180px]
           lg:right-2
         "
       />
 
-      {/* =========================================
-          CONTENIDO
-      ========================================= */}
+      {/* CONTENIDO */}
 
       <div
         className="
@@ -770,13 +634,11 @@ export default function EventoDireccion() {
           <p
             className="
               text-[20px]
-              uppercase
-              tracking-[0.44em]
-              text-[#D8C29A]
+              tracking-[0.05em]
               sm:text-[28px]
-              sm:tracking-[0.55em]
             "
             style={{
+              color: palette.gold,
               fontFamily: '"Dancing Script", cursive',
             }}
           >
@@ -784,7 +646,7 @@ export default function EventoDireccion() {
           </p>
 
           <div className="mt-5">
-            <DecorativeDivider light />
+            <DecorativeDivider />
           </div>
 
           <h2
@@ -798,10 +660,8 @@ export default function EventoDireccion() {
               md:text-[68px]
             "
             style={{
-              color: palette.paperLight,
-
-              fontFamily:
-                '"Cormorant Garamond", Georgia, serif',
+              color: palette.black,
+              fontFamily: '"Cormorant Garamond", Georgia, serif',
             }}
           >
             Un día para recordar
@@ -819,7 +679,7 @@ export default function EventoDireccion() {
               sm:text-base
             "
             style={{
-              color: "rgba(252,251,248,0.7)",
+              color: palette.black,
             }}
           >
             Nos hará muy felices compartir con ustedes el comienzo de este
@@ -827,9 +687,7 @@ export default function EventoDireccion() {
           </p>
         </motion.div>
 
-        {/* =========================================
-            FECHA
-        ========================================= */}
+        {/* FECHA */}
 
         <motion.div
           className="
@@ -850,11 +708,8 @@ export default function EventoDireccion() {
             sm:py-14
           "
           style={{
-            backgroundColor: "rgba(252,251,248,0.97)",
-            borderColor: "rgba(216,194,154,0.5)",
-
-            boxShadow:
-              "0 26px 70px rgba(20,14,12,0.2)",
+            backgroundColor: palette.white,
+            borderColor: palette.gold,
           }}
           initial={{
             opacity: 0,
@@ -882,21 +737,18 @@ export default function EventoDireccion() {
               border
             "
             style={{
-              borderColor:
-                "rgba(183,154,98,0.12)",
+              borderColor: palette.gold,
             }}
           />
 
           <p
             className="
-              text-[15px]
-              uppercase
-              tracking-[0.4em]
-              sm:text-[18px]
-              sm:tracking-[0.5em]
+              text-[18px]
+              tracking-[0.05em]
+              sm:text-[22px]
             "
             style={{
-              color: palette.antiqueGoldDark,
+              color: palette.gold,
               fontFamily: '"Dancing Script", cursive',
             }}
           >
@@ -916,10 +768,10 @@ export default function EventoDireccion() {
               sm:text-xl
             "
             style={{
-              color: palette.inkSoft,
+              color: palette.black,
             }}
           >
-            Sabado
+            Sábado
           </p>
 
           <p
@@ -933,7 +785,7 @@ export default function EventoDireccion() {
               sm:text-[118px]
             "
             style={{
-              color: palette.ink,
+              color: palette.black,
             }}
           >
             24
@@ -949,69 +801,45 @@ export default function EventoDireccion() {
               sm:tracking-[0.52em]
             "
             style={{
-              color: palette.antiqueGoldDark,
+              color: palette.gold,
             }}
           >
             Octubre · 2026
           </p>
         </motion.div>
 
-        {/* =========================================
-            CEREMONIA + RECEPCIÓN
-        ========================================= */}
+        {/* CEREMONIA + RECEPCIÓN */}
 
         <div
           className="
             mx-auto
             grid
             max-w-6xl
-            overflow-hidden
-            border
+            gap-6
             lg:grid-cols-2
           "
-          style={{
-            borderColor:
-              "rgba(216,194,154,0.5)",
-
-            boxShadow:
-              "0 30px 75px rgba(20,14,12,0.24)",
-          }}
         >
-          {/* =====================================
-              CEREMONIA
-          ===================================== */}
-
           <EventBlock
-            eyebrow="Ceremonia"
+            eyebrow="Ceremonia Religiosa"
             time="5:00 pm"
             place="Palacio Monumental (Segunda Planta)"
             address="Agustín de Iturbide 660, Centro Historico, 78000 San Luis Potosí, S.L.P."
             href="https://maps.app.goo.gl/aQm6SH3Y9Zx3fSfp9"
             delay={0.18}
-            variant="light"
+            accent
           />
-
-          {/* =====================================
-              RECEPCIÓN
-
-              DATOS TEMPORALES
-              CAMBIAR DESPUÉS
-          ===================================== */}
 
           <EventBlock
             eyebrow="Recepción"
             time="6:00 pm"
-            place="Casa D Vian"
+            place="Casa D Vian (Entrada por la Florida)"
             address="Real de Bernalejo 183, Real del Potosi, 78448 Real del Potosí, S.L.P."
             href="https://maps.app.goo.gl/kkV27aMqj1dUSYmc6"
             delay={0.26}
-            variant="dark"
           />
         </div>
 
-        {/* =========================================
-            CIERRE
-        ========================================= */}
+        {/* CIERRE */}
 
         <motion.p
           className="
@@ -1026,10 +854,8 @@ export default function EventoDireccion() {
             sm:text-[24px]
           "
           style={{
-            color: "rgba(252,251,248,0.76)",
-
-            fontFamily:
-              '"Cormorant Garamond", Georgia, serif',
+            color: palette.black,
+            fontFamily: '"Cormorant Garamond", Georgia, serif',
           }}
           initial={{
             opacity: 0,

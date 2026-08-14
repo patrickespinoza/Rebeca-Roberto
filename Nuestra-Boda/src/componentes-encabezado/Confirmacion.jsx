@@ -12,20 +12,10 @@ const NUMERO_WHATSAPP = "524441144527";
 const NOMBRE_CONTACTO = "Rebeca y Roberto";
 
 const palette = {
-  ink: "#241C18",
-  inkSoft: "#5A463B",
-  paper: "#F7F5F0",
-  paperLight: "#FCFBF8",
-  paperDark: "#E5DED5",
-  antiqueGold: "#B79A62",
-  antiqueGoldDark: "#8A6B3F",
-  mocha: "#5A463B",
-  mochaDark: "#3B2D27",
-  autumn: "#A7684A",
-  autumnDark: "#80604C",
-  warmGray: "#806F64",
-  error: "#8B3A3A",
-  success: "#49644D",
+  black: "#000000",
+  white: "#FFFFFF",
+  marble: "#F5F3EE",
+  gold: "#B79A62",
 };
 
 const fadeUp = {
@@ -144,134 +134,25 @@ function parseInvitationData(encodedId) {
 }
 
 /* =========================================
-   ORNAMENTOS
+   SEPARADOR
 ========================================= */
-
-function CornerOrnament({ className = "" }) {
-  return (
-    <svg
-      viewBox="0 0 90 90"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        d="M5 85V30C5 16.2 16.2 5 30 5h55"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-
-      <path
-        d="M15 72V34c0-10.5 8.5-19 19-19h38"
-        stroke="currentColor"
-        strokeWidth="0.65"
-      />
-
-      <path
-        d="M30 5C30 18.8 18.8 30 5 30"
-        stroke="currentColor"
-        strokeWidth="0.75"
-      />
-
-      <circle cx="15" cy="15" r="2" fill="currentColor" />
-    </svg>
-  );
-}
-
-function BotanicalBranch({ className = "" }) {
-  return (
-    <svg
-      viewBox="0 0 150 260"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        d="M76 252C80 192 78 130 71 12"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M76 205C54 192 41 174 35 151"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M75 167C97 153 109 133 113 109"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M73 123C53 110 43 93 39 72"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M72 83C91 71 101 53 103 34"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M35 151C49 150 60 158 67 173C52 172 41 165 35 151Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-
-      <path
-        d="M113 109C99 109 88 117 80 132C96 131 107 123 113 109Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-
-      <path
-        d="M39 72C53 73 63 81 69 95C54 94 44 86 39 72Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-
-      <path
-        d="M103 34C90 35 80 42 74 55C88 54 98 47 103 34Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-    </svg>
-  );
-}
 
 function DecorativeDivider({ compact = false }) {
   return (
     <div className="flex items-center justify-center gap-3">
       <span
         className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
-        style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(164,134,84,0.72))",
-        }}
+        style={{ backgroundColor: palette.gold }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
-        style={{
-          borderColor: "rgba(164,134,84,0.72)",
-        }}
+        style={{ borderColor: palette.gold }}
       />
 
       <span
         className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
-        style={{
-          background:
-            "linear-gradient(to left, transparent, rgba(164,134,84,0.72))",
-        }}
+        style={{ backgroundColor: palette.gold }}
       />
     </div>
   );
@@ -381,11 +262,9 @@ function AttendanceOption({
       "
       style={{
         backgroundColor: isSelected
-          ? "rgba(29,39,51,0.055)"
-          : palette.paperLight,
-        borderColor: isSelected
-          ? palette.antiqueGold
-          : "rgba(164,134,84,0.3)",
+          ? palette.marble
+          : palette.white,
+        borderColor: palette.gold,
       }}
     >
       <input
@@ -410,16 +289,14 @@ function AttendanceOption({
           border
         "
         style={{
-          borderColor: isSelected
-            ? palette.antiqueGoldDark
-            : "rgba(119,113,104,0.6)",
+          borderColor: palette.gold,
         }}
       >
         {isSelected && (
           <span
             className="h-2.5 w-2.5 rounded-full"
             style={{
-              backgroundColor: palette.antiqueGoldDark,
+              backgroundColor: palette.gold,
             }}
           />
         )}
@@ -434,7 +311,7 @@ function AttendanceOption({
             sm:text-base
           "
           style={{
-            color: palette.ink,
+            color: palette.black,
           }}
         >
           {title}
@@ -449,7 +326,7 @@ function AttendanceOption({
             sm:text-[13px]
           "
           style={{
-            color: palette.warmGray,
+            color: palette.black,
           }}
         >
           {description}
@@ -726,38 +603,9 @@ const Confirmacion = () => {
         lg:py-32
       "
       style={{
-        background: `
-          linear-gradient(
-            180deg,
-            ${palette.paperLight} 0%,
-            ${palette.paper} 56%,
-            ${palette.paperDark} 100%
-          )
-        `,
+        backgroundColor: palette.marble,
       }}
     >
-      {/* TEXTURA */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.16]
-        "
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              0deg,
-              rgba(29,39,51,0.025) 0px,
-              rgba(29,39,51,0.025) 1px,
-              transparent 1px,
-              transparent 5px
-            )
-          `,
-        }}
-      />
-
       {/* MARCOS */}
 
       <div
@@ -770,7 +618,7 @@ const Confirmacion = () => {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(164,134,84,0.25)",
+          borderColor: palette.gold,
         }}
       />
 
@@ -784,111 +632,8 @@ const Confirmacion = () => {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(164,134,84,0.1)",
+          borderColor: palette.gold,
         }}
-      />
-
-      {/* ESQUINAS */}
-
-      <CornerOrnament
-        className="
-          pointer-events-none
-          absolute
-          left-6
-          top-6
-          h-16
-          w-16
-          text-[#A48654]/25
-          sm:left-9
-          sm:top-9
-          sm:h-20
-          sm:w-20
-        "
-      />
-
-      <CornerOrnament
-        className="
-          pointer-events-none
-          absolute
-          right-6
-          top-6
-          h-16
-          w-16
-          rotate-90
-          text-[#A48654]/25
-          sm:right-9
-          sm:top-9
-          sm:h-20
-          sm:w-20
-        "
-      />
-
-      <CornerOrnament
-        className="
-          pointer-events-none
-          absolute
-          bottom-6
-          left-6
-          h-16
-          w-16
-          -rotate-90
-          text-[#A48654]/25
-          sm:bottom-9
-          sm:left-9
-          sm:h-20
-          sm:w-20
-        "
-      />
-
-      <CornerOrnament
-        className="
-          pointer-events-none
-          absolute
-          bottom-6
-          right-6
-          h-16
-          w-16
-          rotate-180
-          text-[#A48654]/25
-          sm:bottom-9
-          sm:right-9
-          sm:h-20
-          sm:w-20
-        "
-      />
-
-      {/* RAMAS */}
-
-      <BotanicalBranch
-        className="
-          pointer-events-none
-          absolute
-          -bottom-16
-          -left-8
-          h-[250px]
-          w-[145px]
-          -rotate-12
-          text-[#A48654]/10
-          sm:h-[310px]
-          sm:w-[180px]
-          lg:left-2
-        "
-      />
-
-      <BotanicalBranch
-        className="
-          pointer-events-none
-          absolute
-          -right-8
-          -top-16
-          h-[250px]
-          w-[145px]
-          rotate-[168deg]
-          text-[#A48654]/10
-          sm:h-[310px]
-          sm:w-[180px]
-          lg:right-2
-        "
       />
 
       <div
@@ -937,8 +682,8 @@ const Confirmacion = () => {
               border
             "
             style={{
-              color: palette.antiqueGoldDark,
-              borderColor: "rgba(164,134,84,0.42)",
+              color: palette.gold,
+              borderColor: palette.gold,
             }}
           >
             <EnvelopeIcon />
@@ -954,7 +699,7 @@ const Confirmacion = () => {
               sm:tracking-[0.55em]
             "
             style={{
-              color: palette.antiqueGoldDark,
+              color: palette.gold,
             }}
           >
             Nos encantará contar contigo
@@ -976,7 +721,7 @@ const Confirmacion = () => {
               md:text-[64px]
             "
             style={{
-              color: palette.mochaDark,
+              color: palette.black,
               fontFamily: '"Dancing Script", cursive',
               fontStyle: "italic",
             }}
@@ -996,7 +741,7 @@ const Confirmacion = () => {
               sm:text-base
             "
             style={{
-              color: palette.warmGray,
+              color: palette.black,
             }}
           >
             Por favor, confirma tu asistencia y ayúdanos a preparar cada
@@ -1020,9 +765,8 @@ const Confirmacion = () => {
             md:px-14
           "
           style={{
-            backgroundColor: "rgba(251,249,244,0.84)",
-            borderColor: "rgba(164,134,84,0.34)",
-            boxShadow: "0 24px 65px rgba(29,39,51,0.08)",
+            backgroundColor: palette.white,
+            borderColor: palette.gold,
           }}
           initial={{
             opacity: 0,
@@ -1050,7 +794,7 @@ const Confirmacion = () => {
               border
             "
             style={{
-              borderColor: "rgba(164,134,84,0.12)",
+              borderColor: palette.gold,
             }}
           />
 
@@ -1068,7 +812,7 @@ const Confirmacion = () => {
                     sm:text-[9px]
                   "
                   style={{
-                    color: palette.antiqueGoldDark,
+                    color: palette.gold,
                   }}
                 >
                   Nombre del invitado
@@ -1086,7 +830,7 @@ const Confirmacion = () => {
                       sm:text-[8px]
                     "
                     style={{
-                      color: palette.warmGray,
+                      color: palette.black,
                     }}
                   >
                     <LockIcon />
@@ -1111,7 +855,7 @@ const Confirmacion = () => {
                   mt-4
                   w-full
                   border
-                  bg-[#FBF9F4]
+                  bg-white
                   px-5
                   py-4
                   font-serif
@@ -1120,8 +864,8 @@ const Confirmacion = () => {
                   sm:text-lg
                 "
                 style={{
-                  color: palette.ink,
-                  borderColor: "rgba(164,134,84,0.34)",
+                  color: palette.black,
+                  borderColor: palette.gold,
                   cursor: datosDesdeGenerador ? "not-allowed" : "text",
                 }}
               />
@@ -1135,7 +879,7 @@ const Confirmacion = () => {
                       leading-5
                     "
                     style={{
-                      color: palette.error,
+                      color: palette.black,
                     }}
                     initial={{
                       opacity: 0,
@@ -1164,7 +908,7 @@ const Confirmacion = () => {
                 pt-9
               "
               style={{
-                borderColor: "rgba(164,134,84,0.26)",
+                borderColor: palette.gold,
               }}
             >
               <p
@@ -1175,7 +919,7 @@ const Confirmacion = () => {
                   sm:text-[9px]
                 "
                 style={{
-                  color: palette.antiqueGoldDark,
+                  color: palette.gold,
                 }}
               >
                 ¿Podrás acompañarnos?
@@ -1218,7 +962,7 @@ const Confirmacion = () => {
                     pt-9
                   "
                   style={{
-                    borderColor: "rgba(164,134,84,0.26)",
+                    borderColor: palette.gold,
                   }}
                   initial={{
                     opacity: 0,
@@ -1243,7 +987,7 @@ const Confirmacion = () => {
                         sm:text-[9px]
                       "
                       style={{
-                        color: palette.antiqueGoldDark,
+                        color: palette.gold,
                       }}
                     >
                       Personas que asistirán
@@ -1256,7 +1000,7 @@ const Confirmacion = () => {
                         tracking-[0.2em]
                       "
                       style={{
-                        color: palette.warmGray,
+                        color: palette.black,
                       }}
                     >
                       Máximo {pasesAsignados}
@@ -1274,7 +1018,7 @@ const Confirmacion = () => {
                       w-full
                       appearance-none
                       border
-                      bg-[#FBF9F4]
+                      bg-white
                       px-5
                       py-4
                       text-center
@@ -1284,8 +1028,8 @@ const Confirmacion = () => {
                       sm:text-lg
                     "
                     style={{
-                      color: palette.ink,
-                      borderColor: "rgba(164,134,84,0.34)",
+                      color: palette.black,
+                      borderColor: palette.gold,
                     }}
                   >
                     {availablePasses.map((passNumber) => (
@@ -1306,7 +1050,7 @@ const Confirmacion = () => {
                       sm:text-[13px]
                     "
                     style={{
-                      color: palette.warmGray,
+                      color: palette.black,
                     }}
                   >
                     Esta invitación tiene{" "}
@@ -1327,7 +1071,7 @@ const Confirmacion = () => {
                 pt-9
               "
               style={{
-                borderColor: "rgba(164,134,84,0.26)",
+                borderColor: palette.gold,
               }}
             >
               <label
@@ -1339,7 +1083,7 @@ const Confirmacion = () => {
                   sm:text-[9px]
                 "
                 style={{
-                  color: palette.antiqueGoldDark,
+                  color: palette.gold,
                 }}
               >
                 Mensaje para los novios
@@ -1359,7 +1103,7 @@ const Confirmacion = () => {
                   w-full
                   resize-none
                   border
-                  bg-[#FBF9F4]
+                  bg-white
                   px-5
                   py-4
                   font-serif
@@ -1369,8 +1113,8 @@ const Confirmacion = () => {
                   sm:text-[15px]
                 "
                 style={{
-                  color: palette.ink,
-                  borderColor: "rgba(164,134,84,0.34)",
+                  color: palette.black,
+                  borderColor: palette.gold,
                 }}
               />
 
@@ -1381,7 +1125,7 @@ const Confirmacion = () => {
                   text-[10px]
                 "
                 style={{
-                  color: palette.warmGray,
+                  color: palette.black,
                 }}
               >
                 {mensajeInvitado.length}/500
@@ -1405,9 +1149,9 @@ const Confirmacion = () => {
                     sm:text-[14px]
                   "
                   style={{
-                    color: palette.error,
-                    borderColor: "rgba(139,58,58,0.3)",
-                    backgroundColor: "rgba(139,58,58,0.045)",
+                    color: palette.black,
+                    borderColor: palette.gold,
+                    backgroundColor: palette.white,
                   }}
                   initial={{
                     opacity: 0,
@@ -1443,9 +1187,9 @@ const Confirmacion = () => {
                     sm:text-[14px]
                   "
                   style={{
-                    color: palette.success,
-                    borderColor: "rgba(73,100,77,0.3)",
-                    backgroundColor: "rgba(73,100,77,0.05)",
+                    color: palette.black,
+                    borderColor: palette.gold,
+                    backgroundColor: palette.white,
                   }}
                   initial={{
                     opacity: 0,
@@ -1494,16 +1238,16 @@ const Confirmacion = () => {
                   sm:max-w-md
                 "
                 style={{
-                  backgroundColor: palette.mochaDark,
-                  borderColor: palette.antiqueGold,
-                  color: palette.paperLight,
+                  backgroundColor: palette.gold,
+                  borderColor: palette.gold,
+                  color: palette.white,
                 }}
                 whileHover={
                   loadingSide
                     ? undefined
                     : {
                         y: -2,
-                        backgroundColor: palette.mocha,
+                        backgroundColor: palette.gold,
                       }
                 }
                 whileTap={
@@ -1558,7 +1302,7 @@ const Confirmacion = () => {
                 sm:text-[13px]
               "
               style={{
-                color: palette.warmGray,
+                color: palette.black,
               }}
             >
               Al confirmar, registraremos tu respuesta y te dirigiremos a

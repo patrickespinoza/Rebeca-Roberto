@@ -3,27 +3,24 @@ import { useEffect, useState } from "react";
 
 /* =========================================
    MESA DE REGALOS — REBECA & ROBERTO
-   Transferencia bancaria · clásico · moka/otoñal
+
+   DISEÑO:
+   - Marmoleado = fondo principal
+   - Dorado = detalles y acentos
+   - Negro = textos
+   - Blanco = contraste
+
+   Sin moka
+   Sin otoñal
+   Sin degradados
+   Sin flores ni ramas
 ========================================= */
 
 const palette = {
-  ink: "#241C18",
-  inkSoft: "#5A463B",
-
-  paper: "#F7F5F0",
-  paperLight: "#FCFBF8",
-  paperDark: "#E5DED5",
-
-  antiqueGold: "#B79A62",
-  antiqueGoldDark: "#8A6B3F",
-
-  mocha: "#5A463B",
-  mochaDark: "#3B2D27",
-
-  autumn: "#A7684A",
-  autumnDark: "#80604C",
-
-  warmGray: "#806F64",
+  black: "#000000",
+  white: "#FFFFFF",
+  marble: "#F5F3EE",
+  gold: "#B79A62",
 };
 
 const fadeUp = {
@@ -44,143 +41,34 @@ const fadeUp = {
 };
 
 /* =========================================
-   ORNAMENTO DE ESQUINA
-========================================= */
-
-function CornerOrnament({ className = "" }) {
-  return (
-    <svg
-      viewBox="0 0 90 90"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        d="M5 85V30C5 16.2 16.2 5 30 5h55"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-
-      <path
-        d="M15 72V34c0-10.5 8.5-19 19-19h38"
-        stroke="currentColor"
-        strokeWidth="0.65"
-      />
-
-      <path
-        d="M30 5C30 18.8 18.8 30 5 30"
-        stroke="currentColor"
-        strokeWidth="0.75"
-      />
-
-      <circle cx="15" cy="15" r="2" fill="currentColor" />
-    </svg>
-  );
-}
-
-/* =========================================
-   RAMA BOTÁNICA
-========================================= */
-
-function BotanicalBranch({ className = "" }) {
-  return (
-    <svg
-      viewBox="0 0 150 260"
-      fill="none"
-      aria-hidden="true"
-      className={className}
-    >
-      <path
-        d="M76 252C80 192 78 130 71 12"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M76 205C54 192 41 174 35 151"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M75 167C97 153 109 133 113 109"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M73 123C53 110 43 93 39 72"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M72 83C91 71 101 53 103 34"
-        stroke="currentColor"
-        strokeWidth="0.8"
-        strokeLinecap="round"
-      />
-
-      <path
-        d="M35 151C49 150 60 158 67 173C52 172 41 165 35 151Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-
-      <path
-        d="M113 109C99 109 88 117 80 132C96 131 107 123 113 109Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-
-      <path
-        d="M39 72C53 73 63 81 69 95C54 94 44 86 39 72Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-
-      <path
-        d="M103 34C90 35 80 42 74 55C88 54 98 47 103 34Z"
-        stroke="currentColor"
-        strokeWidth="0.7"
-      />
-    </svg>
-  );
-}
-
-/* =========================================
    SEPARADOR
 ========================================= */
 
-function DecorativeDivider({ compact = false, light = false }) {
-  const gold = light
-    ? "rgba(216,194,154,0.76)"
-    : "rgba(183,154,98,0.72)";
-
+function DecorativeDivider({ compact = false }) {
   return (
     <div className="flex items-center justify-center gap-3">
       <span
-        className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
+        className={
+          compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"
+        }
         style={{
-          background: `linear-gradient(to right, transparent, ${gold})`,
+          backgroundColor: palette.gold,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: gold,
+          borderColor: palette.gold,
         }}
       />
 
       <span
-        className={compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"}
+        className={
+          compact ? "h-px w-8 sm:w-12" : "h-px w-10 sm:w-16"
+        }
         style={{
-          background: `linear-gradient(to left, transparent, ${gold})`,
+          backgroundColor: palette.gold,
         }}
       />
     </div>
@@ -256,7 +144,7 @@ function BankInfoRow({
         sm:gap-5
       "
       style={{
-        borderColor: "rgba(183,154,98,0.16)",
+        borderColor: palette.gold,
       }}
     >
       <p
@@ -267,7 +155,7 @@ function BankInfoRow({
           sm:text-[9px]
         "
         style={{
-          color: palette.antiqueGoldDark,
+          color: palette.gold,
         }}
       >
         {label}
@@ -278,10 +166,14 @@ function BankInfoRow({
           min-w-0
           break-all
           font-serif
-          ${accent ? "text-[19px] sm:text-[21px]" : "text-[17px] sm:text-[19px]"}
+          ${
+            accent
+              ? "text-[19px] sm:text-[21px]"
+              : "text-[17px] sm:text-[19px]"
+          }
         `}
         style={{
-          color: accent ? palette.mocha : palette.inkSoft,
+          color: palette.black,
         }}
       >
         {value}
@@ -305,14 +197,12 @@ function BankInfoRow({
         "
         style={{
           backgroundColor: estaCopiado
-            ? palette.mocha
-            : palette.paperLight,
-          borderColor: estaCopiado
-            ? palette.mocha
-            : "rgba(183,154,98,0.45)",
+            ? palette.gold
+            : palette.white,
+          borderColor: palette.gold,
           color: estaCopiado
-            ? palette.paperLight
-            : palette.mocha,
+            ? palette.white
+            : palette.black,
         }}
         whileHover={{
           y: -1,
@@ -366,14 +256,16 @@ const Regalos = () => {
     if (!mostrarModal) return undefined;
 
     const bodyOverflowAnterior = document.body.style.overflow;
-    const htmlOverflowAnterior = document.documentElement.style.overflow;
+    const htmlOverflowAnterior =
+      document.documentElement.style.overflow;
 
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
 
     return () => {
       document.body.style.overflow = bodyOverflowAnterior;
-      document.documentElement.style.overflow = htmlOverflowAnterior;
+      document.documentElement.style.overflow =
+        htmlOverflowAnterior;
     };
   }, [mostrarModal]);
 
@@ -391,7 +283,10 @@ const Regalos = () => {
     window.addEventListener("keydown", cerrarConEscape);
 
     return () => {
-      window.removeEventListener("keydown", cerrarConEscape);
+      window.removeEventListener(
+        "keydown",
+        cerrarConEscape
+      );
     };
   }, [mostrarModal]);
 
@@ -425,50 +320,9 @@ const Regalos = () => {
           lg:py-32
         "
         style={{
-          background: `
-            radial-gradient(
-              circle at 14% 15%,
-              rgba(183,154,98,0.1),
-              transparent 30%
-            ),
-
-            radial-gradient(
-              circle at 86% 82%,
-              rgba(167,104,74,0.13),
-              transparent 34%
-            ),
-
-            linear-gradient(
-              145deg,
-              ${palette.mochaDark} 0%,
-              ${palette.mocha} 48%,
-              ${palette.autumnDark} 100%
-            )
-          `,
+          backgroundColor: palette.marble,
         }}
       >
-        {/* TEXTURA */}
-
-        <div
-          className="
-            pointer-events-none
-            absolute
-            inset-0
-            opacity-[0.18]
-          "
-          style={{
-            backgroundImage: `
-              repeating-linear-gradient(
-                0deg,
-                rgba(255,255,255,0.025) 0px,
-                rgba(255,255,255,0.025) 1px,
-                transparent 1px,
-                transparent 6px
-              )
-            `,
-          }}
-        />
-
         {/* MARCOS */}
 
         <div
@@ -481,7 +335,7 @@ const Regalos = () => {
             lg:inset-10
           "
           style={{
-            borderColor: "rgba(216,194,154,0.3)",
+            borderColor: palette.gold,
           }}
         />
 
@@ -495,109 +349,8 @@ const Regalos = () => {
             lg:inset-[46px]
           "
           style={{
-            borderColor: "rgba(216,194,154,0.1)",
+            borderColor: palette.gold,
           }}
-        />
-
-        {/* ORNAMENTOS */}
-
-        <CornerOrnament
-          className="
-            pointer-events-none
-            absolute
-            left-6
-            top-6
-            h-16
-            w-16
-            text-[#D8C29A]/30
-            sm:left-9
-            sm:top-9
-            sm:h-20
-            sm:w-20
-          "
-        />
-
-        <CornerOrnament
-          className="
-            pointer-events-none
-            absolute
-            right-6
-            top-6
-            h-16
-            w-16
-            rotate-90
-            text-[#D8C29A]/30
-            sm:right-9
-            sm:top-9
-            sm:h-20
-            sm:w-20
-          "
-        />
-
-        <CornerOrnament
-          className="
-            pointer-events-none
-            absolute
-            bottom-6
-            left-6
-            h-16
-            w-16
-            -rotate-90
-            text-[#D8C29A]/30
-            sm:bottom-9
-            sm:left-9
-            sm:h-20
-            sm:w-20
-          "
-        />
-
-        <CornerOrnament
-          className="
-            pointer-events-none
-            absolute
-            bottom-6
-            right-6
-            h-16
-            w-16
-            rotate-180
-            text-[#D8C29A]/30
-            sm:bottom-9
-            sm:right-9
-            sm:h-20
-            sm:w-20
-          "
-        />
-
-        <BotanicalBranch
-          className="
-            pointer-events-none
-            absolute
-            -bottom-16
-            -left-8
-            h-[250px]
-            w-[145px]
-            -rotate-12
-            text-[#D8C29A]/10
-            sm:h-[310px]
-            sm:w-[180px]
-            lg:left-2
-          "
-        />
-
-        <BotanicalBranch
-          className="
-            pointer-events-none
-            absolute
-            -right-8
-            -top-16
-            h-[250px]
-            w-[145px]
-            rotate-[168deg]
-            text-[#D8C29A]/10
-            sm:h-[310px]
-            sm:w-[180px]
-            lg:right-2
-          "
         />
 
         {/* CONTENIDO */}
@@ -624,12 +377,13 @@ const Regalos = () => {
               justify-center
               rounded-full
               border
+              bg-white
               sm:h-20
               sm:w-20
             "
             style={{
-              color: "#D8C29A",
-              borderColor: "rgba(216,194,154,0.42)",
+              color: palette.gold,
+              borderColor: palette.gold,
             }}
             initial={{
               opacity: 0,
@@ -647,9 +401,8 @@ const Regalos = () => {
             <GiftIcon className="h-7 w-7 sm:h-8 sm:w-8" />
           </motion.div>
 
-
           <div className="mt-5">
-            <DecorativeDivider light />
+            <DecorativeDivider />
           </div>
 
           <motion.h2
@@ -657,14 +410,13 @@ const Regalos = () => {
               mt-8
               text-[44px]
               font-normal
-              italic
               leading-tight
               tracking-[-0.01em]
               sm:text-[58px]
               md:text-[68px]
             "
             style={{
-              color: palette.paperLight,
+              color: palette.black,
               fontFamily: '"Dancing Script", cursive',
             }}
             initial={{
@@ -696,7 +448,7 @@ const Regalos = () => {
               sm:leading-8
             "
             style={{
-              color: "rgba(252,251,248,0.72)",
+              color: palette.black,
             }}
             initial={{
               opacity: 0,
@@ -712,11 +464,11 @@ const Regalos = () => {
               delay: 0.18,
             }}
           >
-            Su presencia en este día es el regalo más importante para nosotros.
-            Si desean tener un detalle adicional, ponemos a su disposición
-            nuestros datos para transferencia bancaria.
+            Su presencia en este día es el regalo más importante
+            para nosotros. Si desean tener un detalle adicional,
+            ponemos a su disposición nuestros datos para
+            transferencia bancaria.
           </motion.p>
-
 
           {/* BOTÓN */}
 
@@ -737,14 +489,12 @@ const Regalos = () => {
               sm:px-10
             "
             style={{
-              backgroundColor: palette.paperLight,
-              borderColor: "rgba(216,194,154,0.78)",
-              color: palette.mochaDark,
-              boxShadow: "0 14px 34px rgba(20,14,12,0.2)",
+              backgroundColor: palette.gold,
+              borderColor: palette.gold,
+              color: palette.white,
             }}
             whileHover={{
               y: -2,
-              backgroundColor: palette.paper,
             }}
             whileTap={{
               scale: 0.985,
@@ -784,10 +534,9 @@ const Regalos = () => {
               items-center
               justify-center
               overflow-hidden
-              bg-[#241C18]/82
+              bg-black
               px-4
               py-5
-              backdrop-blur-sm
               sm:px-8
             "
             initial={{
@@ -827,9 +576,8 @@ const Regalos = () => {
                 md:px-14
               "
               style={{
-                backgroundColor: palette.paperLight,
-                borderColor: "rgba(183,154,98,0.48)",
-                boxShadow: "0 30px 100px rgba(0,0,0,0.34)",
+                backgroundColor: palette.marble,
+                borderColor: palette.gold,
               }}
               initial={{
                 opacity: 0,
@@ -851,33 +599,6 @@ const Regalos = () => {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              {/* TEXTURA */}
-
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  opacity-[0.18]
-                "
-                style={{
-                  backgroundImage: `
-                    radial-gradient(
-                      circle at 18% 12%,
-                      rgba(183,154,98,0.06),
-                      transparent 30%
-                    ),
-                    repeating-linear-gradient(
-                      0deg,
-                      rgba(90,70,59,0.018) 0px,
-                      rgba(90,70,59,0.018) 1px,
-                      transparent 1px,
-                      transparent 6px
-                    )
-                  `,
-                }}
-              />
-
               {/* BORDE INTERIOR */}
 
               <div
@@ -888,7 +609,7 @@ const Regalos = () => {
                   border
                 "
                 style={{
-                  borderColor: "rgba(183,154,98,0.15)",
+                  borderColor: palette.gold,
                 }}
               />
 
@@ -909,17 +630,16 @@ const Regalos = () => {
                   items-center
                   justify-center
                   border
-                  bg-[#FCFBF8]
+                  bg-white
                   sm:right-6
                   sm:top-6
                 "
                 style={{
-                  color: palette.ink,
-                  borderColor: "rgba(183,154,98,0.42)",
+                  color: palette.black,
+                  borderColor: palette.gold,
                 }}
                 whileHover={{
                   scale: 1.04,
-                  backgroundColor: palette.paper,
                 }}
                 whileTap={{
                   scale: 0.96,
@@ -949,10 +669,11 @@ const Regalos = () => {
                     justify-center
                     rounded-full
                     border
+                    bg-white
                   "
                   style={{
-                    color: palette.antiqueGoldDark,
-                    borderColor: "rgba(183,154,98,0.42)",
+                    color: palette.gold,
+                    borderColor: palette.gold,
                   }}
                 >
                   <GiftIcon />
@@ -967,7 +688,7 @@ const Regalos = () => {
                     sm:text-[9px]
                   "
                   style={{
-                    color: palette.antiqueGoldDark,
+                    color: palette.gold,
                   }}
                 >
                   Un detalle para nosotros
@@ -988,8 +709,9 @@ const Regalos = () => {
                     sm:text-[50px]
                   "
                   style={{
-                    color: palette.mocha,
-                    fontFamily: '"Cormorant Garamond", Georgia, serif',
+                    color: palette.black,
+                    fontFamily:
+                      '"Cormorant Garamond", Georgia, serif',
                   }}
                 >
                   Datos para transferencia
@@ -1006,11 +728,11 @@ const Regalos = () => {
                     sm:text-base
                   "
                   style={{
-                    color: palette.warmGray,
+                    color: palette.black,
                   }}
                 >
-                  Gracias por acompañarnos y por querer formar parte de esta
-                  nueva etapa de nuestra historia.
+                  Gracias por acompañarnos y por querer formar
+                  parte de esta nueva etapa de nuestra historia.
                 </p>
 
                 {/* DATOS BANCARIOS */}
@@ -1022,13 +744,13 @@ const Regalos = () => {
                     w-full
                     max-w-xl
                     border
+                    bg-white
                     px-5
                     py-3
                     sm:px-7
                   "
                   style={{
-                    backgroundColor: "rgba(247,245,240,0.72)",
-                    borderColor: "rgba(183,154,98,0.28)",
+                    borderColor: palette.gold,
                   }}
                 >
                   <BankInfoRow
@@ -1066,7 +788,7 @@ const Regalos = () => {
                         sm:text-[9px]
                       "
                       style={{
-                        color: palette.antiqueGoldDark,
+                        color: palette.gold,
                       }}
                     >
                       Concepto sugerido
@@ -1080,7 +802,7 @@ const Regalos = () => {
                         sm:text-[27px]
                       "
                       style={{
-                        color: palette.mocha,
+                        color: palette.black,
                         fontFamily:
                           '"Cormorant Garamond", Georgia, serif',
                       }}
@@ -1097,11 +819,15 @@ const Regalos = () => {
                         sm:text-[14px]
                       "
                       style={{
-                        color: palette.warmGray,
+                        color: palette.black,
                       }}
                     >
                       También puedes utilizar:{" "}
-                      <span style={{ color: palette.inkSoft }}>
+                      <span
+                        style={{
+                          color: palette.black,
+                        }}
+                      >
                         {conceptoAlternativo}
                       </span>
                     </p>
@@ -1124,7 +850,7 @@ const Regalos = () => {
                     sm:text-[22px]
                   "
                   style={{
-                    color: palette.inkSoft,
+                    color: palette.black,
                     fontFamily:
                       '"Cormorant Garamond", Georgia, serif',
                   }}

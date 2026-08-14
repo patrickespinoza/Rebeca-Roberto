@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+ import { motion } from "framer-motion";
 
 /* =========================================
    CIERRE FINAL — REBECA & ROBERTO
@@ -6,21 +6,20 @@ import { motion } from "framer-motion";
 
 const palette = {
   white: "#FFFFFF",
-  ivory: "#FCFBF8",
-  gold: "#D8C29A",
-};
-
-
-const imagePosition = {
-  mobile: "65% 50%",
-  desktop: "50% 50%",
+  black: "#000000",
+  marble: "#F5F3EE",
+  gold: "#B79A62",
 };
 
 export default function CierreFinal() {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{
+        opacity: 0,
+      }}
+      whileInView={{
+        opacity: 1,
+      }}
       viewport={{
         once: true,
         amount: 0.2,
@@ -30,7 +29,6 @@ export default function CierreFinal() {
         ease: [0.22, 1, 0.36, 1],
       }}
       className="
-        cierre-final
         relative
         flex
         min-h-[720px]
@@ -42,24 +40,23 @@ export default function CierreFinal() {
         lg:min-h-[900px]
       "
       style={{
-        "--image-mobile": imagePosition.mobile,
-        "--image-desktop": imagePosition.desktop,
+        backgroundColor: palette.marble,
       }}
     >
       {/* =========================================
-          FOTO DE FONDO
+          FOTO COMPLETA
       ========================================= */}
 
       <motion.img
         src="/final.jpg"
         alt="Rebeca y Roberto"
         className="
-          cierre-final-imagen
           absolute
           inset-0
           h-full
           w-full
-          object-cover
+          object-contain
+          object-center
         "
         initial={{
           opacity: 0,
@@ -67,7 +64,9 @@ export default function CierreFinal() {
         whileInView={{
           opacity: 1,
         }}
-        viewport={{ once: true }}
+        viewport={{
+          once: true,
+        }}
         transition={{
           duration: 1.2,
           ease: [0.22, 1, 0.36, 1],
@@ -75,7 +74,7 @@ export default function CierreFinal() {
       />
 
       {/* =========================================
-          SOMBRA GENERAL
+          SOMBRA MUY SUAVE SOBRE LA FOTO
       ========================================= */}
 
       <div
@@ -88,24 +87,20 @@ export default function CierreFinal() {
       />
 
       {/* =========================================
-          DEGRADADO INFERIOR
+          SOMBRA INFERIOR PARA LEER EL TEXTO
       ========================================= */}
 
       <div
         className="
           pointer-events-none
           absolute
-          inset-0
+          inset-x-0
+          bottom-0
+          h-[48%]
         "
         style={{
-          background: `
-            linear-gradient(
-              to bottom,
-              transparent 35%,
-              rgba(20,14,12,0.12) 58%,
-              rgba(20,14,12,0.72) 100%
-            )
-          `,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.68), transparent)",
         }}
       />
 
@@ -124,10 +119,10 @@ export default function CierreFinal() {
           flex-col
           items-center
           px-8
-          pb-24
+          pb-20
           text-center
-          sm:pb-28
-          lg:pb-32
+          sm:pb-24
+          lg:pb-28
         "
         initial={{
           opacity: 0,
@@ -137,14 +132,18 @@ export default function CierreFinal() {
           opacity: 1,
           y: 0,
         }}
-        viewport={{ once: true }}
+        viewport={{
+          once: true,
+        }}
         transition={{
           duration: 1,
           delay: 0.35,
           ease: [0.22, 1, 0.36, 1],
         }}
       >
-        {/* ORNAMENTO */}
+        {/* =========================================
+            ORNAMENTO
+        ========================================= */}
 
         <div
           className="
@@ -162,8 +161,7 @@ export default function CierreFinal() {
               sm:w-16
             "
             style={{
-              background:
-                "linear-gradient(to right, transparent, rgba(216,194,154,0.85))",
+              backgroundColor: palette.gold,
             }}
           />
 
@@ -175,7 +173,7 @@ export default function CierreFinal() {
               border
             "
             style={{
-              borderColor: "rgba(216,194,154,0.9)",
+              borderColor: palette.gold,
             }}
           />
 
@@ -186,13 +184,14 @@ export default function CierreFinal() {
               sm:w-16
             "
             style={{
-              background:
-                "linear-gradient(to left, transparent, rgba(216,194,154,0.85))",
+              backgroundColor: palette.gold,
             }}
           />
         </div>
 
-        {/* NOMBRES */}
+        {/* =========================================
+            NOMBRES
+        ========================================= */}
 
         <motion.h2
           className="
@@ -205,13 +204,15 @@ export default function CierreFinal() {
           style={{
             color: palette.white,
             fontFamily: '"Dancing Script", cursive',
-            textShadow: "0 3px 18px rgba(0,0,0,0.28)",
+            textShadow: "0 3px 18px rgba(0,0,0,0.35)",
           }}
         >
           Rebeca & Roberto
         </motion.h2>
 
-        {/* FRASE FINAL */}
+        {/* =========================================
+            FRASE FINAL
+        ========================================= */}
 
         <p
           className="
@@ -223,46 +224,14 @@ export default function CierreFinal() {
             sm:text-[17px]
           "
           style={{
-            color: "rgba(255,255,255,0.88)",
-            textShadow: "0 2px 10px rgba(0,0,0,0.25)",
+            color: palette.white,
+            textShadow: "0 2px 10px rgba(0,0,0,0.35)",
           }}
         >
-          Nos hará muy felices compartir este día tan especial con ustedes.
+          NUESTRO PARA SIEMPRE COMIENZA AQUI
         </p>
 
-        {/* CIERRE */}
-
-        <p
-          className="
-            mt-8
-            text-[9px]
-            uppercase
-            tracking-[0.32em]
-            sm:text-[10px]
-          "
-          style={{
-            color: "rgba(216,194,154,0.9)",
-          }}
-        >
-          Nuestro para siempre comienza aquí
-        </p>
       </motion.div>
-
-      {/* =========================================
-          POSICIÓN RESPONSIVE DE LA FOTO
-      ========================================= */}
-
-      <style>{`
-        .cierre-final-imagen {
-          object-position: var(--image-mobile);
-        }
-
-        @media (min-width: 1024px) {
-          .cierre-final-imagen {
-            object-position: var(--image-desktop);
-          }
-        }
-      `}</style>
     </motion.section>
   );
 }

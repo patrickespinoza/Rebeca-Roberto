@@ -3,30 +3,28 @@ import { motion } from "framer-motion";
 
 /* =========================================
    CÓDIGO DE VESTIMENTA — REBECA & ROBERTO
-   Formal · clásico · moka + dorado + marfil
+
+   DISEÑO:
+   - Marmoleado = fondo principal
+   - Dorado = detalles y acentos
+   - Negro = textos
+   - Blanco = contraste puntual
+
+   NOTA:
+   Azul marino, moka y blanco se conservan
+   únicamente como colores reservados.
 ========================================= */
 
 const palette = {
-  ink: "#241C18",
-  inkSoft: "#5A463B",
+  black: "#000000",
+  white: "#FFFFFF",
+  marble: "#F5F3EE",
+  gold: "#B79A62",
 
-  paper: "#F7F5F0",
-  paperLight: "#FCFBF8",
-  paperDark: "#E5DED5",
-
-  antiqueGold: "#B79A62",
-  antiqueGoldDark: "#8A6B3F",
-
-  mocha: "#5A463B",
-  mochaDark: "#3B2D27",
-
-  autumn: "#A7684A",
-  autumnDark: "#80604C",
-
-  warmGray: "#806F64",
-
-  navy: "#17243B",
-  whiteReserved: "#F8F7F4",
+  /* SOLO PARA MOSTRAR COLORES RESERVADOS */
+  navyReserved: "#17243B",
+  mochaReserved: "#5A463B",
+  whiteReserved: "#FFFFFF",
 };
 
 const fadeUp = {
@@ -159,31 +157,27 @@ function BotanicalBranch({ className = "" }) {
    SEPARADOR
 ========================================= */
 
-function DecorativeDivider({ light = false }) {
-  const gold = light
-    ? "rgba(216,194,154,0.76)"
-    : "rgba(183,154,98,0.72)";
-
+function DecorativeDivider() {
   return (
     <div className="flex items-center justify-center gap-3">
       <span
         className="h-px w-10 sm:w-16"
         style={{
-          background: `linear-gradient(to right, transparent, ${gold})`,
+          backgroundColor: palette.gold,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: gold,
+          borderColor: palette.gold,
         }}
       />
 
       <span
         className="h-px w-10 sm:w-16"
         style={{
-          background: `linear-gradient(to left, transparent, ${gold})`,
+          backgroundColor: palette.gold,
         }}
       />
     </div>
@@ -216,7 +210,7 @@ function AdultEventIcon() {
 }
 
 /* =========================================
-   ESPACIO PARA SILUETA
+   SILUETA
 ========================================= */
 
 function SilhouettePlaceholder({ type }) {
@@ -227,38 +221,22 @@ function SilhouettePlaceholder({ type }) {
       className="
         relative
         flex
-        h-[310px]
+        h-[480px]
         w-full
         items-center
         justify-center
         overflow-hidden
-        sm:h-[370px]
-        lg:h-[420px]
+        border-b
+        sm:h-[560px]
+        lg:h-[650px]
       "
       style={{
-        background: `
-          radial-gradient(
-            circle at 50% 42%,
-            rgba(183,154,98,0.08),
-            transparent 38%
-          ),
-          linear-gradient(
-            180deg,
-            #FFFFFF 0%,
-            #FCFBF8 55%,
-            #F7F5F0 100%
-          )
-        `,
+        backgroundColor: palette.white,
+        borderColor: palette.gold,
       }}
     >
-      {/* IMAGEN SEGÚN EL TIPO */}
-
       <img
-        src={
-          isWoman
-            ? "/siluetaM.png"
-            : "/siluetaH.png"
-        }
+        src={isWoman ? "/siluetaM.png" : "/siluetaH.png"}
         alt={
           isWoman
             ? "Silueta de dama con vestido largo"
@@ -276,6 +254,7 @@ function SilhouettePlaceholder({ type }) {
     </div>
   );
 }
+
 /* =========================================
    PANEL DE VESTIMENTA
 ========================================= */
@@ -288,8 +267,6 @@ function DressPanel({
   type,
   index,
 }) {
-  const dark = type === "man";
-
   return (
     <motion.article
       className="
@@ -298,16 +275,8 @@ function DressPanel({
         border
       "
       style={{
-        backgroundColor: dark
-          ? palette.mochaDark
-          : palette.paperLight,
-
-        borderColor: dark
-          ? "rgba(216,194,154,0.34)"
-          : "rgba(183,154,98,0.34)",
-
-        boxShadow:
-          "0 24px 60px rgba(20,14,12,0.16)",
+        backgroundColor: palette.marble,
+        borderColor: palette.gold,
       }}
       initial={{
         opacity: 0,
@@ -327,22 +296,15 @@ function DressPanel({
         ease: [0.22, 1, 0.36, 1],
       }}
     >
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-[7px]
-          z-20
-          border
-        "
-        style={{
-          borderColor: dark
-            ? "rgba(216,194,154,0.11)"
-            : "rgba(183,154,98,0.11)",
-        }}
+ 
+
+      {/* IMAGEN */}
+
+      <SilhouettePlaceholder
+        type={type === "man" ? "man" : "woman"}
       />
 
-      <SilhouettePlaceholder type={type === "man" ? "man" : "woman"} />
+      {/* INFORMACIÓN */}
 
       <div
         className="
@@ -360,13 +322,11 @@ function DressPanel({
           className="
             text-[13px]
             uppercase
-            tracking-[0.42em]
-            sm:text-[9px]
+            tracking-[0.32em]
+            sm:text-[14px]
           "
           style={{
-            color: dark
-              ? "#D8C29A"
-              : palette.antiqueGoldDark,
+            color: palette.gold,
           }}
         >
           {subtitle}
@@ -382,10 +342,7 @@ function DressPanel({
             sm:text-[46px]
           "
           style={{
-            color: dark
-              ? palette.paperLight
-              : palette.mocha,
-
+            color: palette.black,
             fontFamily:
               '"Cormorant Garamond", Georgia, serif',
           }}
@@ -394,48 +351,47 @@ function DressPanel({
         </h3>
 
         <div className="my-7">
-          <DecorativeDivider light={dark} />
+          <DecorativeDivider />
         </div>
 
-        <p
-          className="
-            mx-auto
-            max-w-sm
-            font-serif
-            text-[15px]
-            leading-7
-            sm:text-base
-          "
-          style={{
-            color: dark
-              ? "rgba(252,251,248,0.78)"
-              : palette.inkSoft,
-          }}
-        >
-          {description}
-        </p>
+        {description && (
+          <p
+            className="
+              mx-auto
+              max-w-sm
+              font-serif
+              text-[15px]
+              leading-7
+              sm:text-base
+            "
+            style={{
+              color: palette.black,
+            }}
+          >
+            {description}
+          </p>
+        )}
 
-        <p
-          className="
-            mx-auto
-            mt-4
-            max-w-sm
-            text-[17px]
-            italic
-            leading-7
-            sm:text-[19px]
-          "
-          style={{
-            color: dark
-              ? "rgba(216,194,154,0.84)"
-              : palette.warmGray,
-
-            fontFamily:
-              '"Cormorant Garamond", Georgia, serif',
-          }}
-        >
-          {details}
-        </p>
+        {details && (
+          <p
+            className="
+              mx-auto
+              mt-4
+              max-w-sm
+              text-[17px]
+              italic
+              leading-7
+              sm:text-[19px]
+            "
+            style={{
+              color: palette.black,
+              fontFamily:
+                '"Cormorant Garamond", Georgia, serif',
+            }}
+          >
+            {details}
+          </p>
+        )}
 
         <p
           className="
@@ -447,15 +403,51 @@ function DressPanel({
             tracking-[0.25em]
           "
           style={{
-            color: dark
-              ? "rgba(216,194,154,0.42)"
-              : "rgba(183,154,98,0.48)",
+            color: palette.gold,
           }}
         >
           {String(index + 1).padStart(2, "0")}
         </p>
       </div>
     </motion.article>
+  );
+}
+
+/* =========================================
+   COLOR RESERVADO
+========================================= */
+
+function ReservedColor({ color, label }) {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <span
+        className="
+          h-10
+          w-10
+          rounded-full
+          border
+          sm:h-12
+          sm:w-12
+        "
+        style={{
+          backgroundColor: color,
+          borderColor: palette.gold,
+        }}
+      />
+
+      <span
+        className="
+          text-[8px]
+          uppercase
+          tracking-[0.2em]
+        "
+        style={{
+          color: palette.black,
+        }}
+      >
+        {label}
+      </span>
+    </div>
   );
 }
 
@@ -489,50 +481,9 @@ const DressCodePremium = () => {
         lg:py-32
       "
       style={{
-        background: `
-          radial-gradient(
-            circle at 16% 15%,
-            rgba(183,154,98,0.09),
-            transparent 30%
-          ),
-
-          radial-gradient(
-            circle at 84% 78%,
-            rgba(167,104,74,0.07),
-            transparent 34%
-          ),
-
-          linear-gradient(
-            145deg,
-            ${palette.mochaDark} 0%,
-            ${palette.mocha} 48%,
-            #49372F 100%
-          )
-        `,
+        backgroundColor: palette.marble,
       }}
     >
-      {/* TEXTURA */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.18]
-        "
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(
-              0deg,
-              rgba(255,255,255,0.025) 0px,
-              rgba(255,255,255,0.025) 1px,
-              transparent 1px,
-              transparent 6px
-            )
-          `,
-        }}
-      />
-
       {/* MARCOS */}
 
       <div
@@ -545,7 +496,7 @@ const DressCodePremium = () => {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(216,194,154,0.3)",
+          borderColor: palette.gold,
         }}
       />
 
@@ -559,7 +510,7 @@ const DressCodePremium = () => {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(216,194,154,0.1)",
+          borderColor: palette.gold,
         }}
       />
 
@@ -573,7 +524,7 @@ const DressCodePremium = () => {
           top-6
           h-16
           w-16
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:left-9
           sm:top-9
           sm:h-20
@@ -590,7 +541,7 @@ const DressCodePremium = () => {
           h-16
           w-16
           rotate-90
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:right-9
           sm:top-9
           sm:h-20
@@ -607,7 +558,7 @@ const DressCodePremium = () => {
           h-16
           w-16
           -rotate-90
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:bottom-9
           sm:left-9
           sm:h-20
@@ -624,7 +575,7 @@ const DressCodePremium = () => {
           h-16
           w-16
           rotate-180
-          text-[#D8C29A]/30
+          text-[#B79A62]
           sm:bottom-9
           sm:right-9
           sm:h-20
@@ -643,7 +594,7 @@ const DressCodePremium = () => {
           h-[250px]
           w-[145px]
           -rotate-12
-          text-[#D8C29A]/10
+          text-[#B79A62]
           sm:h-[310px]
           sm:w-[180px]
           lg:left-2
@@ -659,7 +610,7 @@ const DressCodePremium = () => {
           h-[250px]
           w-[145px]
           rotate-[168deg]
-          text-[#D8C29A]/10
+          text-[#B79A62]
           sm:h-[310px]
           sm:w-[180px]
           lg:right-2
@@ -709,17 +660,18 @@ const DressCodePremium = () => {
             className="
               text-[15px]
               uppercase
-              tracking-[0.44em]
-              text-[#D8C29A]
+              tracking-[0.38em]
               sm:text-[18px]
-              sm:tracking-[0.55em]
             "
+            style={{
+              color: palette.gold,
+            }}
           >
             Detalles de la celebración
           </p>
 
           <div className="mt-5">
-            <DecorativeDivider light />
+            <DecorativeDivider />
           </div>
 
           <h2
@@ -727,33 +679,26 @@ const DressCodePremium = () => {
               mt-7
               text-[44px]
               font-normal
-              italic
               leading-tight
               sm:text-[58px]
               md:text-[68px]
             "
             style={{
-              color: palette.paperLight,
-
-              fontFamily:
-                '"Dancing Script", cursive',
+              color: palette.black,
+              fontFamily: '"Dancing Script", cursive',
             }}
           >
             Código de vestimenta
           </h2>
-
         </motion.div>
 
-        {/* =========================================
-            CABALLEROS + DAMAS
-        ========================================= */}
+        {/* CABALLEROS + DAMAS */}
 
         <div
           className="
             mx-auto
             grid
             max-w-5xl
-            overflow-hidden
             gap-7
             sm:gap-9
             md:grid-cols-2
@@ -774,9 +719,7 @@ const DressCodePremium = () => {
           />
         </div>
 
-        {/* =========================================
-            COLORES RESERVADOS
-        ========================================= */}
+        {/* COLORES RESERVADOS */}
 
         <motion.div
           className="
@@ -792,7 +735,7 @@ const DressCodePremium = () => {
             sm:py-10
           "
           style={{
-            borderColor: "rgba(216,194,154,0.3)",
+            borderColor: palette.gold,
           }}
           initial={{
             opacity: 0,
@@ -812,10 +755,11 @@ const DressCodePremium = () => {
             className="
               text-[13px]
               uppercase
-              tracking-[0.38em]
-              text-[#D8C29A]
-              sm:text-[9px]
+              tracking-[0.32em]
             "
+            style={{
+              color: palette.gold,
+            }}
           >
             Colores reservados
           </p>
@@ -829,7 +773,7 @@ const DressCodePremium = () => {
               sm:text-[34px]
             "
             style={{
-              color: palette.paperLight,
+              color: palette.black,
               fontFamily:
                 '"Cormorant Garamond", Georgia, serif',
             }}
@@ -848,95 +792,20 @@ const DressCodePremium = () => {
               sm:gap-7
             "
           >
-            <div className="flex flex-col items-center gap-2">
-              <span
-                className="
-                  h-10
-                  w-10
-                  rounded-full
-                  border
-                  sm:h-12
-                  sm:w-12
-                "
-                style={{
-                  backgroundColor: palette.navy,
-                  borderColor: "rgba(216,194,154,0.45)",
-                }}
-              />
+            <ReservedColor
+              color={palette.navyReserved}
+              label="Marino"
+            />
 
-              <span
-                className="
-                  text-[8px]
-                  uppercase
-                  tracking-[0.2em]
-                "
-                style={{
-                  color: "rgba(252,251,248,0.58)",
-                }}
-              >
-                Marino
-              </span>
-            </div>
+            <ReservedColor
+              color={palette.mochaReserved}
+              label="Moka"
+            />
 
-            <div className="flex flex-col items-center gap-2">
-              <span
-                className="
-                  h-10
-                  w-10
-                  rounded-full
-                  border
-                  sm:h-12
-                  sm:w-12
-                "
-                style={{
-                  backgroundColor: palette.mocha,
-                  borderColor: "rgba(216,194,154,0.45)",
-                }}
-              />
-
-              <span
-                className="
-                  text-[8px]
-                  uppercase
-                  tracking-[0.2em]
-                "
-                style={{
-                  color: "rgba(252,251,248,0.58)",
-                }}
-              >
-                Moka
-              </span>
-            </div>
-
-            <div className="flex flex-col items-center gap-2">
-              <span
-                className="
-                  h-10
-                  w-10
-                  rounded-full
-                  border
-                  sm:h-12
-                  sm:w-12
-                "
-                style={{
-                  backgroundColor: palette.whiteReserved,
-                  borderColor: "rgba(216,194,154,0.45)",
-                }}
-              />
-
-              <span
-                className="
-                  text-[8px]
-                  uppercase
-                  tracking-[0.2em]
-                "
-                style={{
-                  color: "rgba(252,251,248,0.58)",
-                }}
-              >
-                Blanco
-              </span>
-            </div>
+            <ReservedColor
+              color={palette.whiteReserved}
+              label="Blanco"
+            />
           </div>
 
           <p
@@ -950,7 +819,7 @@ const DressCodePremium = () => {
               sm:text-[15px]
             "
             style={{
-              color: "rgba(252,251,248,0.68)",
+              color: palette.black,
             }}
           >
             Agradecemos a nuestras invitadas elegir una tonalidad distinta a
@@ -958,9 +827,7 @@ const DressCodePremium = () => {
           </p>
         </motion.div>
 
-        {/* =========================================
-            SOLO ADULTOS
-        ========================================= */}
+        {/* SOLO ADULTOS */}
 
         <motion.div
           className="
@@ -998,8 +865,8 @@ const DressCodePremium = () => {
               border
             "
             style={{
-              borderColor: "rgba(216,194,154,0.42)",
-              color: "#D8C29A",
+              borderColor: palette.gold,
+              color: palette.gold,
             }}
           >
             <AdultEventIcon />
@@ -1010,10 +877,11 @@ const DressCodePremium = () => {
               mt-5
               text-[13px]
               uppercase
-              tracking-[0.4em]
-              text-[#D8C29A]
-              sm:text-[9px]
+              tracking-[0.32em]
             "
+            style={{
+              color: palette.gold,
+            }}
           >
             Consideración especial
           </p>
@@ -1026,7 +894,7 @@ const DressCodePremium = () => {
               sm:text-[29px]
             "
             style={{
-              color: palette.paperLight,
+              color: palette.black,
               fontFamily:
                 '"Cormorant Garamond", Georgia, serif',
             }}
@@ -1044,10 +912,12 @@ const DressCodePremium = () => {
               sm:text-[15px]
             "
             style={{
-              color: "rgba(252,251,248,0.64)",
+              color: palette.black,
             }}
           >
-            Queremos que esta noche sea una ocasión para celebrar, brindar y disfrutar juntos. Por ello, nuestra celebración será exclusivamente para adultos.
+            Queremos que esta noche sea una ocasión para celebrar, brindar y
+            disfrutar juntos. Por ello, nuestra celebración será
+            exclusivamente para adultos.
           </p>
         </motion.div>
       </div>

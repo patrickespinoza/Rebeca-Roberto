@@ -2,25 +2,14 @@ import { motion } from "framer-motion";
 
 /* =========================================
    FRASE PREMIUM — REBECA & ROBERTO
-   Mármol blanco + moka + dorado envejecido
+   Marmoleado principal + dorado + blanco + negro
 ========================================= */
 
 const palette = {
-  ink: "#241C18",
-  inkSoft: "#5A463B",
-
-  paper: "#F7F5F0",
-  paperLight: "#FCFBF8",
-  paperDark: "#E5DED5",
-
-  antiqueGold: "#B79A62",
-  antiqueGoldDark: "#8A6B3F",
-
-  mocha: "#5A463B",
-  autumn: "#A7684A",
-
-  warmGray: "#806F64",
-  line: "#D8D4CD",
+  black: "#000000",
+  white: "#FFFFFF",
+  marble: "#F5F3EE",
+  gold: "#B79A62",
 };
 
 const reveal = {
@@ -124,23 +113,21 @@ function SmallDivider() {
       <span
         className="h-px w-10 sm:w-14"
         style={{
-          background:
-            "linear-gradient(to right, transparent, rgba(183,154,98,0.72))",
+          backgroundColor: palette.gold,
         }}
       />
 
       <span
         className="h-[5px] w-[5px] rotate-45 border"
         style={{
-          borderColor: "rgba(183,154,98,0.72)",
+          borderColor: palette.gold,
         }}
       />
 
       <span
         className="h-px w-10 sm:w-14"
         style={{
-          background:
-            "linear-gradient(to left, transparent, rgba(183,154,98,0.72))",
+          backgroundColor: palette.gold,
         }}
       />
     </div>
@@ -176,90 +163,9 @@ export default function FrasePremium() {
         lg:py-32
       "
       style={{
-        background: `
-          radial-gradient(
-            circle at 18% 22%,
-            rgba(183,154,98,0.055) 0%,
-            transparent 28%
-          ),
-          radial-gradient(
-            circle at 82% 72%,
-            rgba(90,70,59,0.04) 0%,
-            transparent 32%
-          ),
-          linear-gradient(
-            120deg,
-            transparent 0%,
-            transparent 32%,
-            rgba(128,111,100,0.05) 33%,
-            transparent 35%,
-            transparent 62%,
-            rgba(183,154,98,0.035) 63%,
-            transparent 65%
-          ),
-          linear-gradient(
-            180deg,
-            ${palette.paperLight} 0%,
-            ${palette.paper} 58%,
-            ${palette.paperLight} 100%
-          )
-        `,
+        backgroundColor: palette.marble,
       }}
     >
-      {/* =========================================
-          TEXTURA MÁRMOL SUAVE
-      ========================================= */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          opacity-[0.42]
-        "
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              145deg,
-              transparent 0%,
-              transparent 38%,
-              rgba(128,111,100,0.05) 39%,
-              transparent 41%
-            ),
-            linear-gradient(
-              28deg,
-              transparent 0%,
-              transparent 67%,
-              rgba(183,154,98,0.04) 68%,
-              transparent 70%
-            )
-          `,
-        }}
-      />
-
-      {/* =========================================
-          LUZ CENTRAL
-      ========================================= */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-[520px]
-          w-[520px]
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          blur-3xl
-        "
-        style={{
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.22) 45%, transparent 72%)",
-        }}
-      />
-
       {/* =========================================
           MARCO EXTERIOR
       ========================================= */}
@@ -274,7 +180,7 @@ export default function FrasePremium() {
           lg:inset-10
         "
         style={{
-          borderColor: "rgba(183,154,98,0.28)",
+          borderColor: palette.gold,
         }}
       />
 
@@ -288,7 +194,7 @@ export default function FrasePremium() {
           lg:inset-[46px]
         "
         style={{
-          borderColor: "rgba(183,154,98,0.09)",
+          borderColor: palette.gold,
         }}
       />
 
@@ -305,7 +211,7 @@ export default function FrasePremium() {
           h-[210px]
           w-[130px]
           -rotate-12
-          text-[#B79A62]/20
+          text-[#B79A62]
           sm:-left-1
           sm:h-[260px]
           sm:w-[160px]
@@ -324,7 +230,7 @@ export default function FrasePremium() {
           h-[210px]
           w-[130px]
           rotate-[168deg]
-          text-[#B79A62]/20
+          text-[#B79A62]
           sm:-right-1
           sm:h-[260px]
           sm:w-[160px]
@@ -390,7 +296,7 @@ export default function FrasePremium() {
             sm:text-[86px]
           "
           style={{
-            color: "rgba(183,154,98,0.3)",
+            color: palette.gold,
           }}
           initial={{
             opacity: 0,
@@ -430,7 +336,7 @@ export default function FrasePremium() {
             lg:leading-[1.28]
           "
           style={{
-            color: palette.mocha,
+            color: palette.black,
             fontFamily: '"Cormorant Garamond", Georgia, serif',
           }}
           initial={{
@@ -490,7 +396,7 @@ export default function FrasePremium() {
             sm:tracking-[0.4em]
           "
           style={{
-            color: palette.warmGray,
+            color: palette.black,
           }}
           initial={{
             opacity: 0,
@@ -541,7 +447,7 @@ export default function FrasePremium() {
               w-16
             "
             style={{
-              backgroundColor: "rgba(183,154,98,0.48)",
+              backgroundColor: palette.gold,
             }}
           />
         </motion.div>
