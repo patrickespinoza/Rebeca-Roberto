@@ -1111,7 +1111,7 @@ useEffect(() => {
       <section
         className="
           relative
-          min-h-[100dvh]
+          min-h-[100svh]
           w-full
           overflow-hidden
         "
@@ -1223,7 +1223,7 @@ useEffect(() => {
 relative
 z-20
 flex
-min-h-[100dvh]
+min-h-[100svh]
 w-full
 flex-col
 items-center
