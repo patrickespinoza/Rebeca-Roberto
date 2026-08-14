@@ -816,7 +816,7 @@ useEffect(() => {
             object-cover
           "
           style={{
-            objectPosition: "0% 50%",
+            objectPosition: "-2% 50%",
             transform: "none",
           }}
           draggable="false"
