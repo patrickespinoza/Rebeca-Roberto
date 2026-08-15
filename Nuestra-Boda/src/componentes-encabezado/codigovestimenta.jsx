@@ -672,7 +672,7 @@ const DressCodePremium = () => {
           <h2
             className="
               mt-7
-              text-[44px]
+              text-[40px]
               font-normal
               leading-tight
               sm:text-[58px]
@@ -913,7 +913,8 @@ const DressCodePremium = () => {
               mt-3
               max-w-md
               font-serif
-              text-[11px]
+              text-[12px]
+              px-6
               leading-7
               sm:text-[12px]
             "

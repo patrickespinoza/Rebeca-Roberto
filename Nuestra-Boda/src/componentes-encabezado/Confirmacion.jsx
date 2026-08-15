@@ -661,7 +661,7 @@ const Confirmacion = () => {
           <h2
             className="
               mt-7
-              text-[36px]
+              text-[34px]
               font-normal
               leading-tight
               tracking-[-0.025em]
@@ -683,7 +683,8 @@ const Confirmacion = () => {
               mt-5
               max-w-2xl
               font-serif
-              text-[12px]
+              text-[13px]
+              px-6
               italic
               leading-7
               sm:text-sm

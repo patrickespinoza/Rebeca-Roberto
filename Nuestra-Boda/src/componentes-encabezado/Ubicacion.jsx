@@ -680,7 +680,7 @@ export default function EventoDireccion() {
           <h2
             className="
               mt-7
-              text-[44px]
+              text-[40px]
               font-normal
               italic
               leading-[1.05]
@@ -703,6 +703,7 @@ export default function EventoDireccion() {
               max-w-xl
               font-serif
               text-[12px]
+              px-6
               italic
               leading-7
               sm:text-sm

@@ -29,8 +29,23 @@ const palette = {
 ========================================= */
 
 const imagePosition = {
-  mobile: "49% 50%",
-  desktop: "50% 50%",
+  mobile: "77% 50%",
+  desktop: "50% 30%",
+};
+
+/* =========================================
+   COLOR DE LA FOTOGRAFÍA
+
+   Ajustado para acercarse a la foto original:
+   - ligeramente más oscura
+   - tonos cálidos / tierra
+   - saturación moderada
+   - contraste más profundo
+========================================= */
+
+const imageColor = {
+  filter:
+    "brightness(0.88) contrast(1.08) saturate(0.82) sepia(0.10)",
 };
 
 export default function CierreFinal() {
@@ -58,7 +73,7 @@ export default function CierreFinal() {
       ========================================= */}
 
       <motion.img
-        src="/final1.jpg"
+        src="/final.png"
         alt="Rebeca y Roberto"
         className="
           cierre-final-imagen
@@ -68,6 +83,9 @@ export default function CierreFinal() {
           w-full
           object-cover
         "
+        style={{
+          filter: imageColor.filter,
+        }}
         initial={{
           opacity: 0,
         }}

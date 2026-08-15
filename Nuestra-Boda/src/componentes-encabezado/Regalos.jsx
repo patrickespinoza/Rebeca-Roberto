@@ -454,6 +454,7 @@ const Regalos = () => {
               font-serif
               text-[13px]
               leading-7
+              px-6
               sm:text-[16px]
               sm:leading-8
             "

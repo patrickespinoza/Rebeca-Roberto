@@ -378,6 +378,7 @@ const Album = () => {
               max-w-2xl
               font-serif
               text-[13px]
+              px-6
               italic
               leading-7
               sm:text-[15px]

@@ -313,6 +313,7 @@ export default function Galeria() {
               font-serif
               text-[12px]
               italic
+              px-6
               leading-7
               sm:text-sm
             "

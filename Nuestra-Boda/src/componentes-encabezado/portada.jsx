@@ -930,10 +930,22 @@ lg:pt-20
             delay: 0.2,
           }}
         >
-          {/* ENCABEZADO */}
+          {/* =========================================
+              MONOGRAMA + NOMBRES SUPERIORES
+          ========================================= */}
 
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
+            className="
+              flex
+              w-full
+              flex-col
+              items-center
+              justify-center
+            "
+            initial={{
+              opacity: 0,
+              y: -18,
+            }}
             animate={
               mostrarContenido
                 ? {
@@ -942,7 +954,7 @@ lg:pt-20
                   }
                 : {
                     opacity: 0,
-                    y: -12,
+                    y: -18,
                   }
             }
             transition={{
@@ -950,130 +962,58 @@ lg:pt-20
               delay: 0.5,
             }}
           >
-           
+            {/* MONOGRAMA */}
+
+            <img
+              src="/monograma.png"
+              alt="Monograma Rebeca y Roberto"
+              className="
+                h-auto
+                w-[200px]
+                object-contain
+                sm:w-[105px]
+                md:w-[120px]
+                lg:w-[205px]
+              "
+              draggable="false"
+            />
+
+            {/* NOMBRES */}
+
+            <p
+              className="
+                mt-2
+                whitespace-nowrap
+                text-[28px]
+                font-normal
+                leading-none
+                text-[#FCFBF8]
+                sm:mt-3
+                sm:text-[32px]
+                md:text-[36px]
+              "
+              style={{
+                fontFamily: '"Dancing Script", cursive',
+                textShadow: "0 3px 16px rgba(0,0,0,0.35)",
+              }}
+            >
+              Rebeca & Roberto
+            </p>
+
+            {/* LÍNEA DECORATIVA */}
+
             <div
               className="
-                mx-auto
-                mt-2
-                sm:mt-4
+                mt-4
                 h-px
                 w-14
+                sm:mt-5
+                sm:w-16
               "
               style={{
                 backgroundColor: "rgba(245,241,232,0.7)",
               }}
             />
-
-
-          </motion.div>
-
-          {/* NOMBRES */}
-
-          <motion.div
-            className="
-              flex
-              max-w-4xl
-              flex-col
-              items-center
-              
-            "
-            initial={{ opacity: 0, y: 24 }}
-            animate={
-              mostrarContenido
-                ? {
-                    opacity: 1,
-                    y: 0,
-                  }
-                : {
-                    opacity: 0,
-                    y: 24,
-                  }
-            }
-            transition={{
-              duration: 1.1,
-              delay: 0.65,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-
-
-            <h1
-              className="
-                font-serif
-                text-[40px]
-                font-normal
-                leading-[0.9]
-                tracking-[-0.035em]
-                text-[#FCFBF8]
-                sm:text-[72px]
-                md:text-[88px]
-                lg:text-[104px]
-              "
-              style={{
-                textShadow: "0 4px 24px rgba(0,0,0,0.32)",
-                fontFamily: '"Dancing Script", cursive',
-              }}
-            >
-              Rebeca
-            </h1>
-
-            <div className="my-2 flex items-center gap-3 sm:my-4 sm:gap-6">
-              <span
-                className="
-                  h-px
-                  w-12
-                  sm:w-20
-                "
-                style={{
-                  background:
-                    "linear-gradient(to right, transparent, rgba(216,198,166,0.8))",
-                }}
-              />
-
-              <span
-                className="
-                  font-cursiveDancing
-                  text-2xl
-                  text-[#D8C29A]
-                  sm:text-4xl
-                "
-              >
-                &
-              </span>
-
-              <span
-                className="
-                  h-px
-                  w-12
-                  sm:w-20
-                "
-                style={{
-                  background:
-                    "linear-gradient(to left, transparent, rgba(216,198,166,0.8))",
-                }}
-              />
-            </div>
-
-            <h1
-              className="
-                font-serif
-                text-[40px]
-                font-normal
-                leading-[0.9]
-                tracking-[-0.035em]
-                text-[#FCFBF8]
-                sm:text-[72px]
-                md:text-[88px]
-                lg:text-[104px]
-              "
-              style={{
-                textShadow: "0 4px 24px rgba(0,0,0,0.32)",
-                fontFamily: '"Dancing Script", cursive',
-              }}
-            >
-              Roberto 
-            </h1>
-
           </motion.div>
 
           {/* CONTADOR */}
