@@ -478,7 +478,9 @@ const Regalos = () => {
             Su presencia en este día es el regalo más importante
             para nosotros. Si desean tener un detalle adicional,
             ponemos a su disposición nuestros datos para
-            transferencia bancaria.
+            transferencia bancaria. De igual manera, contares
+            con un espacio destinado para quienes deseenn hacernos 
+            llegar su obsequio en efectivo el día de la celebración.
           </motion.p>
 
           {/* BOTÓN */}
