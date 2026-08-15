@@ -965,7 +965,7 @@ lg:pt-20
             {/* MONOGRAMA */}
 
             <img
-              src="/monograma.png"
+              src="/monograma1.png"
               alt="Monograma Rebeca y Roberto"
               className="
                 h-auto

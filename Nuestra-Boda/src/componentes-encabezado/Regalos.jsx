@@ -443,7 +443,7 @@ const Regalos = () => {
               delay: 0.12,
             }}
           >
-            Mesa de regalos
+            LLuvia de Sobres
           </motion.h2>
 
           <motion.p

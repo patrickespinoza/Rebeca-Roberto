@@ -143,7 +143,83 @@ function DecorativeDivider() {
     </div>
   );
 }
+function BotanicalDetail({ className = "" }) {
+  return (
+    <svg
+      viewBox="0 0 130 210"
+      fill="none"
+      aria-hidden="true"
+      className={className}
+    >
+      <path
+        d="M66 203C70 158 70 112 65 17"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
 
+      <path
+        d="M66 164C49 153 39 139 34 121"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+
+      <path
+        d="M66 139C82 128 92 113 96 94"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+
+      <path
+        d="M65 103C50 92 42 79 39 64"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+
+      <path
+        d="M65 76C80 66 87 52 89 38"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        strokeLinecap="round"
+      />
+
+      <path
+        d="M34 121C44 120 52 126 57 137C46 137 38 132 34 121Z"
+        stroke="currentColor"
+        strokeWidth="0.7"
+      />
+
+      <path
+        d="M96 94C86 94 78 100 72 111C84 111 92 105 96 94Z"
+        stroke="currentColor"
+        strokeWidth="0.7"
+      />
+
+      <path
+        d="M39 64C49 65 57 71 61 82C50 81 42 75 39 64Z"
+        stroke="currentColor"
+        strokeWidth="0.7"
+      />
+
+      <path
+        d="M89 38C80 39 73 45 68 55C79 54 86 49 89 38Z"
+        stroke="currentColor"
+        strokeWidth="0.7"
+      />
+
+      <circle
+        cx="65"
+        cy="16"
+        r="3"
+        stroke="currentColor"
+        strokeWidth="0.7"
+      />
+    </svg>
+  );
+}
 /* =========================================
    EVENTO DE LA CRONOLOGÍA
 ========================================= */
@@ -461,6 +537,29 @@ export default function ItinerarioRelojCentral() {
         style={{
           borderColor: palette.gold,
         }}
+      />
+
+            {/* =========================================
+          DETALLES BOTÁNICOS
+      ========================================= */}
+
+      <BotanicalDetail
+        className="
+          pointer-events-none
+          absolute
+          -bottom-8
+          -left-7
+          h-[210px]
+          w-[130px]
+          -rotate-12
+          text-[#B79A62]
+          sm:-left-1
+          sm:h-[260px]
+          sm:w-[160px]
+          lg:left-8
+          lg:h-[310px]
+          lg:w-[190px]
+        "
       />
 
       {/* CONTENIDO */}
