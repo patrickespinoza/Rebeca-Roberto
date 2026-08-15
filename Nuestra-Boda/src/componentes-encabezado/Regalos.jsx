@@ -479,7 +479,7 @@ const Regalos = () => {
             para nosotros. Si desean tener un detalle adicional,
             ponemos a su disposición nuestros datos para
             transferencia bancaria. De igual manera, contares
-            con un espacio destinado para quienes deseenn hacernos 
+            con un espacio destinado para quienes deseen hacernos 
             llegar su obsequio en efectivo el día de la celebración.
           </motion.p>
 

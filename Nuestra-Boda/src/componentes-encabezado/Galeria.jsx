@@ -27,6 +27,7 @@ const images = [
   "/Carrusel12.JPG",
   "/Carrusel13.JPG",
   "/Carrusel14.JPG",
+  "/Carrusel15.JPG",
 ];
 
 const fadeUp = {
