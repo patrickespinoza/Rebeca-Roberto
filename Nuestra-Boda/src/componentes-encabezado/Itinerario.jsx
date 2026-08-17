@@ -42,7 +42,7 @@ const events = [
     icon: "dinner",
   },
   {
-    time: "9:00 pm",
+    time: "8:00 pm",
     place: "(Casa D Vian)",
     title: "Fiesta",
     description: "Una noche para celebrar juntos.",
