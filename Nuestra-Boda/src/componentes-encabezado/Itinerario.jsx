@@ -11,27 +11,39 @@ const palette = {
   gold: "#B79A62",
 };
 
+/* =========================================
+   EVENTOS
+   time = hora
+   place = lugar
+   title = evento
+   description = descripción
+========================================= */
+
 const events = [
   {
     time: "5:00 pm",
+    place: "(Palacio Monumental)",
     title: "Ceremonia",
     description: "Ceremonia religiosa.",
     icon: "rings",
   },
   {
     time: "6:00 pm",
+    place: "(Casa D Vian)",
     title: "Recepción",
     description: "Bienvenida.",
     icon: "glass",
   },
   {
     time: "7:00 pm",
+    place: "(Casa D Vian)",
     title: "Banquete",
-    description: "Banquete con un menú especialmente.",
+    description: "Banquete con un menú especial.",
     icon: "dinner",
   },
   {
     time: "9:00 pm",
+    place: "(Casa D Vian)",
     title: "Fiesta",
     description: "Una noche para celebrar juntos.",
     icon: "music",
@@ -143,6 +155,11 @@ function DecorativeDivider() {
     </div>
   );
 }
+
+/* =========================================
+   DETALLE BOTÁNICO
+========================================= */
+
 function BotanicalDetail({ className = "" }) {
   return (
     <svg
@@ -220,6 +237,7 @@ function BotanicalDetail({ className = "" }) {
     </svg>
   );
 }
+
 /* =========================================
    EVENTO DE LA CRONOLOGÍA
 ========================================= */
@@ -287,12 +305,7 @@ function TimelineEvent({ event, index, isLast }) {
           ${isEven ? "lg:items-end lg:text-right" : "lg:invisible"}
         `}
       >
-        {isEven && (
-          <EventContent
-            event={event}
-            alignment="right"
-          />
-        )}
+        {isEven && <EventContent event={event} alignment="right" />}
       </div>
 
       {/* MARCADOR CENTRAL */}
@@ -363,18 +376,12 @@ function TimelineEvent({ event, index, isLast }) {
         `}
       >
         <div className="lg:hidden">
-          <EventContent
-            event={event}
-            alignment="left"
-          />
+          <EventContent event={event} alignment="left" />
         </div>
 
         {!isEven && (
           <div className="hidden lg:block">
-            <EventContent
-              event={event}
-              alignment="left"
-            />
+            <EventContent event={event} alignment="left" />
           </div>
         )}
       </div>
@@ -397,70 +404,60 @@ function EventContent({ event, alignment }) {
         ${isRight ? "lg:ml-auto" : "lg:mr-auto"}
       `}
     >
-      <div
-        className={`
-          mt-3
-          flex
-          flex-col
-          gap-2
-          sm:flex-row
-          sm:items-baseline
-          sm:gap-4
-          ${
-            isRight
-              ? "sm:justify-start lg:flex-row-reverse lg:justify-start"
-              : "sm:justify-start"
-          }
-        `}
-      >
-        {/* HORA */}
+      {/* HORA */}
 
+      <p
+        className="
+          font-serif
+          text-[33px]
+          leading-none
+          tracking-[-0.025em]
+          sm:text-[39px]
+        "
+        style={{
+          color: palette.black,
+        }}
+      >
+        {event.time}
+      </p>
+
+      {/* LUGAR */}
+
+      {event.place && (
         <p
           className="
-            font-serif
-            text-[33px]
-            leading-none
-            tracking-[-0.025em]
-            sm:text-[39px]
+            mt-3
+            text-[10px]
+            uppercase
+            tracking-[0.28em]
+            sm:text-[11px]
           "
           style={{
             color: palette.black,
+            opacity: 0.65,
           }}
         >
-          {event.time}
+          {event.place}
         </p>
+      )}
 
-        {/* LÍNEA */}
+      {/* TÍTULO */}
 
-        <span
-          className="
-            hidden
-            h-px
-            w-8
-            sm:block
-          "
-          style={{
-            backgroundColor: palette.gold,
-          }}
-        />
-
-        {/* TÍTULO */}
-
-        <h3
-          className="
-            text-[27px]
-            font-normal
-            italic
-            sm:text-[31px]
-          "
-          style={{
-            color: palette.gold,
-            fontFamily: '"Cormorant Garamond", Georgia, serif',
-          }}
-        >
-          {event.title}
-        </h3>
-      </div>
+      <h3
+        className="
+          mt-2
+          text-[27px]
+          font-normal
+          italic
+          sm:text-[31px]
+        "
+        style={{
+          color: palette.gold,
+          fontFamily: '"Cormorant Garamond", Georgia, serif',
+        }}
+      >
+        {event.title}
+      </h3>
 
       {/* DESCRIPCIÓN */}
 
@@ -539,9 +536,7 @@ export default function ItinerarioRelojCentral() {
         }}
       />
 
-            {/* =========================================
-          DETALLES BOTÁNICOS
-      ========================================= */}
+      {/* DETALLE BOTÁNICO */}
 
       <BotanicalDetail
         className="
